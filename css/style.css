@@ -1,4 +1,82 @@
-p {
-	/*font-family: 'Libre Barcode 39 Text', cursive;*/
-	/*font-size: 36px;*/
+* {
+	border: 2px solid purple;
+}
+
+body {
+	font: 18px/1.5 Arial, Helvetica, sans-serif;
+	background: url("../img/background.jpg") no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+/*Global*/
+
+.container {
+	margin: auto;
+	width: 80%;
+	overflow: auto;
+}
+
+/*Header*/
+
+header {
+	min-height: 80px;
+	background-color: white;
+	padding-top: 30px;
+}
+
+#logo {
+	float: left;
+	color: green;
+	padding-left: 75px;
+	font-size: 42px;
+	margin-top: -10px;
+}
+
+header li {
+	display: inline;
+	float: left;
+	padding: 0 10px;
+}
+
+header a {
+	text-decoration: none;
+	color: red;
+	text-transform: uppercase;
+}
+
+header nav {
+	float: right;
+	margin-top: 13px;
+}
+
+header .current a {
+	color: green;
+}
+
+header .current a:hover {
+	color: red;
+}
+
+/*form in the center*/
+
+/*.test {
+	position: relative;
+}
+
+form {
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%, -50%);
+}*/
+
+/*Footer*/
+
+footer {
+	text-align: center;
+	background-color: white;
+	color: black;
+	padding: 20px;
+	margin-top: 20px;
 }
