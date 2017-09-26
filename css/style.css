@@ -20,7 +20,7 @@ body {
 /*Header*/
 
 header {
-	min-height: 80px;
+	min-height: 7vh;
 	background-color: white;
 	padding-top: 30px;
 }
@@ -60,18 +60,29 @@ header .current a:hover {
 
 /*form in the center*/
 
-/*.test {
-	position: relative;
-}
-
 form {
-	position: absolute;
+	/*position: absolute;
 	top:50%;
 	left:50%;
-	transform: translate(-50%, -50%);
-}*/
+	transform: translate(-50%, -50%);*/
+	position: relative;
+	transform: translate(-50%, 0);
+	left: 50%;
+	background-color: white;
+	min-width: 300px;
+	width: 20vw;
+	height: 40vh;
+	margin-top: 20vh;
+}
 
 /*Footer*/
+
+html, body {
+	margin: 0;
+	display:table;
+	height:100%;
+	width: 100%;
+}
 
 footer {
 	text-align: center;
@@ -79,4 +90,10 @@ footer {
 	color: black;
 	padding: 20px;
 	margin-top: 20px;
+	display: table-row;
+	height: 70px;
+}
+
+footer p {
+	padding-top: 20px;
 }
