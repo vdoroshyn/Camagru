@@ -156,4 +156,6 @@ footer {
 	padding: 1px 9px;
 }
 	
-
+input:invalid{
+  background-color: #FDD;
+}
