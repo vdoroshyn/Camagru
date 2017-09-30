@@ -27,15 +27,16 @@
   	</header>
 
   	<section>
-	    <form>
+	    <form novalidate>
         <div>
           <span id="signUp">sign up</span>
         </div>
 	      <div>
 	        <input class="field" name="login" type="text" placeholder="login">
 	      </div>
-	      <div>
-	        <input class="field" name="email" type="text" placeholder="email">
+	      <div id="huy">
+	        <input class="field" name="email" type="email" placeholder="email">
+          <span class="error" aria-live="polite"></span>
 	      </div>
 	      <div>
 	        <input class="field" name="password" type="password" placeholder="password">
@@ -59,5 +60,26 @@
   	<footer>
   	  <p>Copyright &copy; 2017 vdoroshy</p>
   	</footer>
+    <script>
+      var form = document.getElementsByTagName('form')[0];
+      var email = document.getElementsByName('email')[0];
+      var error = document.querySelector('.error');
+
+      email.addEventListener("input", function(event) {
+        if (email.validity.valid) {
+          error.innerHTML = "";
+          error.className = "error";
+        }
+      }, false);
+
+      form.addEventListener("submit", function(event) {
+        if (!email.validity.valid) {
+          error.innerHTML = "email bitch! enter it!";
+          error.className = "error activeError";
+
+          event.preventDefault();
+        }
+      }, false);
+    </script>
   </body>
 </html>
