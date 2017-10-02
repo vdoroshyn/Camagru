@@ -31,6 +31,7 @@
         <div>
           <span id="signUp">sign up</span>
         </div>
+        <!-- TODO -->
 	      <div class="fieldDiv">
 	        <input class="field" name="login" type="text" placeholder="login">
           <span class="error" aria-live="polite"></span>
@@ -69,7 +70,7 @@
       var email = document.getElementsByName('email')[0];
       var password = document.getElementsByName('password')[0];
       var repeatPassword = document.getElementsByName('repeatPassword')[0];
-      var loginError = document.querySelectorAll('.error')[0];
+      var loginError = document.querySelectorAll('.error')[0];//TODO
       var emailError = document.querySelectorAll('.error')[1];
       var passwordError = document.querySelectorAll('.error')[2];
       var repeatPasswordError = document.querySelectorAll('.error')[3];
@@ -88,7 +89,9 @@
           event.preventDefault();
         }
 
-        if (email.value == "") {
+        var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; //TODO
+
+        if (email.value == "" || !reg.test(email.value)) {
           emailError.textContent = "enter a correct email";
           emailError.classList.add("activeError");
           emailField.classList.add("invalidField");
@@ -113,6 +116,12 @@
         }
 
       }, false);
+
+      // function validateEmail(email) {
+      //   var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      //   return reg.test(email);
+      // }
+
     </script>
   </body>
 </html>
