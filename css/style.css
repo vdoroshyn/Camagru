@@ -140,7 +140,7 @@ footer {
 
 /*testing*/
 
-#huy {
+.fieldDiv {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -156,6 +156,6 @@ footer {
 	padding: 1px 9px;
 }
 	
-input:invalid{
-  background-color: #FDD;
+.invalidField {
+	background-color: #FBE9E8;
 }

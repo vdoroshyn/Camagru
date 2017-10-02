@@ -31,18 +31,21 @@
         <div>
           <span id="signUp">sign up</span>
         </div>
-	      <div>
+	      <div class="fieldDiv">
 	        <input class="field" name="login" type="text" placeholder="login">
+          <span class="error" aria-live="polite"></span>
 	      </div>
-	      <div id="huy">
+	      <div class="fieldDiv">
 	        <input class="field" name="email" type="email" placeholder="email">
           <span class="error" aria-live="polite"></span>
 	      </div>
-	      <div>
+	      <div class="fieldDiv">
 	        <input class="field" name="password" type="password" placeholder="password">
+          <span class="error" aria-live="polite"></span>
 	      </div>
-	      <div>
-	        <input class="field" name="repeat-password" type="password" placeholder="repeat password">
+	      <div class="fieldDiv">
+	        <input class="field" name="repeatPassword" type="password" placeholder="repeat password">
+          <span class="error" aria-live="polite"></span>
 	      </div>
 	      <div>
 	      	<button class="button" type="submit">submit</button>
@@ -62,23 +65,53 @@
   	</footer>
     <script>
       var form = document.getElementsByTagName('form')[0];
+      var login = document.getElementsByName('login')[0];
       var email = document.getElementsByName('email')[0];
-      var error = document.querySelector('.error');
-
-      email.addEventListener("input", function(event) {
-        if (email.validity.valid) {
-          error.innerHTML = "";
-          error.className = "error";
-        }
-      }, false);
+      var password = document.getElementsByName('password')[0];
+      var repeatPassword = document.getElementsByName('repeatPassword')[0];
+      var loginError = document.querySelectorAll('.error')[0];
+      var emailError = document.querySelectorAll('.error')[1];
+      var passwordError = document.querySelectorAll('.error')[2];
+      var repeatPasswordError = document.querySelectorAll('.error')[3];
+      var loginField = document.getElementsByTagName('input')[0];
+      var emailField = document.getElementsByTagName('input')[1];
+      var passwordField = document.getElementsByTagName('input')[2];
+      var repeatPasswordField = document.getElementsByTagName('input')[3];
 
       form.addEventListener("submit", function(event) {
-        if (!email.validity.valid) {
-          error.innerHTML = "please, enter your email";
-          error.className = "error activeError";
+
+        if (login.value == "") {
+          loginError.textContent = "enter a username";
+          loginError.classList.add("activeError");
+          loginField.classList.add("invalidField");
 
           event.preventDefault();
         }
+
+        if (email.value == "") {
+          emailError.textContent = "enter a correct email";
+          emailError.classList.add("activeError");
+          emailField.classList.add("invalidField");
+
+          event.preventDefault();
+        }
+
+        if (password.value == "") {
+          passwordError.textContent = "enter a password";
+          passwordError.classList.add("activeError");
+          passwordField.classList.add("invalidField");
+
+          event.preventDefault();
+        }
+
+        if (repeatPassword.value == "") {
+          repeatPasswordError.textContent = "re-enter your password";
+          repeatPasswordError.classList.add("activeError");
+          repeatPasswordField.classList.add("invalidField");
+
+          event.preventDefault();
+        }
+
       }, false);
     </script>
   </body>
