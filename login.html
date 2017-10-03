@@ -31,20 +31,19 @@
         <div>
           <span id="signUp">sign up</span>
         </div>
-        <!-- TODO -->
-	      <div class="fieldDiv">
+	      <div class="login-div">
 	        <input class="field" name="login" type="text" placeholder="login">
           <span class="error" aria-live="polite"></span>
 	      </div>
-	      <div class="fieldDiv">
+	      <div class="email-div">
 	        <input class="field" name="email" type="email" placeholder="email">
           <span class="error" aria-live="polite"></span>
 	      </div>
-	      <div class="fieldDiv">
+	      <div class="password-div">
 	        <input class="field" name="password" type="password" placeholder="password">
           <span class="error" aria-live="polite"></span>
 	      </div>
-	      <div class="fieldDiv">
+	      <div class="repeat-password-div">
 	        <input class="field" name="repeatPassword" type="password" placeholder="repeat password">
           <span class="error" aria-live="polite"></span>
 	      </div>
@@ -65,23 +64,32 @@
   	  <p>Copyright &copy; 2017 vdoroshy</p>
   	</footer>
     <script>
-      var form = document.getElementsByTagName('form')[0];
-      var login = document.getElementsByName('login')[0];
-      var email = document.getElementsByName('email')[0];
-      var password = document.getElementsByName('password')[0];
-      var repeatPassword = document.getElementsByName('repeatPassword')[0];
-      var loginError = document.querySelectorAll('.error')[0];//TODO
-      var emailError = document.querySelectorAll('.error')[1];
-      var passwordError = document.querySelectorAll('.error')[2];
-      var repeatPasswordError = document.querySelectorAll('.error')[3];
-      var loginField = document.getElementsByTagName('input')[0];
-      var emailField = document.getElementsByTagName('input')[1];
-      var passwordField = document.getElementsByTagName('input')[2];
-      var repeatPasswordField = document.getElementsByTagName('input')[3];
+// TODO
+      var formName = document.getElementsByTagName('form')[0];
+      var loginName = document.getElementsByName('login')[0];
+      var emailName = document.getElementsByName('email')[0];
+      var passwordName = document.getElementsByName('password')[0];
+      var repeatPasswordName = document.getElementsByName('repeatPassword')[0];
+      /*getting login variables*/
+      var login = document.querySelector('.login-div');
+      var loginError = login.querySelector('.error');
+      var loginField = login.querySelector('input');
+      /*getting email variables*/
+      var email = document.querySelector('.email-div');
+      var emailError = email.querySelector('.error');
+      var emailField = email.querySelector('input');
+      /*getting password variables*/
+      var password = document.querySelector('.password-div');
+      var passwordError = password.querySelector('.error');
+      var passwordField = password.querySelector('input');
+      /*getting repeatPassword variables*/
+      var repeatPassword = document.querySelector('.repeat-password-div');
+      var repeatPasswordError = repeatPassword.querySelector('.error');
+      var repeatPasswordField = repeatPassword.querySelector('input');
 
-      form.addEventListener("submit", function(event) {
+      formName.addEventListener("submit", function(event) {
 
-        if (login.value == "") {
+        if (loginName.value == "") {
           loginError.textContent = "enter a username";
           loginError.classList.add("activeError");
           loginField.classList.add("invalidField");
@@ -89,9 +97,8 @@
           event.preventDefault();
         }
 
-        var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; //TODO
-
-        if (email.value == "" || !reg.test(email.value)) {
+        var reg = /^[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*@[a-zA-Z-]+\.([a-zA-Z]+){2,}(\.([a-zA-Z]+){2,})*$/;
+        if (emailName.value == "" || !reg.test(emailName.value)) {
           emailError.textContent = "enter a correct email";
           emailError.classList.add("activeError");
           emailField.classList.add("invalidField");
@@ -99,7 +106,7 @@
           event.preventDefault();
         }
 
-        if (password.value == "") {
+        if (passwordName.value == "") {
           passwordError.textContent = "enter a password";
           passwordError.classList.add("activeError");
           passwordField.classList.add("invalidField");
@@ -107,7 +114,7 @@
           event.preventDefault();
         }
 
-        if (repeatPassword.value == "") {
+        if (repeatPasswordName.value == "") {
           repeatPasswordError.textContent = "re-enter your password";
           repeatPasswordError.classList.add("activeError");
           repeatPasswordField.classList.add("invalidField");
