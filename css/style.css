@@ -140,10 +140,10 @@ footer {
 
 /*testing*/
 
-#login-div,
-#email-div,
-#password-div,
-#repeat-password-div {
+#loginDiv,
+#emailDiv,
+#passwordDiv,
+#repeatPasswordDiv {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -156,10 +156,10 @@ footer {
 	border-radius: 3px;
 }
 
-.activeError {
+.active-error {
 	padding: 1px 9px;
 }
 	
-.invalidField {
+.invalid-field {
 	background-color: #FBE9E8;
 }

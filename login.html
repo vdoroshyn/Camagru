@@ -31,19 +31,19 @@
         <div>
           <span id="signUp">sign up</span>
         </div>
-	      <div id="login-div">
+	      <div id="loginDiv">
 	        <input class="field" name="login" type="text" placeholder="login">
           <span class="error" aria-live="polite"></span>
 	      </div>
-	      <div id="email-div">
+	      <div id="emailDiv">
 	        <input class="field" name="email" type="email" placeholder="email">
           <span class="error" aria-live="polite"></span>
 	      </div>
-	      <div id="password-div">
+	      <div id="passwordDiv">
 	        <input class="field" name="password" type="password" placeholder="password">
           <span class="error" aria-live="polite"></span>
 	      </div>
-	      <div id="repeat-password-div">
+	      <div id="repeatPasswordDiv">
 	        <input class="field" name="repeatPassword" type="password" placeholder="repeat password">
           <span class="error" aria-live="polite"></span>
 	      </div>
@@ -67,71 +67,134 @@
       /*getting the form*/
       var form = document.querySelector('form');
       /*getting login variables*/
-      var login = document.querySelector('#login-div');
+      var login = document.querySelector('#loginDiv');
       var loginError = login.querySelector('.error');
       var loginField = login.querySelector('input');
       /*getting email variables*/
-      var email = document.querySelector('#email-div');
+      var email = document.querySelector('#emailDiv');
       var emailError = email.querySelector('.error');
       var emailField = email.querySelector('input');
       /*getting password variables*/
-      var password = document.querySelector('#password-div');
+      var password = document.querySelector('#passwordDiv');
       var passwordError = password.querySelector('.error');
       var passwordField = password.querySelector('input');
       /*getting repeatPassword variables*/
-      var repeatPassword = document.querySelector('#repeat-password-div');
+      var repeatPassword = document.querySelector('#repeatPasswordDiv');
       var repeatPasswordError = repeatPassword.querySelector('.error');
       var repeatPasswordField = repeatPassword.querySelector('input');
 
       form.addEventListener("submit", function(event) {
 
-        if (loginField.value == "") {
-          loginError.textContent = "enter a username";
-          loginError.classList.add("activeError");
-          loginField.classList.add("invalidField");
+        checkLogin(loginField, loginError);
+        checkEmail(emailField, emailError);
+        checkPassword(passwordField, passwordError);
+        checkRepeatPassword(repeatPasswordField, repeatPasswordError, passwordField);
+
+      }, false);
+
+      function checkLogin(login, error) {
+        var reg = /^[a-zA-Z0-9_]+$/;
+
+        if (login.value == "" || (login.value.length < 4 || login.value.length > 8)) {
+          error.textContent = "enter a username (4-8 characters)";
+          error.classList.add("active-error");
+          login.classList.add("invalid-field");
 
           event.preventDefault();
         }
+        else if (!reg.test(login.value)) {
+          error.textContent = "special characters are not allowed";
+          error.classList.add("active-error");
+          login.classList.add("invalid-field");
 
+          event.preventDefault();
+        }
+        else {
+          error.textContent = "";
+          error.classList.remove("active-error");
+          login.classList.remove("invalid-field");
+        }
+      }
+
+      function checkEmail(email, error) {
         /*regex to validate an email
         *
-        *1)any number of block separated with dot before @ is possible
+        *1)any number of blocks separated with dot before @ is possible
         *2)only letters, numbers, and underscore are allowed before @
         *3)only letters and hyphens are allowed for domain
         *4)complicated extensions are allowed (com.ua or org.su)
         */
         var reg = /^[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*@[a-zA-Z-]+\.([a-zA-Z]+){2,}(\.([a-zA-Z]+){2,})*$/;
-        if (emailField.value == "" || !reg.test(emailField.value)) {
-          emailError.textContent = "enter a correct email";
-          emailError.classList.add("activeError");
-          emailField.classList.add("invalidField");
+
+        if (email.value == "" || !reg.test(email.value)) {
+          error.textContent = "enter a valid email address";
+          error.classList.add("active-error");
+          email.classList.add("invalid-field");
 
           event.preventDefault();
         }
+        else {
+          error.textContent = "";
+          error.classList.remove("active-error");
+          email.classList.remove("invalid-field");
+        }
+      }
 
-        if (passwordField.value == "") {
-          passwordError.textContent = "enter a password";
-          passwordError.classList.add("activeError");
-          passwordField.classList.add("invalidField");
+      function checkPassword(password, error) {
+        /*regex to validate an password
+        *
+        *1)the password should consist only of letters, digits, and underscore
+        *2)the password should be from 8 to 32 characters long
+        *3)the password should contain at least 1 lowercase letter
+        *4)the password should contain at least 1 uppercase letter
+        *5)the password should contain at least 1 digit
+        */
+        var reg = /^(?=[a-zA-Z0-9_]{8,32}$)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z])(?=\D*\d)/;
+
+        if (password.value == "") {
+          error.textContent = "enter a password";
+          error.classList.add("active-error");
+          password.classList.add("invalid-field");
 
           event.preventDefault();
         }
-
-        if (repeatPasswordField.value == "") {
-          repeatPasswordError.textContent = "re-enter your password";
-          repeatPasswordError.classList.add("activeError");
-          repeatPasswordField.classList.add("invalidField");
+        else if (!reg.test(password.value)) {
+          error.textContent = "at least 1 uppercase letter at least 1 uppercase letter at least 1 digit 8-32 characters";
+          error.classList.add("active-error");
+          password.classList.add("invalid-field");
 
           event.preventDefault();
         }
+        else {
+          error.textContent = "";
+          error.classList.remove("active-error");
+          password.classList.remove("invalid-field");
+        }
+      }
 
-      }, false);
+      function checkRepeatPassword(repeatPassword, error, password) {
+        if (repeatPassword.value == "" && password.value == "") {
+          error.textContent = "re-enter your password";
+          error.classList.add("active-error");
+          repeatPassword.classList.add("invalid-field");
 
-      // function validateEmail(email) {
-      //   var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      //   return reg.test(email);
-      // }
+          event.preventDefault();
+        }
+        else if (repeatPassword.value != password.value) {
+          error.textContent = "the passwords do not match";
+          error.classList.add("active-error");
+          repeatPassword.classList.add("invalid-field");
 
+          event.preventDefault();
+        }
+        else {
+          error.textContent = "";
+          error.classList.remove("active-error");
+          repeatPassword.classList.remove("invalid-field");
+        }
+      }
+// new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+// new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
     </script>
   </body>
 </html>
