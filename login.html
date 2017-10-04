@@ -64,12 +64,8 @@
   	  <p>Copyright &copy; 2017 vdoroshy</p>
   	</footer>
     <script>
-// TODO
-      var formName = document.getElementsByTagName('form')[0];
-      var loginName = document.getElementsByName('login')[0];
-      var emailName = document.getElementsByName('email')[0];
-      var passwordName = document.getElementsByName('password')[0];
-      var repeatPasswordName = document.getElementsByName('repeatPassword')[0];
+      /*getting the form*/
+      var form = document.querySelector('form');
       /*getting login variables*/
       var login = document.querySelector('.login-div');
       var loginError = login.querySelector('.error');
@@ -87,9 +83,9 @@
       var repeatPasswordError = repeatPassword.querySelector('.error');
       var repeatPasswordField = repeatPassword.querySelector('input');
 
-      formName.addEventListener("submit", function(event) {
+      form.addEventListener("submit", function(event) {
 
-        if (loginName.value == "") {
+        if (loginField.value == "") {
           loginError.textContent = "enter a username";
           loginError.classList.add("activeError");
           loginField.classList.add("invalidField");
@@ -98,7 +94,7 @@
         }
 
         var reg = /^[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*@[a-zA-Z-]+\.([a-zA-Z]+){2,}(\.([a-zA-Z]+){2,})*$/;
-        if (emailName.value == "" || !reg.test(emailName.value)) {
+        if (emailField.value == "" || !reg.test(emailField.value)) {
           emailError.textContent = "enter a correct email";
           emailError.classList.add("activeError");
           emailField.classList.add("invalidField");
@@ -106,7 +102,7 @@
           event.preventDefault();
         }
 
-        if (passwordName.value == "") {
+        if (passwordField.value == "") {
           passwordError.textContent = "enter a password";
           passwordError.classList.add("activeError");
           passwordField.classList.add("invalidField");
@@ -114,7 +110,7 @@
           event.preventDefault();
         }
 
-        if (repeatPasswordName.value == "") {
+        if (repeatPasswordField.value == "") {
           repeatPasswordError.textContent = "re-enter your password";
           repeatPasswordError.classList.add("activeError");
           repeatPasswordField.classList.add("invalidField");
