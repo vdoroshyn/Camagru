@@ -31,19 +31,19 @@
         <div>
           <span id="signUp">sign up</span>
         </div>
-	      <div class="login-div">
+	      <div id="login-div">
 	        <input class="field" name="login" type="text" placeholder="login">
           <span class="error" aria-live="polite"></span>
 	      </div>
-	      <div class="email-div">
+	      <div id="email-div">
 	        <input class="field" name="email" type="email" placeholder="email">
           <span class="error" aria-live="polite"></span>
 	      </div>
-	      <div class="password-div">
+	      <div id="password-div">
 	        <input class="field" name="password" type="password" placeholder="password">
           <span class="error" aria-live="polite"></span>
 	      </div>
-	      <div class="repeat-password-div">
+	      <div id="repeat-password-div">
 	        <input class="field" name="repeatPassword" type="password" placeholder="repeat password">
           <span class="error" aria-live="polite"></span>
 	      </div>
@@ -67,19 +67,19 @@
       /*getting the form*/
       var form = document.querySelector('form');
       /*getting login variables*/
-      var login = document.querySelector('.login-div');
+      var login = document.querySelector('#login-div');
       var loginError = login.querySelector('.error');
       var loginField = login.querySelector('input');
       /*getting email variables*/
-      var email = document.querySelector('.email-div');
+      var email = document.querySelector('#email-div');
       var emailError = email.querySelector('.error');
       var emailField = email.querySelector('input');
       /*getting password variables*/
-      var password = document.querySelector('.password-div');
+      var password = document.querySelector('#password-div');
       var passwordError = password.querySelector('.error');
       var passwordField = password.querySelector('input');
       /*getting repeatPassword variables*/
-      var repeatPassword = document.querySelector('.repeat-password-div');
+      var repeatPassword = document.querySelector('#repeat-password-div');
       var repeatPasswordError = repeatPassword.querySelector('.error');
       var repeatPasswordField = repeatPassword.querySelector('input');
 
@@ -93,6 +93,13 @@
           event.preventDefault();
         }
 
+        /*regex to validate an email
+        *
+        *1)any number of block separated with dot before @ is possible
+        *2)only letters, numbers, and underscore are allowed before @
+        *3)only letters and hyphens are allowed for domain
+        *4)complicated extensions are allowed (com.ua or org.su)
+        */
         var reg = /^[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*@[a-zA-Z-]+\.([a-zA-Z]+){2,}(\.([a-zA-Z]+){2,})*$/;
         if (emailField.value == "" || !reg.test(emailField.value)) {
           emailError.textContent = "enter a correct email";

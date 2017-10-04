@@ -140,7 +140,10 @@ footer {
 
 /*testing*/
 
-.login-div, .email-div, .password-div, .repeat-password-div {
+#login-div,
+#email-div,
+#password-div,
+#repeat-password-div {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
