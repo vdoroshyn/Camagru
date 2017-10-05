@@ -95,6 +95,9 @@
       function checkLogin(login, error) {
         var reg = /^[a-zA-Z0-9_]+$/;
 
+        /*
+        **if there is nothing entered or the username is of not sufficient length
+        */
         if (login.value == "" || (login.value.length < 4 || login.value.length > 8)) {
           error.textContent = "enter a username (4-8 characters)";
           error.classList.add("active-error");
@@ -102,6 +105,9 @@
 
           event.preventDefault();
         }
+        /*
+        **if the username contains not only letters, digits, and underscore
+        */
         else if (!reg.test(login.value)) {
           error.textContent = "special characters are not allowed";
           error.classList.add("active-error");
@@ -109,6 +115,9 @@
 
           event.preventDefault();
         }
+        /*
+        **removing the error classes in case everything is alright
+        */
         else {
           error.textContent = "";
           error.classList.remove("active-error");
@@ -126,6 +135,9 @@
         */
         var reg = /^[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*@[a-zA-Z-]+\.([a-zA-Z]+){2,}(\.([a-zA-Z]+){2,})*$/;
 
+        /*
+        **if there is nothing entered or the email is of not correct format
+        */
         if (email.value == "" || !reg.test(email.value)) {
           error.textContent = "enter a valid email address";
           error.classList.add("active-error");
@@ -133,6 +145,9 @@
 
           event.preventDefault();
         }
+        /*
+        **removing the error classes in case everything is alright
+        */
         else {
           error.textContent = "";
           error.classList.remove("active-error");
@@ -151,6 +166,9 @@
         */
         var reg = /^(?=[a-zA-Z0-9_]{8,32}$)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z])(?=\D*\d)/;
 
+        /*
+        **if there is nothing entered
+        */
         if (password.value == "") {
           error.textContent = "enter a password";
           error.classList.add("active-error");
@@ -158,6 +176,10 @@
 
           event.preventDefault();
         }
+        /*
+        **if the password does not contain at least one: lowercase letter, uppercase letter, and 1 digit
+        **or is of insufficient length
+        */
         else if (!reg.test(password.value)) {
           error.textContent = "at least 1 uppercase letter at least 1 uppercase letter at least 1 digit 8-32 characters";
           error.classList.add("active-error");
@@ -165,6 +187,9 @@
 
           event.preventDefault();
         }
+        /*
+        **removing the error classes in case everything is alright
+        */
         else {
           error.textContent = "";
           error.classList.remove("active-error");
@@ -173,6 +198,7 @@
       }
 
       function checkRepeatPassword(repeatPassword, error, password) {
+        /*if both the password and repeated password are not entered*/
         if (repeatPassword.value == "" && password.value == "") {
           error.textContent = "re-enter your password";
           error.classList.add("active-error");
@@ -180,13 +206,29 @@
 
           event.preventDefault();
         }
-        else if (repeatPassword.value != password.value) {
-          error.textContent = "the passwords do not match";
+        /*
+        **if the password is not entered, and the repeated password is entered
+        */
+        else if (repeatPassword.value != "" && password.value == "") {
+          error.textContent = "you have to enter a password first";
           error.classList.add("active-error");
           repeatPassword.classList.add("invalid-field");
 
           event.preventDefault();
         }
+        /*
+        **if the password does not match the repeated one
+        */
+        else if (repeatPassword.value != password.value) {
+          error.textContent = "passwords do not match";
+          error.classList.add("active-error");
+          repeatPassword.classList.add("invalid-field");
+
+          event.preventDefault();
+        }
+        /*
+        **removing the error classes in case everything is alright
+        */
         else {
           error.textContent = "";
           error.classList.remove("active-error");
