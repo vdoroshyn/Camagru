@@ -48,7 +48,7 @@
           <span class="error" aria-live="polite"></span>
 	      </div>
 	      <div>
-	      	<button class="button" type="submit">submit</button>
+	      	<button class="btn_1" type="submit">submit</button>
 	      </div>
         <div>
 	        <span id="haveAccount">Already have an account?</span>
@@ -104,25 +104,23 @@
           login.classList.add("invalid-field");
 
           event.preventDefault();
+          return;
         }
         /*
         **if the username contains not only letters, digits, and underscore
         */
-        else if (!reg.test(login.value)) {
+        if (!reg.test(login.value)) {
           error.textContent = "special characters are not allowed";
           error.classList.add("active-error");
           login.classList.add("invalid-field");
 
           event.preventDefault();
+          return;
         }
         /*
         **removing the error classes in case everything is alright
         */
-        else {
-          error.textContent = "";
-          error.classList.remove("active-error");
-          login.classList.remove("invalid-field");
-        }
+        popError(error, login);
       }
 
       function checkEmail(email, error) {
@@ -144,15 +142,12 @@
           email.classList.add("invalid-field");
 
           event.preventDefault();
+          return;
         }
         /*
         **removing the error classes in case everything is alright
         */
-        else {
-          error.textContent = "";
-          error.classList.remove("active-error");
-          email.classList.remove("invalid-field");
-        }
+        popError(error, email);
       }
 
       function checkPassword(password, error) {
@@ -175,26 +170,24 @@
           password.classList.add("invalid-field");
 
           event.preventDefault();
+          return;
         }
         /*
         **if the password does not contain at least one: lowercase letter, uppercase letter, and 1 digit
         **or is of insufficient length
         */
-        else if (!reg.test(password.value)) {
-          error.textContent = "at least 1 uppercase letter at least 1 uppercase letter at least 1 digit 8-32 characters";
+        if (!reg.test(password.value)) {
+          error.textContent = "no special characters at least 1 uppercase letter at least 1 lowercase letter at least 1 digit 8-32 characters";
           error.classList.add("active-error");
           password.classList.add("invalid-field");
 
           event.preventDefault();
+          return;
         }
         /*
         **removing the error classes in case everything is alright
         */
-        else {
-          error.textContent = "";
-          error.classList.remove("active-error");
-          password.classList.remove("invalid-field");
-        }
+        popError(error, password);
       }
 
       function checkRepeatPassword(repeatPassword, error, password) {
@@ -205,36 +198,51 @@
           repeatPassword.classList.add("invalid-field");
 
           event.preventDefault();
+          return;
         }
         /*
         **if the password is not entered, and the repeated password is entered
         */
-        else if (repeatPassword.value != "" && password.value == "") {
+        if (repeatPassword.value != "" && password.value == "") {
           error.textContent = "you have to enter a password first";
           error.classList.add("active-error");
           repeatPassword.classList.add("invalid-field");
 
           event.preventDefault();
+          return;
         }
         /*
         **if the password does not match the repeated one
         */
-        else if (repeatPassword.value != password.value) {
+        if (repeatPassword.value != password.value) {
           error.textContent = "passwords do not match";
           error.classList.add("active-error");
           repeatPassword.classList.add("invalid-field");
 
           event.preventDefault();
+          return;
         }
         /*
         **removing the error classes in case everything is alright
         */
-        else {
-          error.textContent = "";
-          error.classList.remove("active-error");
-          repeatPassword.classList.remove("invalid-field");
-        }
+        popError(error, repeatPassword);
       }
+
+      // function addError(error, field, text, event) {
+      //   error.textContent = text;
+      //   error.classList.add("active-error");
+      //   field.classList.add("invalid-field");
+
+      //   event.preventDefault();
+      //   return;
+      // }
+
+      function popError(error, field) {
+        error.textContent = "";
+        error.classList.remove("active-error");
+        field.classList.remove("invalid-field");
+      }
+
 // new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
 // new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
     </script>

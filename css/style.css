@@ -96,7 +96,7 @@ form div .field {
 	height: 25px;
 }
 
-form div .button {
+form div .btn_1 {
 	width: 70%;
 	font-size: 15px;
 	height: 30px;
@@ -154,6 +154,8 @@ footer {
 	background-color: #0B2429;
 	font-size: 12px;
 	border-radius: 3px;
+/*	width: 75%;
+	text-align: center;*/
 }
 
 .active-error {
