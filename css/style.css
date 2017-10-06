@@ -154,6 +154,7 @@ footer {
 	background-color: #0B2429;
 	font-size: 12px;
 	border-radius: 3px;
+	white-space: pre;
 /*	width: 75%;
 	text-align: center;*/
 }
