@@ -1,15 +1,22 @@
 <html>
 <body>
 
+<?php 
+session_start();
+include('connectToDatabase.php');
+include('config/database.php');
 
-<?php
+$pdo = returnPDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+if ($pdo) {
+	$id = NULL;
 
-echo "successfully registered, not rly lal";
-echo "<br>";
-echo "user is " . $_GET['login'] . "<br>";
-echo "email is " . $_GET['email'] . "<br>";
-echo "password is " . $_GET['password'] . "<br>";
-echo "repeatPassword is " . $_GET['repeatPassword'] . "<br>";
+	$statement = $pdo->prepare("INSERT INTO `users` VALUES(:Login, :Email, :Password, :ID)");
+	$statement->bindParam(':Login', $_GET['login']);
+	$statement->bindParam(':Email', $_GET['email']);
+	$statement->bindParam(':Password', $_GET['password']);
+	$statement->bindParam(':ID', $id);
+	$statement->execute();
+}
 ?>
 
 </body>
