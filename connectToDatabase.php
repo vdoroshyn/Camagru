@@ -1,6 +1,6 @@
 <?php
 
-include('config/database.php');
+require('config/database.php');
 
 function returnPDO($DB_DSN, $DB_USER, $DB_PASSWORD) {
 	try {
