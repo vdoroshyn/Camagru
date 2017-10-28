@@ -1,5 +1,12 @@
 <?php
   session_start();
+  if (!empty($_GET['login']) &&
+      !empty($_GET['email']) &&
+      !empty($_GET['password']) &&
+      !empty($_GET['repeatPassword'])
+      ) {
+    include_once('registration.php');
+  }
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +38,7 @@
   	</header>
 
   	<section>
-	    <form action="registration.php" method="get" novalidate>
+	    <form action="index.php" method="get" novalidate>
         <div>
           <span id="signUp">sign up</span>
         </div>
@@ -67,9 +74,6 @@
   	<footer>
   	  <p>Copyright &copy; 2017 vdoroshy</p>
   	</footer>
-    <script src="js/registrationValidation.js">
-// new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-// new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
-    </script>
+    <script src="js/registrationValidation.js"></script>
   </body>
 </html>
