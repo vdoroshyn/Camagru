@@ -1,5 +1,9 @@
 <?php
   session_start();
+
+  //creating an array withh error messages
+  $credentials = array("login" => "", "email" => "", "pswd" => "", "repeatPswd" => "");
+
   if (!empty($_GET['login']) &&
       !empty($_GET['email']) &&
       !empty($_GET['password']) &&
@@ -44,11 +48,23 @@
         </div>
 	      <div id="loginDiv">
 	        <input class="field" name="login" type="text" placeholder="login">
-          <span class="error" aria-live="polite"></span>
+         <!--  <span class="error" aria-live="polite"></span> -->
+
+          <?php if($credentials['login'] == "") : ?>
+            <span class="error" aria-live="polite"></span>
+          <?php else : ?>
+            <span class="error active-error" aria-live="polite"><?php echo "{$credentials['login']}"; ?></span> <!-- TODO pre -->
+          <?php endif; ?>   
 	      </div>
 	      <div id="emailDiv">
 	        <input class="field" name="email" type="email" placeholder="email">
-          <span class="error" aria-live="polite"></span>
+         <!--  <span class="error" aria-live="polite"></span> -->
+          <?php echo "<span class='error" ?>
+          <?php
+          if ($credentials['email'] != "") {
+            echo " active-error' ";
+          } ?> 
+          <?php echo "aria-live='polite'>{$credentials['email']}</span>"; ?>
 	      </div>
 	      <div id="passwordDiv">
 	        <input class="field" name="password" type="password" placeholder="password">

@@ -6,24 +6,39 @@ $pdo = returnPDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 
 if ($pdo) {
 
-	$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `username` = ?");
+	$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `username` = :Login");
 	$login = htmlentities($_GET['login']);
-	$stmt->execute(array($login));
+	$stmt->bindParam(':Login', $login);
+	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
-		echo "the username <strong>{$_GET['login']}</strong> is already in use<br/>";
+		$credentials['login'] = "the username is already in use";
+		// echo "the username <strong>{$_GET['login']}</strong> is already in use<br/>";
 	}
 
-	$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `email` = ?");
+	$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `email` = :Email");
 	$email = htmlentities($_GET['email']);
-	$stmt->execute(array($email));
+	$stmt->bindParam(':Email', $email);
+	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
-		echo "the email <strong>{$_GET['email']}</strong> is already in use<br/>";
+		$credentials['email'] = "the email is already in use";
+		// echo "the email <strong>{$_GET['email']}</strong> is already in use<br/>";
 	}
 	// die();
-	// $statement = $pdo->prepare("INSERT INTO `users` (`username`, `email`, `password`) VALUES (:Login, :Email, :Password)");
-	// $statement->bindParam(':Login', htmlentities($_GET['login']));
-	// $statement->bindParam(':Email', htmlentities($_GET['email']));
-	// $statement->bindParam(':Password', htmlentities($_GET['password']));
-	// $statement->execute();
-} //todo else die
+	
+} else {
+	echo "no connection with the database<br/>";
+	die();
+}
+if ($credentials['login'] == "" && $credentials['email'] == "") {
+	$stmt = $pdo->prepare("INSERT INTO `users` (`username`, `email`, `password`) VALUES (:Login, :Email, :Password)");
+	//sanitizing the user input
+	$login = htmlentities($_GET['login']);
+	$email = htmlentities($_GET['email']);
+	$pswd = htmlentities($_GET['password']);
+	//binding params
+	$stmt->bindParam(':Login', $login);
+	$stmt->bindParam(':Email', $email);
+	$stmt->bindParam(':Password', $pswd);
+	$stmt->execute();
+}
 ?>
