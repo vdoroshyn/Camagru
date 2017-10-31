@@ -1,8 +1,10 @@
 <?php
   session_start();
-
-  //creating an array withh error messages
-  $credentials = array("login" => "", "email" => "", "pswd" => "", "repeatPswd" => "");
+  //creating variables for integrating php into html
+  $inputValue = array("login" => "", "email" => "", "pswd" => "", "repeatPswd" => "");
+  $errorValue = array("login" => "", "email" => "", "pswd" => "", "repeatPswd" => "");
+  $errorClass = array("login" => "error", "email" => "error", "pswd" => "error", "repeatPswd" => "error");
+  $inputClass = array("login" => "field", "email" => "field", "pswd" => "field", "repeatPswd" => "field");
 
   if (!empty($_GET['login']) &&
       !empty($_GET['email']) &&
@@ -48,23 +50,11 @@
         </div>
 	      <div id="loginDiv">
 	        <input class="field" name="login" type="text" placeholder="login">
-         <!--  <span class="error" aria-live="polite"></span> -->
-
-          <?php if($credentials['login'] == "") : ?>
-            <span class="error" aria-live="polite"></span>
-          <?php else : ?>
-            <span class="error active-error" aria-live="polite"><?php echo "{$credentials['login']}"; ?></span> <!-- TODO pre -->
-          <?php endif; ?>   
+          <span class="error" aria-live="polite"></span>
 	      </div>
 	      <div id="emailDiv">
-	        <input class="field" name="email" type="email" placeholder="email">
-         <!--  <span class="error" aria-live="polite"></span> -->
-          <?php echo "<span class='error" ?>
-          <?php
-          if ($credentials['email'] != "") {
-            echo " active-error' ";
-          } ?> 
-          <?php echo "aria-live='polite'>{$credentials['email']}</span>"; ?>
+	        <input class='<?php echo "{$inputClass['email']}"; ?>' name="email" type="email" placeholder="email" value='<?php echo "{$inputValue['email']}"; ?>'>
+          <span class='<?php echo "{$errorClass['email']}"; ?>' aria-live="polite"><?php echo "{$errorValue['email']}"; ?></span>
 	      </div>
 	      <div id="passwordDiv">
 	        <input class="field" name="password" type="password" placeholder="password">

@@ -11,7 +11,7 @@ if ($pdo) {
 	$stmt->bindParam(':Login', $login);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
-		$credentials['login'] = "the username is already in use";
+		$errorValue['login'] = "the username is already in use";
 		// echo "the username <strong>{$_GET['login']}</strong> is already in use<br/>";
 	}
 
@@ -20,7 +20,7 @@ if ($pdo) {
 	$stmt->bindParam(':Email', $email);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
-		$credentials['email'] = "the email is already in use";
+		$errorValue['email'] = "the email is already in use";
 		// echo "the email <strong>{$_GET['email']}</strong> is already in use<br/>";
 	}
 	// die();
@@ -29,7 +29,7 @@ if ($pdo) {
 	echo "no connection with the database<br/>";
 	die();
 }
-if ($credentials['login'] == "" && $credentials['email'] == "") {
+if ($errorValue['login'] == "" && $errorValue['email'] == "") {
 	$stmt = $pdo->prepare("INSERT INTO `users` (`username`, `email`, `password`) VALUES (:Login, :Email, :Password)");
 	//sanitizing the user input
 	$login = htmlentities($_GET['login']);
