@@ -14,13 +14,10 @@ if ($pdo) {
 	$login = htmlentities($_GET['login']);
 	$stmt->bindParam(':Login', $login);
 	$stmt->execute();
-
 	if ($stmt->rowCount() > 0) {
 		$errorValue['login'] = "the username is already in use";
-		$inputValue['login'] = $_GET['login'];
 		$errorClass['login'] = "error active-error";
 		$inputClass['login'] = "field invalid-field";
-		// echo "the username <strong>{$_GET['login']}</strong> is already in use<br/>";
 	}
 
 	$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `email` = :Email");
@@ -29,12 +26,9 @@ if ($pdo) {
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
 		$errorValue['email'] = "the email is already in use";
-		$inputValue['email'] = $_GET['email'];
 		$errorClass['email'] = "error active-error";
 		$inputClass['email'] = "field invalid-field";
-		// echo "the email <strong>{$_GET['email']}</strong> is already in use<br/>";
 	}
-	// die();
 	
 } else {
 	echo "no connection with the database<br/>";
@@ -51,10 +45,13 @@ if ($errorValue['login'] == "" && $errorValue['email'] == "") {
 	$stmt->bindParam(':Email', $email);
 	$stmt->bindParam(':Password', $pswd);
 	$stmt->execute();
-	//clearing input values for the field to be empty
+	//clearing input values for the fields to be empty
 	$inputValue['login'] = "";
 	$inputValue['email'] = "";
 	$inputValue['pswd'] = "";
 	$inputValue['repeatPswd'] = "";
+	//clearing the POST array
+	header('Location: index.php');
+	die();
 }
 ?>
