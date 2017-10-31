@@ -1,5 +1,6 @@
 <?php
   session_start();
+
   //creating variables for integrating php into html
   $inputValue = array("login" => "", "email" => "", "pswd" => "", "repeatPswd" => "");
   $errorValue = array("login" => "", "email" => "", "pswd" => "", "repeatPswd" => "");
@@ -49,20 +50,20 @@
           <span id="signUp">sign up</span>
         </div>
 	      <div id="loginDiv">
-	        <input class="field" name="login" type="text" placeholder="login">
-          <span class="error" aria-live="polite"></span>
+	        <input class='<?php echo "{$inputClass['login']}"; ?>' name="login" type="text" placeholder="login" value='<?php echo "{$inputValue['login']}"; ?>'>
+          <span class='<?php echo "{$errorClass['login']}"; ?>' aria-live="polite"><?php echo "{$errorValue['login']}"; ?></span>
 	      </div>
 	      <div id="emailDiv">
 	        <input class='<?php echo "{$inputClass['email']}"; ?>' name="email" type="email" placeholder="email" value='<?php echo "{$inputValue['email']}"; ?>'>
           <span class='<?php echo "{$errorClass['email']}"; ?>' aria-live="polite"><?php echo "{$errorValue['email']}"; ?></span>
 	      </div>
 	      <div id="passwordDiv">
-	        <input class="field" name="password" type="password" placeholder="password">
-          <span class="error" aria-live="polite"></span>
+	        <input class='<?php echo "{$inputClass['pswd']}"; ?>' name="password" type="password" placeholder="password" value='<?php echo "{$inputValue['pswd']}"; ?>'>
+          <span class='<?php echo "{$errorClass['pswd']}"; ?>' aria-live="polite"><?php echo "{$errorValue['pswd']}"; ?></span>
 	      </div>
 	      <div id="repeatPasswordDiv">
-	        <input class="field" name="repeatPassword" type="password" placeholder="repeat password">
-          <span class="error" aria-live="polite"></span>
+	        <input class='<?php echo "{$inputClass['repeatPswd']}"; ?>' name="repeatPassword" type="password" placeholder="repeat password" value='<?php echo "{$inputValue['repeatPswd']}"; ?>'>
+          <span class='<?php echo "{$errorClass['repeatPswd']}"; ?>' aria-live="polite"><?php echo "{$errorValue['repeatPswd']}"; ?></span>
 	      </div>
 	      <div>
 	      	<button class="btn_1" type="submit">submit</button>
