@@ -1,6 +1,5 @@
 <?php
   session_start();
-
   //creating variables for integrating php into html
   $inputValue = array("login" => "", "email" => "", "pswd" => "", "repeatPswd" => "");
   $errorValue = array("login" => "", "email" => "", "pswd" => "", "repeatPswd" => "");
@@ -45,7 +44,7 @@
   	</header>
 
   	<section>
-	    <form action="index.php" method="get" novalidate>
+	    <form action='<?php echo "{$_SERVER['PHP_SELF']}"; ?>' method="get" novalidate>
         <div>
           <span id="signUp">sign up</span>
         </div>
