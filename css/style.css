@@ -14,6 +14,10 @@ body {
 
 }
 
+.boldText {
+	font-weight: bold;
+}
+
 /*Header*/
 
 header {
@@ -114,9 +118,6 @@ form input:invalid {
 	border: 1px solid red;
 }*/
 
-#haveAccount {
-	padding: 0 10px;
-}
 
 #signIn {
 	padding-bottom: 5px;
@@ -124,6 +125,18 @@ form input:invalid {
 
 #signUp {
 	padding-top: 5px;
+}
+
+#codeSignIn {
+	padding-top: 15px;
+}
+
+#codePadding {
+	padding-bottom: 25px;
+}
+
+.formFieldPadding {
+	padding: 0 10px;
 }
 
 /*Footer*/

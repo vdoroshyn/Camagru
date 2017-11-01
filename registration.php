@@ -51,7 +51,7 @@ if ($errorValue['login'] == "" && $errorValue['email'] == "") {
 	$inputValue['pswd'] = "";
 	$inputValue['repeatPswd'] = "";
 	//clearing the POST array
-	header('Location: index.php');
+	header('Location: enterCode.php');
 	die();
 }
 ?>
