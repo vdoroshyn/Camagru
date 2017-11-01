@@ -44,7 +44,7 @@
   	</header>
 
   	<section>
-	    <form action='<?php echo "{$_SERVER['PHP_SELF']}"; ?>' method="get" novalidate>
+	    <form action='<?php echo "htmlentities({$_SERVER['PHP_SELF']})"; ?>' method="get" novalidate>
         <div>
           <span id="signUp">sign up</span>
         </div>
