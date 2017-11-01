@@ -41,9 +41,6 @@
         <div>
           <button class="btn_1" type="submit">submit</button>
         </div>
-         <div>
-          <a id="codeSignIn" href="#">sign in</a>
-        </div>
       </form>
   	</section>
 
