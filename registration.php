@@ -40,10 +40,11 @@ if ($errorValue['login'] == "" && $errorValue['email'] == "") {
 	$login = htmlentities($_GET['login']);
 	$email = htmlentities($_GET['email']);
 	$pswd = htmlentities($_GET['password']);
+	$pswd_hash = password_hash($pswd, PASSWORD_DEFAULT);
 	//binding params
 	$stmt->bindParam(':Login', $login);
 	$stmt->bindParam(':Email', $email);
-	$stmt->bindParam(':Password', $pswd);
+	$stmt->bindParam(':Password', $pswd_hash);
 	$stmt->execute();
 	//clearing input values for the fields to be empty
 	$inputValue['login'] = "";
