@@ -152,7 +152,8 @@ footer {
 #loginDiv,
 #emailDiv,
 #passwordDiv,
-#repeatPasswordDiv {
+#repeatPasswordDiv,
+#codeDiv {
 	display: flex;
 	flex-direction: column;
 	align-items: center;

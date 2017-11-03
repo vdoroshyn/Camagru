@@ -14,6 +14,7 @@ if ($pdo) {
 	$login = htmlentities($_GET['login']);
 	$stmt->bindParam(':Login', $login);
 	$stmt->execute();
+	//filling in html with necessary errors and classes in case of error
 	if ($stmt->rowCount() > 0) {
 		$errorValue['login'] = "the username is already in use";
 		$errorClass['login'] = "error active-error";
@@ -24,6 +25,7 @@ if ($pdo) {
 	$email = htmlentities($_GET['email']);
 	$stmt->bindParam(':Email', $email);
 	$stmt->execute();
+	//filling in html with necessary errors and classes in case of error
 	if ($stmt->rowCount() > 0) {
 		$errorValue['email'] = "the email is already in use";
 		$errorClass['email'] = "error active-error";
@@ -35,16 +37,20 @@ if ($pdo) {
 	die();
 }
 if ($errorValue['login'] == "" && $errorValue['email'] == "") {
-	$stmt = $pdo->prepare("INSERT INTO `users` (`username`, `email`, `password`) VALUES (:Login, :Email, :Password)");
+	$stmt = $pdo->prepare("INSERT INTO `users` (`username`, `email`, `password`, `verification_code`) VALUES (:Login, :Email, :Password, :VerifCode)");
 	//sanitizing the user input
 	$login = htmlentities($_GET['login']);
 	$email = htmlentities($_GET['email']);
 	$pswd = htmlentities($_GET['password']);
+	//hashing the password
 	$pswd_hash = password_hash($pswd, PASSWORD_DEFAULT);
+	//generating a random verification code
+	$verif_code = random_int(0, getrandmax());
 	//binding params
 	$stmt->bindParam(':Login', $login);
 	$stmt->bindParam(':Email', $email);
 	$stmt->bindParam(':Password', $pswd_hash);
+	$stmt->bindParam(':VerifCode', $verif_code);
 	$stmt->execute();
 	//clearing input values for the fields to be empty
 	$inputValue['login'] = "";

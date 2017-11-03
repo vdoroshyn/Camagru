@@ -1,3 +1,13 @@
+<?php
+  session_start();
+
+  $codeErrors = array("inputValue" => "", "inputClass" => "field", "errorValue" => "", "errorClass" => "error");
+  $usernameErrors = array("inputValue" => "", "inputClass" => "field", "errorValue" => "", "errorClass" => "error");
+  if (!empty($_GET['code']) && !empty($_GET['username'])) {
+    include_once('codeValidation.php');
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,16 +37,23 @@
   	</header>
 
   	<section>
-	    <form>
+	    <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="get">
         <div class="boldText">
           <span class="formFieldPadding">enter the code sent to your email</span> <!-- wtf -->
+        </div>
+        <div class="boldText">
+          <span class="formFieldPadding">and your username</span> <!-- wtf -->
         </div>
         <div id="codePadding" class="boldText">
           <span class="formFieldPadding">to complete the registration</span>
         </div>
-        <div>
-          <input class="field" name="code" type="text" placeholder="enter your code" value="">
-          <span class="error" aria-live="polite"></span>
+        <div id="loginDiv">
+          <input class='<?php echo "{$usernameErrors['inputClass']}"; ?>' name="username" type="text" placeholder="enter your username" value="">
+          <span class='<?php echo "{$usernameErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$usernameErrors['errorValue']}"; ?></span>
+        </div>
+        <div id="codeDiv">
+          <input class='<?php echo "{$codeErrors['inputClass']}"; ?>' name="code" type="text" placeholder="enter your code" value="">
+          <span class='<?php echo "{$codeErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$codeErrors['errorValue']}"; ?></span>
         </div>
         <div>
           <button class="btn_1" type="submit">submit</button>

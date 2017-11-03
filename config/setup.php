@@ -22,7 +22,8 @@ try {
 		email VARCHAR(100) NOT NULL,
 		password VARCHAR(255) NOT NULL,
 		id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-		confirmed_email INT NULL DEFAULT 0)
+		confirmed_email INT NOT NULL DEFAULT 0,
+		verification_code INT NOT NULL DEFAULT 0)
 		");
 
 } catch (PDOException $ex) {
