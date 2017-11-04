@@ -2,8 +2,12 @@
   session_start();
 
   $codeErrors = array("inputValue" => "", "inputClass" => "field", "errorValue" => "", "errorClass" => "error");
-  if (!empty($_GET['code']) && !empty($_GET['username'])) {
+  if (isset($_GET['code']) && $_GET['code'] != "" && !empty($_GET['username'])) {
     include_once('codeValidation.php');
+  } else { //todo
+    $codeErrors['errorValue'] = "fill in the fields";
+    $codeErrors['inputClass'] = "field invalid-field";
+    $codeErrors['errorClass'] = "error active-error";
   }
 ?>
 

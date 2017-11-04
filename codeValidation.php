@@ -28,9 +28,9 @@ if ($codeErrors['errorValue'] == "") {
 						   SET `confirmed_email` = 1, `verification_code` = 0
 						   WHERE `username` = :Username");
 	$username = htmlentities($_GET['username']);
-	$stmt->bindParam(':Username', $$username);
+	$stmt->bindParam(':Username', $username);
 	$stmt->execute();
-	echo "good<br/>";
+	header('Location: thankYou.php');
 }
 
 ?>
