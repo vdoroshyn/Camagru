@@ -23,11 +23,14 @@ if ($pdo) {
 	die();
 }
 
-// $stmt = $pdo->prepare("UPDATE `users`
-// 					   SET `confirmed_email` = 1, `verification_code` = 0
-// 					   WHERE `username` = :Username");
-// $username = htmlentities($_GET['username']);
-// $stmt->bindParam(':Username', $$username);
-// $stmt->execute();
+if ($codeErrors['errorValue'] == "") {
+	$stmt = $pdo->prepare("UPDATE `users`
+						   SET `confirmed_email` = 1, `verification_code` = 0
+						   WHERE `username` = :Username");
+	$username = htmlentities($_GET['username']);
+	$stmt->bindParam(':Username', $$username);
+	$stmt->execute();
+	echo "good<br/>";
+}
 
 ?>

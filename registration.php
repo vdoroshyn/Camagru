@@ -45,7 +45,7 @@ if ($errorValue['login'] == "" && $errorValue['email'] == "") {
 	//hashing the password
 	$pswd_hash = password_hash($pswd, PASSWORD_DEFAULT);
 	//generating a random verification code
-	$verif_code = random_int(0, getrandmax());
+	$verif_code = random_int(0, PHP_INT_MAX);
 	//binding params
 	$stmt->bindParam(':Login', $login);
 	$stmt->bindParam(':Email', $email);
