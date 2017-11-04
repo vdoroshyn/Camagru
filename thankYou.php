@@ -29,6 +29,9 @@
   	<section>
 	    <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="get">
         <div>
+          <img src="./img/blueTick.png" alt="blue tick">
+        </div>
+        <div>
           <p>thank you for registering</p>
         </div>
         <div>

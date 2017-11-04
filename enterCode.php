@@ -5,9 +5,11 @@
   if (isset($_GET['code']) && $_GET['code'] != "" && !empty($_GET['username'])) {
     include_once('codeValidation.php');
   } else { //todo
-    $codeErrors['errorValue'] = "fill in the fields";
-    $codeErrors['inputClass'] = "field invalid-field";
-    $codeErrors['errorClass'] = "error active-error";
+      if (isset($_GET['code']) && isset($_GET['username'])) {
+      $codeErrors['errorValue'] = "fill in the fields";
+      $codeErrors['inputClass'] = "field invalid-field";
+      $codeErrors['errorClass'] = "error active-error";
+    }
   }
 ?>
 
