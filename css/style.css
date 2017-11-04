@@ -121,7 +121,7 @@ form input:invalid {
 
 #signIn {
 	padding-bottom: 5px;
-}
+} /*todo*/
 
 #signUp {
 	padding-top: 5px;
@@ -129,6 +129,10 @@ form input:invalid {
 
 #codePadding {
 	padding-bottom: 25px;
+}
+
+.padding-bottom {
+	padding-bottom: 35px;
 }
 
 .formFieldPadding {
