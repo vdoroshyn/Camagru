@@ -54,7 +54,7 @@ if ($errorValue['login'] == "" && $errorValue['email'] == "") {
 	$stmt->execute();
 	//sending the code to the email
 	$subject = "Camagru registration";
-	$msg = "please copy this code " . $verif_code . " and paste it in on the website";
+	$msg = "please copy this code <" . $verif_code . "> and paste it in on the website";
 	mail($email, $subject, $msg);
 	//clearing input values for the fields to be empty
 	$inputValue['login'] = "";

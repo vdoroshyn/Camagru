@@ -34,7 +34,7 @@
 	  	</div>
 	  	<nav>
 	  	  <ul>
-	  	    <li><a href="./index.php">Login</a></li>
+	  	    <li><a href="./index.php">Home</a></li>
 	  	    <li><a href="#">Photobooth</a></li>
 	  	    <li><a href="#">Gallery</a></li>
 	  	  </ul>
