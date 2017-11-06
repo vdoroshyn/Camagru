@@ -71,7 +71,7 @@
 	        <span class="formFieldPadding">Already have an account?</span>
         </div>
         <div>
-          <a id="signIn" href="#">sign in</a>
+          <a id="signIn" href="login.php">sign in</a>
         </div>
 
 	    </form>

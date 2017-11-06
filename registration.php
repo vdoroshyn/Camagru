@@ -16,7 +16,7 @@ if ($pdo) {
 	$stmt->execute();
 	//filling in html with necessary errors and classes in case of error
 	if ($stmt->rowCount() > 0) {
-		$errorValue['login'] = "the username is already in use";
+		$errorValue['login'] = "the username is already taken";
 		$errorClass['login'] = "error active-error";
 		$inputClass['login'] = "field invalid-field";
 	}
@@ -27,7 +27,7 @@ if ($pdo) {
 	$stmt->execute();
 	//filling in html with necessary errors and classes in case of error
 	if ($stmt->rowCount() > 0) {
-		$errorValue['email'] = "the email is already in use";
+		$errorValue['email'] = "the email is already in taken";
 		$errorClass['email'] = "error active-error";
 		$inputClass['email'] = "field invalid-field";
 	}
