@@ -52,6 +52,10 @@ if ($errorValue['login'] == "" && $errorValue['email'] == "") {
 	$stmt->bindParam(':Password', $pswd_hash);
 	$stmt->bindParam(':VerifCode', $verif_code);
 	$stmt->execute();
+	//sending the code to the email
+	$subject = "Camagru registration";
+	$msg = "please copy this code " . $verif_code . " and paste it in on the website";
+	mail($email, $subject, $msg);
 	//clearing input values for the fields to be empty
 	$inputValue['login'] = "";
 	$inputValue['email'] = "";
