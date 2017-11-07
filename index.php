@@ -13,9 +13,6 @@
       ) {
     include_once('registration.php');
   }
-  if (isset($_SESSION['id'])) {
-    echo "welcome, {$_SESSION['id']})";
-  }
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +39,11 @@
 	  	    <li class="current"><a href="#">Home</a></li>
 	  	    <li><a href="#">Photobooth</a></li>
 	  	    <li><a href="#">Gallery</a></li>
+          <?php if (!isset($_SESSION['id'])): ?>
+            <li><a class="login-logout" href="login.php">login</a></li>
+          <?php else: ?>
+            <li><a class="login-logout" href="logout.php">logout</a></li>
+          <?php endif; ?>
 	  	  </ul>
 	  	</nav>
   	</header>
