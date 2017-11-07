@@ -36,7 +36,7 @@
 
   	<section>
       <?php if (!isset($_SESSION['id'])): ?>
-  	    <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="get">
+  	    <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="POST">
           <div>
             <img class="padding-bottom" src="./img/blueTick.png" alt="blue tick">
           </div>

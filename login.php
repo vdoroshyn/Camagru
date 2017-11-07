@@ -4,10 +4,10 @@
   $usernameErrors = array("inputClass" => "field");
   $pswdErrors =  array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
 
-  if (!empty($_GET['username']) && !empty($_GET['pswd'])) {
+  if (!empty($_POST['username']) && !empty($_POST['pswd'])) {
     include_once('logingUser.php');
   } else {
-    if (isset($_GET['username']) && isset($_GET['pswd'])) {
+    if (isset($_POST['username']) && isset($_POST['pswd'])) {
       $pswdErrors['errorValue'] = "fill in the fields";
       $pswdErrors['inputClass'] = "field invalid-field";
       $pswdErrors['errorClass'] = "error active-error";
@@ -51,7 +51,7 @@
 
   	<section>
       <?php if (!isset($_SESSION['id'])): ?>
-        <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="get">
+        <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="POST">
           <div>
             <p>login with your credentials</p>
           </div>
@@ -69,7 +69,7 @@
             <span>forgot your password?</span>
           </div>
           <div>
-            <a id="signIn" href="#">click here to reset</a>
+            <a id="signIn" href="forgotPassword.php">click here to reset</a>
           </div>
         </form>
       <?php else: ?>

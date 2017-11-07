@@ -6,10 +6,10 @@
   $errorClass = array("login" => "error", "email" => "error", "pswd" => "error", "repeatPswd" => "error");
   $inputClass = array("login" => "field", "email" => "field", "pswd" => "field", "repeatPswd" => "field");
 
-  if (!empty($_GET['login']) &&
-      !empty($_GET['email']) &&
-      !empty($_GET['password']) &&
-      !empty($_GET['repeatPassword'])
+  if (!empty($_POST['login']) &&
+      !empty($_POST['email']) &&
+      !empty($_POST['password']) &&
+      !empty($_POST['repeatPassword'])
       ) {
     include_once('registration.php');
   }
@@ -49,7 +49,7 @@
   	</header>
 
   	<section>
-	    <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="get" novalidate>
+	    <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="POST" novalidate>
         <div>
           <span id="signUp">sign up</span>
         </div>
@@ -70,7 +70,7 @@
           <span class='<?php echo "{$errorClass['repeatPswd']}"; ?>' aria-live="polite"><?php echo "{$errorValue['repeatPswd']}"; ?></span>
 	      </div>
 	      <div>
-	      	<button class="btn_1" type="submit">submit</button>
+	      	<button class="btn_1" type="submit" name="submit">submit</button> <!-- todo name="submit" -->
 	      </div>
         <?php if (!isset($_SESSION['id'])): ?>
           <div>

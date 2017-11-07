@@ -5,13 +5,13 @@ require('config/database.php');
 $pdo = returnPDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 if ($pdo) {
 
-	$inputValue['login'] = $_GET['login'];
-	$inputValue['email'] = $_GET['email'];
-	$inputValue['pswd'] = $_GET['password'];
-	$inputValue['repeatPswd'] = $_GET['repeatPassword'];
+	$inputValue['login'] = $_POST['login'];
+	$inputValue['email'] = $_POST['email'];
+	$inputValue['pswd'] = $_POST['password'];
+	$inputValue['repeatPswd'] = $_POST['repeatPassword'];
 
 	$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `username` = :Login");
-	$login = htmlentities($_GET['login']);
+	$login = htmlentities($_POST['login']);
 	$stmt->bindParam(':Login', $login);
 	$stmt->execute();
 	//filling in html with necessary errors and classes in case of error
@@ -22,7 +22,7 @@ if ($pdo) {
 	}
 
 	$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `email` = :Email");
-	$email = htmlentities($_GET['email']);
+	$email = htmlentities($_POST['email']);
 	$stmt->bindParam(':Email', $email);
 	$stmt->execute();
 	//filling in html with necessary errors and classes in case of error
@@ -39,9 +39,9 @@ if ($pdo) {
 if ($errorValue['login'] == "" && $errorValue['email'] == "") {
 	$stmt = $pdo->prepare("INSERT INTO `users` (`username`, `email`, `password`, `verification_code`) VALUES (:Login, :Email, :Password, :VerifCode)");
 	//sanitizing the user input
-	$login = htmlentities($_GET['login']);
-	$email = htmlentities($_GET['email']);
-	$pswd = htmlentities($_GET['password']);
+	$login = htmlentities($_POST['login']);
+	$email = htmlentities($_POST['email']);
+	$pswd = htmlentities($_POST['password']);
 	//hashing the password
 	$pswd_hash = password_hash($pswd, PASSWORD_DEFAULT);
 	//generating a random verification code

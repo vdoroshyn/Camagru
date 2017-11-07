@@ -7,8 +7,8 @@ $pdo = returnPDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 if ($pdo) {
 
 	$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `verification_code` = :Code AND `username` = :Username");
-	$code = htmlentities($_GET['code']);
-	$username = htmlentities($_GET['username']);
+	$code = htmlentities($_POST['code']);
+	$username = htmlentities($_POST['username']);
 	$stmt->bindParam(':Code', $code);
 	$stmt->bindParam(':Username', $username);
 	$stmt->execute();
@@ -27,7 +27,7 @@ if ($codeErrors['errorValue'] == "") {
 	$stmt = $pdo->prepare("UPDATE `users`
 						   SET `confirmed_email` = 1, `verification_code` = 0
 						   WHERE `username` = :Username");
-	$username = htmlentities($_GET['username']);
+	$username = htmlentities($_POST['username']);
 	$stmt->bindParam(':Username', $username);
 	$stmt->execute();
 	header('Location: thankYou.php');

@@ -3,8 +3,8 @@
 require_once('connectToDatabase.php');
 require('config/database.php');
 //getting and sanitizing variables to work with them throughout the whole file
-$username = htmlentities($_GET['username']);
-$pswd = htmlentities($_GET['pswd']);
+$username = htmlentities($_POST['username']);
+$pswd = htmlentities($_POST['pswd']);
 
 $pdo = returnPDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 if ($pdo) {
@@ -40,7 +40,7 @@ if ($pdo) {
 
 if ($pswdErrors['errorValue'] == "") {
 	$_SESSION['id'] = $username;
-	header('Location: index.php');//todo
+	header('Location: index.php');//to
 }
 
 ?>

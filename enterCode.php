@@ -2,10 +2,10 @@
   session_start();
 
   $codeErrors = array("inputValue" => "", "inputClass" => "field", "errorValue" => "", "errorClass" => "error");
-  if (isset($_GET['code']) && $_GET['code'] != "" && !empty($_GET['username'])) {
+  if (isset($_POST['code']) && $_POST['code'] != "" && !empty($_POST['username'])) {
     include_once('codeValidation.php');
   } else { //todo
-      if (isset($_GET['code']) && isset($_GET['username'])) {
+      if (isset($_POST['code']) && isset($_POST['username'])) {
       $codeErrors['errorValue'] = "fill in the fields";
       $codeErrors['inputClass'] = "field invalid-field";
       $codeErrors['errorClass'] = "error active-error";
@@ -48,7 +48,7 @@
 
   	<section>
       <?php if (!isset($_SESSION['id'])): ?>
-  	    <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="get">
+  	    <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="POST">
           <div class="boldText">
             <span class="formFieldPadding">enter your username</span> <!-- wtf -->
           </div>
