@@ -37,32 +37,43 @@
 	  	    <li><a href="./index.php">Home</a></li>
 	  	    <li><a href="#">Photobooth</a></li>
 	  	    <li><a href="#">Gallery</a></li>
+          <?php if (!isset($_SESSION['id'])): ?>
+            <li><a class="login-logout" href="login.php">login</a></li>
+          <?php else: ?>
+            <li><a class="login-logout" href="logout.php">logout</a></li>
+          <?php endif; ?>
 	  	  </ul>
 	  	</nav>
   	</header>
 
   	<section>
-	    <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="get">
-        <div class="boldText">
-          <span class="formFieldPadding">enter your username</span> <!-- wtf -->
-        </div>
-        <div class="boldText">
-          <span class="formFieldPadding">and the code sent to your email</span> <!-- wtf -->
-        </div>
-        <div id="codePadding" class="boldText">
-          <span class="formFieldPadding">to complete the registration</span>
-        </div>
-        <div id="loginDiv">
-          <input class='<?php echo "{$codeErrors['inputClass']}"; ?>' name="username" type="text" placeholder="enter your username" value="">
-        </div>
-        <div id="codeDiv">
-          <input class='<?php echo "{$codeErrors['inputClass']}"; ?>' name="code" type="text" placeholder="enter your code" value="">
-          <span class='<?php echo "{$codeErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$codeErrors['errorValue']}"; ?></span>
-        </div>
-        <div>
-          <button class="btn_1" type="submit">submit</button>
-        </div>
-      </form>
+      <?php if (!isset($_SESSION['id'])): ?>
+  	    <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="get">
+          <div class="boldText">
+            <span class="formFieldPadding">enter your username</span> <!-- wtf -->
+          </div>
+          <div class="boldText">
+            <span class="formFieldPadding">and the code sent to your email</span> <!-- wtf -->
+          </div>
+          <div id="codePadding" class="boldText">
+            <span class="formFieldPadding">to complete the registration</span>
+          </div>
+          <div id="loginDiv">
+            <input class='<?php echo "{$codeErrors['inputClass']}"; ?>' name="username" type="text" placeholder="enter your username" value="">
+          </div>
+          <div id="codeDiv">
+            <input class='<?php echo "{$codeErrors['inputClass']}"; ?>' name="code" type="text" placeholder="enter your code" value="">
+            <span class='<?php echo "{$codeErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$codeErrors['errorValue']}"; ?></span>
+          </div>
+          <div>
+            <button class="btn_1" type="submit">submit</button>
+          </div>
+        </form>
+      <?php else: ?>
+        <form>
+          <p>you are already signed in</p>
+        </form>
+      <?php endif; ?>
   	</section>
 
   	<footer>

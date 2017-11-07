@@ -40,32 +40,43 @@
 	  	    <li class="current"><a href="./index.php">Home</a></li>
 	  	    <li><a href="#">Photobooth</a></li>
 	  	    <li><a href="#">Gallery</a></li>
+          <?php if (!isset($_SESSION['id'])): ?>
+            <li><a class="login-logout" href="login.php">login</a></li>
+          <?php else: ?>
+            <li><a class="login-logout" href="logout.php">logout</a></li>
+          <?php endif; ?>
 	  	  </ul>
 	  	</nav>
   	</header>
 
   	<section>
-	    <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="get">
-        <div>
-          <p>login with your credentials</p>
-        </div>
-        <div id="loginDiv">
-          <input class='<?php echo "{$usernameErrors['inputClass']}"; ?>' name="username" type="text" placeholder="login" value="">
-        </div>
-        <div id="passwordDiv">
-          <input class='<?php echo "{$pswdErrors['inputClass']}"; ?>' name="pswd" type="password" placeholder="password" value="">
-          <span class='<?php echo "{$pswdErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$pswdErrors['errorValue']}"; ?></span>
-        </div>
-        <div>
-          <button class="btn_1" type="submit">submit</button>
-        </div>
-        <div>
-          <span>forgot your password?</span>
-        </div>
-        <div>
-          <a id="signIn" href="#">click here to reset</a>
-        </div>
-      </form>
+      <?php if (!isset($_SESSION['id'])): ?>
+        <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="get">
+          <div>
+            <p>login with your credentials</p>
+          </div>
+          <div id="loginDiv">
+            <input class='<?php echo "{$usernameErrors['inputClass']}"; ?>' name="username" type="text" placeholder="login" value="">
+          </div>
+          <div id="passwordDiv">
+            <input class='<?php echo "{$pswdErrors['inputClass']}"; ?>' name="pswd" type="password" placeholder="password" value="">
+            <span class='<?php echo "{$pswdErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$pswdErrors['errorValue']}"; ?></span>
+          </div>
+          <div>
+            <button class="btn_1" type="submit">submit</button>
+          </div>
+          <div>
+            <span>forgot your password?</span>
+          </div>
+          <div>
+            <a id="signIn" href="#">click here to reset</a>
+          </div>
+        </form>
+      <?php else: ?>
+        <form>
+          <p>you are already signed in</p>
+        </form>
+      <?php endif; ?>
   	</section>
 
   	<footer>

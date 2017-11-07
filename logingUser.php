@@ -40,7 +40,7 @@ if ($pdo) {
 
 if ($pswdErrors['errorValue'] == "") {
 	$_SESSION['id'] = $username;
-	header('Location: index.php');
+	header('Location: index.php');//todo
 }
 
 ?>

@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,22 +25,33 @@
 	  	    <li><a href="./index.php">Home</a></li>
 	  	    <li><a href="#">Photobooth</a></li>
 	  	    <li><a href="#">Gallery</a></li>
+          <?php if (!isset($_SESSION['id'])): ?>
+            <li><a class="login-logout" href="login.php">login</a></li>
+          <?php else: ?>
+            <li><a class="login-logout" href="logout.php">logout</a></li>
+          <?php endif; ?>
 	  	  </ul>
 	  	</nav>
   	</header>
 
   	<section>
-	    <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="get">
-        <div>
-          <img class="padding-bottom" src="./img/blueTick.png" alt="blue tick">
-        </div>
-        <div>
-          <p>thank you for registering</p>
-        </div>
-        <div>
-          <a id="signIn" href="login.php">sign in</a>
-        </div>
-      </form>
+      <?php if (!isset($_SESSION['id'])): ?>
+  	    <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="get">
+          <div>
+            <img class="padding-bottom" src="./img/blueTick.png" alt="blue tick">
+          </div>
+          <div>
+            <p>thank you for registering</p>
+          </div>
+          <div>
+            <a id="signIn" href="login.php">sign in</a>
+          </div>
+        </form>
+      <?php else: ?>
+        <form>
+          <p>you are already registered</p>
+        </form>
+      <?php endif; ?>
   	</section>
 
   	<footer>

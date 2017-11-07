@@ -72,13 +72,14 @@
 	      <div>
 	      	<button class="btn_1" type="submit">submit</button>
 	      </div>
-        <div>
-	        <span class="formFieldPadding">Already have an account?</span>
-        </div>
-        <div>
-          <a id="signIn" href="login.php">sign in</a>
-        </div>
-
+        <?php if (!isset($_SESSION['id'])): ?>
+          <div>
+            <span class="formFieldPadding">Already have an account?</span>
+          </div>
+          <div>
+            <a id="signIn" href="login.php">sign in</a>
+          </div>
+        <?php endif; ?>
 	    </form>
   	</section>
 
