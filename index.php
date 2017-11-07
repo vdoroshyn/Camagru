@@ -13,6 +13,9 @@
       ) {
     include_once('registration.php');
   }
+  if (isset($_SESSION['id'])) {
+    echo "welcome, {$_SESSION['id']})";
+  }
 ?>
 
 <!DOCTYPE html>

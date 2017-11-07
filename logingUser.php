@@ -39,20 +39,8 @@ if ($pdo) {
 }
 
 if ($pswdErrors['errorValue'] == "") {
-	if (!empty($_SESSION['id'])) {
-		echo "set1";
-	}
-	else {
-		echo "ne set1";
-	}
 	$_SESSION['id'] = $username;
-	if (!empty($_SESSION['id'])) {
-		echo "set2";
-	}
-	else {
-		echo "ne set2";
-	}
-	//echo "Welcome $username";
+	header('Location: index.php');
 }
 
 ?>
