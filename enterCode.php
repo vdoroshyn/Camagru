@@ -71,7 +71,7 @@
         </form>
       <?php else: ?>
         <form>
-          <p>you are already signed in</p>
+          <p>you are already registered</p>
         </form>
       <?php endif; ?>
   	</section>

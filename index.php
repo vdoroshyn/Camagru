@@ -36,7 +36,7 @@
 	  	</div>
 	  	<nav>
 	  	  <ul>
-	  	    <li class="current"><a href="#">Home</a></li>
+	  	    <li class="current"><a href="index.php">Home</a></li>
 	  	    <li><a href="#">Photobooth</a></li>
 	  	    <li><a href="#">Gallery</a></li>
           <?php if (!isset($_SESSION['id'])): ?>
