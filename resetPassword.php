@@ -1,5 +1,12 @@
 <?php
   session_start();
+  //creating variables for integrating php into html
+  $pswdErrors =       array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
+  $repeatPswdErrors = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
+
+  if (!empty($_GET['code']) && !empty($_GET['email'])) {
+  	
+  }
 ?>
 
 <!DOCTYPE html>
@@ -38,12 +45,18 @@
   	<section>
   	  <?php if (!isset($_SESSION['id'])): ?>
         <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="POST">
-          <div>
-            <img class="padding-bottom" src="./img/blueTick.png" alt="blue tick">
-          </div>
-          <div>
-            <p>check your email</p>
-          </div>
+          <p>enter a new password</p>
+          <div id="passwordDiv">
+	        <input class='<?php echo "{$pswdErrors['inputClass']}"; ?>' name="pswd" type="password" placeholder="enter a new password">
+          	<span class='<?php echo "{$pswdErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$pswdErrors['errorValue']}"; ?></span>
+	      </div>
+	      <div id="repeatPasswordDiv">
+	        <input class='<?php echo "{$repeatPswdErrors['inputClass']}"; ?>' name="repeatPswd" type="password" placeholder="confirm your new password">
+            <span class='<?php echo "{$repeatPswdErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$repeatPswdErrors['errorValue']}"; ?></span>
+	      </div>
+	      <div>
+	      	<button class="btn_1" type="submit" name="submit">submit</button>
+	      </div>
         </form>
       <?php else: ?>
         <form>
