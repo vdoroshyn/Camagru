@@ -5,7 +5,7 @@
 
   if (isset($_POST['submit'])) {
   	if ($_POST['email'] != "") {
-      include_once('resetPassword.php');
+      include_once('resettingPassword.php');
   	} else {
   		if (isset($_POST['email'])) {
   	  	  $emailErrors['errorValue'] = "fill in the field";

@@ -1,47 +1,61 @@
 <?php
-	
-require_once('connectToDatabase.php');
-require('config/database.php');
-//preparing variables the code will work with
-$email = htmlentities($_POST['email']);
+  session_start();
+?>
 
-$pdo = returnPDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-if ($pdo) {
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title>Camagru</title>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="the photo gallery project">
+    <meta name="keywords" content="photo, photobooth, selfie, likes">
+    <meta name="author" content="vdoroshy">
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+  </head>
+  <body>
+  	<header>
+	  	<div id="logo">
+	  	  <h1>Camagru</h1>
+	  	</div>
+	  	<nav>
+	  	  <ul>
+	  	    <li><a href="./index.php">Home</a></li>
+	  	    <li><a href="#">Photobooth</a></li>
+	  	    <li><a href="#">Gallery</a></li>
+          <?php if (!isset($_SESSION['id'])): ?>
+            <li><a class="login-logout" href="login.php">login</a></li>
+          <?php else: ?>
+            <li><a class="login-logout" href="logout.php">logout</a></li>
+          <?php endif; ?>
+	  	  </ul>
+	  	</nav>
+  	</header>
 
-	$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `email` = :Email");
-	$stmt->bindParam(':Email', $email);
-	$stmt->execute();
-	/*
-	**for security reasons, the message will always be the same
-	**in cases when the email is in the db or not
-	*/
-	if ($stmt->rowCount() == 0) {
-		header('Location: checkYourEmail.php');
-		die();
-	} else {
-		//generating a random verification code
-		$verif_code = random_int(0, PHP_INT_MAX);
-		//updating the user table with verif_code
-		$stmt = $pdo->prepare("UPDATE `users`
-						   	   SET `reset_email_code` = :VerifCode
-						       WHERE `email` = :Email");
-		$stmt->bindParam(':VerifCode', $verif_code);
-		$stmt->bindParam(':Email', $email);
-		$stmt->execute();
-		//sending the link to the email
-		$subject = "reset password";
-		
-		// $headers = "MIME-Version: 1.0\r\n"; 
-		// $headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
-		$headers = "Content-type: text/html\r\n";
-		$msg = "<a href='http://localhost:8080/camagru.git/index.php'>click me</a>";  
-		// . $verif_code . "> and paste it in on the website";
-		mail($email, $subject, $msg, $headers);
-		header('Location: checkYourEmail.php');
-	}
-} else {
-	echo "no connection with the database<br/>";
-	die();
-}
+  	<section>
+  	  <?php if (!isset($_SESSION['id'])): ?>
+        <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="POST">
+          <div>
+            <img class="padding-bottom" src="./img/blueTick.png" alt="blue tick">
+          </div>
+          <div>
+            <p>check your email</p>
+          </div>
+        </form>
+      <?php else: ?>
+        <form>
+          <p>you are already signed in</p>
+        </form>
+      <?php endif; ?>
+  	</section>
+
+  	<footer>
+  	  <p>Copyright &copy; 2017 vdoroshy</p>
+  	</footer>
+  </body>
+</html>
 
 ?>
