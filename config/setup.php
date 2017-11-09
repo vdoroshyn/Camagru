@@ -18,12 +18,13 @@ try {
 	//drop tables;
 	$pdo->exec("DROP TABLE IF EXISTS `users`");
 	$pdo->exec("CREATE TABLE IF NOT EXISTS `users`(
+		id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		username CHAR(8) NOT NULL,
 		email VARCHAR(100) NOT NULL,
 		password VARCHAR(255) NOT NULL,
-		id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		confirmed_email INT NOT NULL DEFAULT 0,
-		verification_code BIGINT NOT NULL DEFAULT 0)
+		verification_code BIGINT NOT NULL DEFAULT 0,
+		reset_email_code BIGINT NOT NULL DEFAULT 0)
 		");
 
 } catch (PDOException $ex) {
