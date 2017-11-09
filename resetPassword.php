@@ -1,11 +1,12 @@
 <?php
   session_start();
   //creating variables for integrating php into html
+  $loginErrors =      array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
   $pswdErrors =       array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
   $repeatPswdErrors = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
 
-  if (!empty($_GET['code']) && !empty($_GET['email'])) {
-  	
+  if (isset($_POST['submit'])) {
+  	include_once('changingPassword.php');
   }
 ?>
 
@@ -45,7 +46,12 @@
   	<section>
   	  <?php if (!isset($_SESSION['id'])): ?>
         <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="POST">
-          <p>enter a new password</p>
+          <p>fill in the form</p>
+          <p>to reset your password</p>
+          <div id="loginDiv">
+	        <input class='<?php echo "{$loginErrors['inputClass']}"; ?>' name="login" type="text" placeholder="enter your username">
+          	<span class='<?php echo "{$loginErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$loginErrors['errorValue']}"; ?></span>
+	      </div>
           <div id="passwordDiv">
 	        <input class='<?php echo "{$pswdErrors['inputClass']}"; ?>' name="pswd" type="password" placeholder="enter a new password">
           	<span class='<?php echo "{$pswdErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$pswdErrors['errorValue']}"; ?></span>

@@ -34,7 +34,7 @@ if ($pdo) {
     $headers = "MIME-Version: 1.0\r\n"; 
     $headers .= "Content-type: text/html; charset=utf-8\r\n"; 
 
-    $msg = 'To reset your password <a href="http://localhost:8080/camagru.git/resetPassword.php?code=$verif_code&email=$email">click here</a>';
+    $msg = 'To reset your password http://localhost:8080/camagru.git/checkingEmailLink.php?code={$verif_code}&email={$email}';
 
     mail($email, $subject, $msg, $headers);
     header('Location: checkYourEmail.php');
