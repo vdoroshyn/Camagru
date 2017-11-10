@@ -1,17 +1,12 @@
 <?php
   session_start();
+  include_once('./phpFuncs/funcValidateEmail.php');
 
   $emailErrors = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
 
   if (isset($_POST['submit'])) {
-  	if ($_POST['email'] != "") {
+  	if (validateEmail($emailErrors, htmlentities($_POST['email']))) {
       include_once('resettingPassword.php');
-  	} else {
-  		if (isset($_POST['email'])) {
-  	  	  $emailErrors['errorValue'] = "fill in the field";
-      	  $emailErrors['inputClass'] = "field invalid-field";
-      	  $emailErrors['errorClass'] = "error active-error";
-      	}
   	}
   }
 ?>

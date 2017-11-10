@@ -1,8 +1,8 @@
 <?php
   session_start();
   //creating variables for integrating php into html
-  $loginErrors =      array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
-  $pswdErrors =       array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
+  $loginErrors      = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
+  $pswdErrors       = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
   $repeatPswdErrors = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
 
   if (isset($_POST['submit'])) {
