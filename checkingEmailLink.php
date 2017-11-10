@@ -16,7 +16,7 @@ if (!empty($_GET['code']) && !empty($_GET['email'])) {
 		$stmt->bindParam(':Code', $code);
 		$stmt->bindParam(':Email', $email);
 		$stmt->execute();
-//todo 0 the code
+
 		if ($stmt->rowCount() != 0) {
 			header('Location: resetPassword.php');
 			die();

@@ -26,9 +26,9 @@ if ($pdo) {
   } else {
     //hashing the password
 	$pswd_hash = password_hash($pswd, PASSWORD_DEFAULT);
-    //updating the user table with the new password
+    //updating the user table with the new password and resetting the code to 0
     $stmt = $pdo->prepare("UPDATE `users`
-                   SET `password` = :Password
+                   SET `password` = :Password, `reset_email_code` = 0
                    WHERE `username` = :Username");
     $stmt->bindParam(':Password', $pswd_hash);
     $stmt->bindParam(':Username', $username);
