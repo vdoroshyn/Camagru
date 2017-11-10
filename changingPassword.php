@@ -3,8 +3,8 @@
 require_once('connectToDatabase.php');
 require('config/database.php');
 //preparing variables the code will work with
-$username = htmlentities($_POST['login']);
-$pswd = htmlentities($_POST['pswd']);
+$username   = htmlentities($_POST['login']);
+$pswd       = htmlentities($_POST['pswd']);
 $repeatPswd = htmlentities($_POST['repeatPswd']);
 
 $pdo = returnPDO($DB_DSN, $DB_USER, $DB_PASSWORD);
