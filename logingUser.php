@@ -18,11 +18,10 @@ if ($pdo) {
 	    $pswdErrors['inputClass'] = "field invalid-field";
 	    $pswdErrors['errorClass'] = "error active-error";
 	    $usernameErrors['inputClass'] = "field invalid-field";
-	}
-	//if the user's email is not confirmed
-	else if ($stmt->rowCount() == 1) {
+	} else if ($stmt->rowCount() == 1) {
 
 		$user = $stmt->fetch(PDO::FETCH_ASSOC);
+		//if the user's email is not confirmed
 		if (password_verify($pswd, $user['password']) && $user['confirmed_email'] != 1) {
 			header('Location: enterCode.php');
 			die();

@@ -2,3 +2,18 @@
 	Order Deny,Allow
 	Deny from all
 </Files>
+
+<Files codeValidation.php>
+	Order Deny,Allow
+	Deny from all
+</Files>
+
+<Files resettingPassword.php>
+	Order Deny,Allow
+	Deny from all
+</Files>
+
+<Files changingPassword.php>
+	Order Deny,Allow
+	Deny from all
+</Files>
