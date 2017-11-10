@@ -27,7 +27,7 @@ if ($pdo) {
 	$stmt->execute();
 	//filling in html with necessary errors and classes in case of error
 	if ($stmt->rowCount() > 0) {
-		$errorValue['email'] = "the email is already in taken";
+		$errorValue['email'] = "the email is already taken";
 		$errorClass['email'] = "error active-error";
 		$inputClass['email'] = "field invalid-field";
 	}
