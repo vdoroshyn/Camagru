@@ -2,46 +2,49 @@
 require_once('connectToDatabase.php');
 require('config/database.php');
 
+//preparing variables the code will work with
+$login      = htmlentities($_POST['login']);
+$email      = htmlentities($_POST['email']);
+$pswd       = htmlentities($_POST['password']);
+$repeatPswd = htmlentities($_POST['repeatPassword']);
+
 $pdo = returnPDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 if ($pdo) {
 
-	$inputValue['login'] = $_POST['login'];
-	$inputValue['email'] = $_POST['email'];
-	$inputValue['pswd'] = $_POST['password'];
-	$inputValue['repeatPswd'] = $_POST['repeatPassword'];
+	$usernameErrors['inputValue']   = $login;
+	$emailErrors['inputValue']      = $email;
+	$pswdErrors['inputValue']       = $pswd;
+	$repeatPdwdErrors['inputValue'] = $repeatPswd;
 
 	$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `username` = :Login");
-	$login = htmlentities($_POST['login']);
 	$stmt->bindParam(':Login', $login);
 	$stmt->execute();
 	//filling in html with necessary errors and classes in case of error
 	if ($stmt->rowCount() > 0) {
-		$errorValue['login'] = "the username is already taken";
-		$errorClass['login'] = "error active-error";
-		$inputClass['login'] = "field invalid-field";
+		$usernameErrors['errorValue'] = "the username is already taken";
+		$usernameErrors['errorClass'] = "error active-error";
+		$usernameErrors['inputClass'] = "field invalid-field";
 	}
 
 	$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `email` = :Email");
-	$email = htmlentities($_POST['email']);
 	$stmt->bindParam(':Email', $email);
 	$stmt->execute();
 	//filling in html with necessary errors and classes in case of error
 	if ($stmt->rowCount() > 0) {
-		$errorValue['email'] = "the email is already taken";
-		$errorClass['email'] = "error active-error";
-		$inputClass['email'] = "field invalid-field";
+		$emailErrors['errorValue'] = "the email is already taken";
+		$emailErrors['errorClass'] = "error active-error";
+		$emailErrors['inputClass'] = "field invalid-field";
 	}
-	
+
 } else {
 	echo "no connection with the database<br/>";
 	die();
 }
-if ($errorValue['login'] == "" && $errorValue['email'] == "") {
+
+if ($usernameErrors['errorValue'] == "" && $emailErrors['errorValue'] == "") {
 	$stmt = $pdo->prepare("INSERT INTO `users` (`username`, `email`, `password`, `verification_code`) VALUES (:Login, :Email, :Password, :VerifCode)");
-	//sanitizing the user input
-	$login = htmlentities($_POST['login']);
-	$email = htmlentities($_POST['email']);
-	$pswd = htmlentities($_POST['password']);
+	//variables were sanitized in the beginning of the file
+
 	//hashing the password
 	$pswd_hash = password_hash($pswd, PASSWORD_DEFAULT);
 	//generating a random verification code
@@ -57,10 +60,10 @@ if ($errorValue['login'] == "" && $errorValue['email'] == "") {
 	$msg = "please copy this code <" . $verif_code . "> and paste it in on the website";
 	mail($email, $subject, $msg);
 	//clearing input values for the fields to be empty
-	$inputValue['login'] = "";
-	$inputValue['email'] = "";
-	$inputValue['pswd'] = "";
-	$inputValue['repeatPswd'] = "";
+	$usernameErrors['inputValue']   = "";
+	$emailErrors['inputValue']      = "";
+	$pswdErrors['inputValue']       = "";
+	$repeatPdwdErrors['inputValue'] = "";
 	//clearing the POST array
 	header('Location: enterCode.php');
 	die();

@@ -1,10 +1,10 @@
 <?php
   session_start();
   //creating variables for integrating php into html
-  $inputValue = array("login" => "", "email" => "", "pswd" => "", "repeatPswd" => "");
-  $errorValue = array("login" => "", "email" => "", "pswd" => "", "repeatPswd" => "");
-  $errorClass = array("login" => "error", "email" => "error", "pswd" => "error", "repeatPswd" => "error");
-  $inputClass = array("login" => "field", "email" => "field", "pswd" => "field", "repeatPswd" => "field");
+  $usernameErrors = array("inputClass" => "field", "inputValue" => "", "errorValue" => "", "errorClass" => "error");
+  $emailErrors = array("inputClass" => "field", "inputValue" => "", "errorValue" => "", "errorClass" => "error");
+  $pswdErrors = array("inputClass" => "field", "inputValue" => "", "errorValue" => "", "errorClass" => "error");
+  $repeatPdwdErrors = array("inputClass" => "field", "inputValue" => "", "errorValue" => "", "errorClass" => "error");
 
   if (!empty($_POST['login']) &&
       !empty($_POST['email']) &&
@@ -54,20 +54,20 @@
           <span id="signUp">sign up</span>
         </div>
 	      <div id="loginDiv">
-	        <input class='<?php echo "{$inputClass['login']}"; ?>' name="login" type="text" placeholder="login" value='<?php echo "{$inputValue['login']}"; ?>'>
-          <span class='<?php echo "{$errorClass['login']}"; ?>' aria-live="polite"><?php echo "{$errorValue['login']}"; ?></span>
+	        <input class='<?php echo "{$usernameErrors['inputClass']}"; ?>' name="login" type="text" placeholder="login" value='<?php echo "{$usernameErrors['inputValue']}"; ?>'>
+          <span class='<?php echo "{$usernameErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$usernameErrors['errorValue']}"; ?></span>
 	      </div>
 	      <div id="emailDiv">
-	        <input class='<?php echo "{$inputClass['email']}"; ?>' name="email" type="email" placeholder="email" value='<?php echo "{$inputValue['email']}"; ?>'>
-          <span class='<?php echo "{$errorClass['email']}"; ?>' aria-live="polite"><?php echo "{$errorValue['email']}"; ?></span>
+	        <input class='<?php echo "{$emailErrors['inputClass']}"; ?>' name="email" type="email" placeholder="email" value='<?php echo "{$emailErrors['inputValue']}"; ?>'>
+          <span class='<?php echo "{$emailErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$emailErrors['errorValue']}"; ?></span>
 	      </div>
 	      <div id="passwordDiv">
-	        <input class='<?php echo "{$inputClass['pswd']}"; ?>' name="password" type="password" placeholder="password" value='<?php echo "{$inputValue['pswd']}"; ?>'>
-          <span class='<?php echo "{$errorClass['pswd']}"; ?>' aria-live="polite"><?php echo "{$errorValue['pswd']}"; ?></span>
+	        <input class='<?php echo "{$pswdErrors['inputClass']}"; ?>' name="password" type="password" placeholder="password" value='<?php echo "{$pswdErrors['inputValue']}"; ?>'>
+          <span class='<?php echo "{$pswdErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$pswdErrors['errorValue']}"; ?></span>
 	      </div>
 	      <div id="repeatPasswordDiv">
-	        <input class='<?php echo "{$inputClass['repeatPswd']}"; ?>' name="repeatPassword" type="password" placeholder="repeat password" value='<?php echo "{$inputValue['repeatPswd']}"; ?>'>
-          <span class='<?php echo "{$errorClass['repeatPswd']}"; ?>' aria-live="polite"><?php echo "{$errorValue['repeatPswd']}"; ?></span>
+	        <input class='<?php echo "{$repeatPdwdErrors['inputClass']}"; ?>' name="repeatPassword" type="password" placeholder="repeat password" value='<?php echo "{$repeatPdwdErrors['inputValue']}"; ?>'>
+          <span class='<?php echo "{$repeatPdwdErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$repeatPdwdErrors['errorValue']}"; ?></span>
 	      </div>
 	      <div>
 	      	<button class="btn_1" type="submit" name="submit">submit</button> <!-- todo name="submit" -->
