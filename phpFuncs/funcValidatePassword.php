@@ -42,5 +42,5 @@ function validateRepeatPassword(&$errorArray, $pswd, $repeatPswd) {
   }
   return 1;
 }
-  
+
 ?>

@@ -9,11 +9,16 @@
   $repeatPswdErrors = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
 
   if (isset($_POST['submit'])) {
+    /*
+    **I wanted to make a separate function
+    **but it will be a ton of shitcode while passing vars
+    */
     $i = 0;
-    
+
     $i += validateUsername($usernameErrors, htmlentities($_POST['username']));
     $i += validatePassword($pswdErrors, htmlentities($_POST['pswd']));
     $i += validateRepeatPassword($repeatPswdErrors, htmlentities($_POST['pswd']), htmlentities($_POST['repeatPswd']));
+    //if all three functions returned 3 == no errors
     if ($i == 3) {
       include_once('changingPassword.php');
     }
@@ -58,7 +63,7 @@
         <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="POST">
           <p>fill in the form</p>
           <p>to reset your password</p>
-          <div id="loginDiv">
+          <div id="usernameDiv">
 	        <input class='<?php echo "{$usernameErrors['inputClass']}"; ?>' name="username" type="text" placeholder="enter your username">
           	<span class='<?php echo "{$usernameErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$usernameErrors['errorValue']}"; ?></span>
 	      </div>

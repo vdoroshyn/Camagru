@@ -58,7 +58,7 @@
           <div id="codePadding" class="boldText">
             <span class="formFieldPadding">to complete the registration</span>
           </div>
-          <div id="loginDiv">
+          <div id="usernameDiv">
             <input class='<?php echo "{$fieldErrors['inputClass']}"; ?>' name="username" type="text" placeholder="enter your username" value="">
           </div>
           <div id="codeDiv">

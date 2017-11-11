@@ -1,9 +1,9 @@
 /*getting the form*/
 var form = document.querySelector('form');
-/*getting login variables*/
-var login = document.querySelector('#loginDiv');
-var loginError = login.querySelector('.error');
-var loginField = login.querySelector('input');
+/*getting username variables*/
+var username = document.querySelector('#usernameDiv');
+var usernameError = username.querySelector('.error');
+var usernameField = username.querySelector('input');
 /*getting email variables*/
 var email = document.querySelector('#emailDiv');
 var emailError = email.querySelector('.error');
@@ -19,38 +19,38 @@ var repeatPasswordField = repeatPassword.querySelector('input');
 
 form.addEventListener("submit", function(event) {
 
-  checkLogin(loginField, loginError);
+  checkusername(usernameField, usernameError);
   checkEmail(emailField, emailError);
   checkPassword(passwordField, passwordError);
   checkRepeatPassword(repeatPasswordField, repeatPasswordError, passwordField);
 
 }, false);
 
-function checkLogin(login, error) {
+function checkusername(username, error) {
   var reg = /^[a-zA-Z0-9_]+$/;
 
   /*
   **if there is nothing entered or the username is of not sufficient length
   */
-  if (login.value == "" || (login.value.length < 4 || login.value.length > 8)) {
+  if (username.value == "" || (username.value.length < 4 || username.value.length > 8)) {
     var msg = "enter a username (4-8 characters)";
     
-    addError(error, login, msg, event);
+    addError(error, username, msg, event);
     return;
   }
   /*
   **if the username contains not only letters, digits, and underscore
   */
-  if (!reg.test(login.value)) {
+  if (!reg.test(username.value)) {
     var msg = "special characters are not allowed";
     
-    addError(error, login, msg, event);
+    addError(error, username, msg, event);
     return;
   }
   /*
   **removing the error classes in case everything is alright
   */
-  popError(error, login);
+  popError(error, username);
 }
 
 function checkEmail(email, error) {

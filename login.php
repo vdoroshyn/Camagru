@@ -51,7 +51,7 @@
           <div>
             <p>login with your credentials</p>
           </div>
-          <div id="loginDiv">
+          <div id="usernameDiv">
             <input class='<?php echo "{$fieldErrors['inputClass']}"; ?>' name="username" type="text" placeholder="username" value="">
           </div>
           <div id="passwordDiv">

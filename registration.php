@@ -3,7 +3,7 @@ require_once('connectToDatabase.php');
 require('config/database.php');
 
 //preparing variables the code will work with
-$login      = htmlentities($_POST['login']);
+$username   = htmlentities($_POST['username']);
 $email      = htmlentities($_POST['email']);
 $pswd       = htmlentities($_POST['password']);
 $repeatPswd = htmlentities($_POST['repeatPassword']);
@@ -11,13 +11,13 @@ $repeatPswd = htmlentities($_POST['repeatPassword']);
 $pdo = returnPDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 if ($pdo) {
 
-	$usernameErrors['inputValue']   = $login;
+	$usernameErrors['inputValue']   = $username;
 	$emailErrors['inputValue']      = $email;
 	$pswdErrors['inputValue']       = $pswd;
 	$repeatPdwdErrors['inputValue'] = $repeatPswd;
 
-	$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `username` = :Login");
-	$stmt->bindParam(':Login', $login);
+	$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `username` = :Username");
+	$stmt->bindParam(':Username', $username);
 	$stmt->execute();
 	//filling in html with necessary errors and classes in case of error
 	if ($stmt->rowCount() > 0) {
@@ -42,7 +42,7 @@ if ($pdo) {
 }
 
 if ($usernameErrors['errorValue'] == "" && $emailErrors['errorValue'] == "") {
-	$stmt = $pdo->prepare("INSERT INTO `users` (`username`, `email`, `password`, `verification_code`) VALUES (:Login, :Email, :Password, :VerifCode)");
+	$stmt = $pdo->prepare("INSERT INTO `users` (`username`, `email`, `password`, `verification_code`) VALUES (:Username, :Email, :Password, :VerifCode)");
 	//variables were sanitized in the beginning of the file
 
 	//hashing the password
@@ -50,7 +50,7 @@ if ($usernameErrors['errorValue'] == "" && $emailErrors['errorValue'] == "") {
 	//generating a random verification code
 	$verif_code = random_int(0, PHP_INT_MAX);
 	//binding params
-	$stmt->bindParam(':Login', $login);
+	$stmt->bindParam(':Username', $username);
 	$stmt->bindParam(':Email', $email);
 	$stmt->bindParam(':Password', $pswd_hash);
 	$stmt->bindParam(':VerifCode', $verif_code);

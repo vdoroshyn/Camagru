@@ -6,7 +6,7 @@
   $pswdErrors = array("inputClass" => "field", "inputValue" => "", "errorValue" => "", "errorClass" => "error");
   $repeatPdwdErrors = array("inputClass" => "field", "inputValue" => "", "errorValue" => "", "errorClass" => "error");
 
-  if (!empty($_POST['login']) &&
+  if (!empty($_POST['username']) &&
       !empty($_POST['email']) &&
       !empty($_POST['password']) &&
       !empty($_POST['repeatPassword'])
@@ -53,8 +53,8 @@
         <div>
           <span id="signUp">sign up</span>
         </div>
-	      <div id="loginDiv">
-	        <input class='<?php echo "{$usernameErrors['inputClass']}"; ?>' name="login" type="text" placeholder="login" value='<?php echo "{$usernameErrors['inputValue']}"; ?>'>
+	      <div id="usernameDiv">
+	        <input class='<?php echo "{$usernameErrors['inputClass']}"; ?>' name="username" type="text" placeholder="username" value='<?php echo "{$usernameErrors['inputValue']}"; ?>'>
           <span class='<?php echo "{$usernameErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$usernameErrors['errorValue']}"; ?></span>
 	      </div>
 	      <div id="emailDiv">
