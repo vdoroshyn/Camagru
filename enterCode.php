@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include_once('./phpFuncs/funcValidateCode.php');
+  include_once('./phpFuncs/funcValidateTwoFields.php');
   
   //creating variables for integrating php into html
   $fieldErrors = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");

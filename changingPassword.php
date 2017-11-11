@@ -3,7 +3,7 @@
 require_once('connectToDatabase.php');
 require('config/database.php');
 //preparing variables the code will work with
-$username   = htmlentities($_POST['login']);
+$username   = htmlentities($_POST['username']);
 $pswd       = htmlentities($_POST['pswd']);
 $repeatPswd = htmlentities($_POST['repeatPswd']);
 
@@ -18,7 +18,7 @@ if ($pdo) {
   **in cases when the email is in the db or not
   */
   if ($stmt->rowCount() == 0) {
-    $loginErrors['inputClass'] = "field invalid-field";
+    $usernameErrors['inputClass'] = "field invalid-field";
     $pswdErrors['inputClass'] = "field invalid-field";
     $repeatPswdErrors['inputClass'] = "field invalid-field";
     $repeatPswdErrors['errorClass'] = "error active-error";

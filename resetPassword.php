@@ -1,12 +1,16 @@
 <?php
   session_start();
+  include_once('./phpFuncs/funcValidateUsername.php');
+
   //creating variables for integrating php into html
-  $loginErrors      = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
+  $usernameErrors      = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
   $pswdErrors       = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
   $repeatPswdErrors = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
 
   if (isset($_POST['submit'])) {
-  	include_once('changingPassword.php');
+    if (validateUsername($usernameErrors, htmlentities($_POST['username']))) {
+      include_once('changingPassword.php');
+    }
   }
 ?>
 
@@ -49,8 +53,8 @@
           <p>fill in the form</p>
           <p>to reset your password</p>
           <div id="loginDiv">
-	        <input class='<?php echo "{$loginErrors['inputClass']}"; ?>' name="login" type="text" placeholder="enter your username">
-          	<span class='<?php echo "{$loginErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$loginErrors['errorValue']}"; ?></span>
+	        <input class='<?php echo "{$usernameErrors['inputClass']}"; ?>' name="username" type="text" placeholder="enter your username">
+          	<span class='<?php echo "{$usernameErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$usernameErrors['errorValue']}"; ?></span>
 	      </div>
           <div id="passwordDiv">
 	        <input class='<?php echo "{$pswdErrors['inputClass']}"; ?>' name="pswd" type="password" placeholder="enter a new password">

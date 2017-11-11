@@ -2,10 +2,10 @@
   session_start();
   include_once('./phpFuncs/funcValidateEmail.php');
 
-  $emailErrors = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
+  $fieldErrors = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
 
   if (isset($_POST['submit'])) {
-  	if (validateEmail($emailErrors, htmlentities($_POST['email']))) {
+  	if (validateEmail($fieldErrors, htmlentities($_POST['email']))) {
       include_once('resettingPassword.php');
   	}
   }
@@ -54,8 +54,8 @@
             <span>please enter your email</span>
           </div>
           <div id="emailDiv">
-            <input class='<?php echo "{$emailErrors['inputClass']}"; ?>' name="email" type="text" placeholder="enter your email" value="">
-            <span class='<?php echo "{$emailErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$emailErrors['errorValue']}"; ?></span>
+            <input class='<?php echo "{$fieldErrors['inputClass']}"; ?>' name="email" type="text" placeholder="enter your email" value="">
+            <span class='<?php echo "{$fieldErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$fieldErrors['errorValue']}"; ?></span>
           </div>
           <div>
             <button class="btn_1" type="submit" name="submit">submit</button>
