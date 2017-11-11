@@ -1,14 +1,20 @@
 <?php
   session_start();
   include_once('./phpFuncs/funcValidateUsername.php');
+  include_once('./phpFuncs/funcValidatePassword.php');
 
   //creating variables for integrating php into html
-  $usernameErrors      = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
+  $usernameErrors   = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
   $pswdErrors       = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
   $repeatPswdErrors = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
 
   if (isset($_POST['submit'])) {
-    if (validateUsername($usernameErrors, htmlentities($_POST['username']))) {
+    $i = 0;
+    
+    $i += validateUsername($usernameErrors, htmlentities($_POST['username']));
+    $i += validatePassword($pswdErrors, htmlentities($_POST['pswd']));
+    $i += validateRepeatPassword($repeatPswdErrors, htmlentities($_POST['pswd']), htmlentities($_POST['repeatPswd']));
+    if ($i == 3) {
       include_once('changingPassword.php');
     }
   }
