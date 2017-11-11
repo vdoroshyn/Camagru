@@ -33,7 +33,6 @@
       include_once('registration.php');
     }
   }
-
 ?>
 
 <!DOCTYPE html>

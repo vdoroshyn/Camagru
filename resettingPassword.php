@@ -1,5 +1,5 @@
 <?php
-  
+
 require_once('connectToDatabase.php');
 require('config/database.php');
 //preparing variables the code will work with
