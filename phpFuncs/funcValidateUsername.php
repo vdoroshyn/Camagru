@@ -7,11 +7,17 @@ function validateUsername(&$errorArray, $username) {
 		$errorArray['errorValue'] = "enter a username (4-8 characters)";
   	    $errorArray['inputClass'] = "field invalid-field";
   	    $errorArray['errorClass'] = "error active-error";
+  	    // if (isset($errorArray['inputValue'])) {
+  	    // 	$errorArray['inputValue'] = $username;
+  	    // }
   	    return 0;
   	} elseif (preg_match($pattern, $username) !== 1) {
 		$errorArray['errorValue'] = "special characters are not allowed";
   	    $errorArray['inputClass'] = "field invalid-field";
   	    $errorArray['errorClass'] = "error active-error";
+  	    // if (isset($errorArray['inputValue'])) {
+  	    // 	$errorArray['inputValue'] = $username;
+  	    // }
   	    return 0;
 	}
 	return 1;

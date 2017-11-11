@@ -18,7 +18,7 @@
     $i += validateUsername($usernameErrors, htmlentities($_POST['username']));
     $i += validatePassword($pswdErrors, htmlentities($_POST['pswd']));
     $i += validateRepeatPassword($repeatPswdErrors, htmlentities($_POST['pswd']), htmlentities($_POST['repeatPswd']));
-    //if all three functions returned 3 == no errors
+    //if all three functions returned true(3) == no errors
     if ($i == 3) {
       include_once('changingPassword.php');
     }

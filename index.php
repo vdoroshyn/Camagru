@@ -1,18 +1,39 @@
 <?php
   session_start();
+  include_once('./phpFuncs/funcValidateUsername.php');
+  include_once('./phpFuncs/funcValidatePassword.php');
+  include_once('./phpFuncs/funcValidateEmail.php');
+
   //creating variables for integrating php into html
   $usernameErrors = array("inputClass" => "field", "inputValue" => "", "errorValue" => "", "errorClass" => "error");
   $emailErrors = array("inputClass" => "field", "inputValue" => "", "errorValue" => "", "errorClass" => "error");
-  $pswdErrors = array("inputClass" => "field", "inputValue" => "", "errorValue" => "", "errorClass" => "error");
-  $repeatPdwdErrors = array("inputClass" => "field", "inputValue" => "", "errorValue" => "", "errorClass" => "error");
+  $pswdErrors = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
+  $repeatPswdErrors = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
 
-  if (!empty($_POST['username']) &&
-      !empty($_POST['email']) &&
-      !empty($_POST['password']) &&
-      !empty($_POST['repeatPassword'])
-      ) {
-    include_once('registration.php');
+  if (isset($_POST['submit'])) {
+    /*
+    **in case of error, these two fields are preserved
+    **for the user to be able to see what is wrong
+    */
+    $usernameErrors['inputValue'] = htmlentities($_POST['username']);
+    $emailErrors['inputValue'] = htmlentities($_POST['email']);
+
+    /*
+    **I wanted to make a separate function
+    **but it will be a ton of shitcode while passing vars
+    */
+    $i = 0;
+
+    $i += validateUsername($usernameErrors, htmlentities($_POST['username']));
+    $i += validateEmail($emailErrors, htmlentities($_POST['email']));
+    $i += validatePassword($pswdErrors, htmlentities($_POST['pswd']));
+    $i += validateRepeatPassword($repeatPswdErrors, htmlentities($_POST['pswd']), htmlentities($_POST['repeatPswd']));
+    //if all three functions returned true(4) == no errors
+    if ($i == 4) {
+      include_once('registration.php');
+    }
   }
+
 ?>
 
 <!DOCTYPE html>
@@ -62,15 +83,15 @@
           <span class='<?php echo "{$emailErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$emailErrors['errorValue']}"; ?></span>
 	      </div>
 	      <div id="passwordDiv">
-	        <input class='<?php echo "{$pswdErrors['inputClass']}"; ?>' name="password" type="password" placeholder="password" value='<?php echo "{$pswdErrors['inputValue']}"; ?>'>
+	        <input class='<?php echo "{$pswdErrors['inputClass']}"; ?>' name="pswd" type="password" placeholder="password">
           <span class='<?php echo "{$pswdErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$pswdErrors['errorValue']}"; ?></span>
 	      </div>
 	      <div id="repeatPasswordDiv">
-	        <input class='<?php echo "{$repeatPdwdErrors['inputClass']}"; ?>' name="repeatPassword" type="password" placeholder="repeat password" value='<?php echo "{$repeatPdwdErrors['inputValue']}"; ?>'>
-          <span class='<?php echo "{$repeatPdwdErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$repeatPdwdErrors['errorValue']}"; ?></span>
+	        <input class='<?php echo "{$repeatPswdErrors['inputClass']}"; ?>' name="repeatPswd" type="password" placeholder="repeat password">
+          <span class='<?php echo "{$repeatPswdErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$repeatPswdErrors['errorValue']}"; ?></span>
 	      </div>
 	      <div>
-	      	<button class="btn_1" type="submit" name="submit">submit</button> <!-- todo name="submit" -->
+	      	<button class="btn_1" type="submit" name="submit">submit</button>
 	      </div>
         <?php if (!isset($_SESSION['id'])): ?>
           <div>
@@ -86,6 +107,6 @@
   	<footer>
   	  <p>Copyright &copy; 2017 vdoroshy</p>
   	</footer>
-    <script src="js/registrationValidation.js"></script>
+    <!-- <script src="js/registrationValidation.js"></script> -->
   </body>
 </html>

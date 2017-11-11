@@ -5,16 +5,14 @@ require('config/database.php');
 //preparing variables the code will work with
 $username   = htmlentities($_POST['username']);
 $email      = htmlentities($_POST['email']);
-$pswd       = htmlentities($_POST['password']);
-$repeatPswd = htmlentities($_POST['repeatPassword']);
+$pswd       = htmlentities($_POST['pswd']);
+$repeatPswd = htmlentities($_POST['repeatPswd']);
 
 $pdo = returnPDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 if ($pdo) {
 
 	$usernameErrors['inputValue']   = $username;
 	$emailErrors['inputValue']      = $email;
-	$pswdErrors['inputValue']       = $pswd;
-	$repeatPdwdErrors['inputValue'] = $repeatPswd;
 
 	$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `username` = :Username");
 	$stmt->bindParam(':Username', $username);
@@ -62,8 +60,6 @@ if ($usernameErrors['errorValue'] == "" && $emailErrors['errorValue'] == "") {
 	//clearing input values for the fields to be empty
 	$usernameErrors['inputValue']   = "";
 	$emailErrors['inputValue']      = "";
-	$pswdErrors['inputValue']       = "";
-	$repeatPdwdErrors['inputValue'] = "";
 	//clearing the POST array
 	header('Location: enterCode.php');
 	die();
