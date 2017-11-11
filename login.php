@@ -1,19 +1,15 @@
 <?php
   session_start();
+  include_once('./phpFuncs/funcValidateCode.php');
 
-  $usernameErrors = array("inputClass" => "field");
-  $pswdErrors =  array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
+  $fieldErrors =  array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
 
-  if (!empty($_POST['username']) && !empty($_POST['pswd'])) {
-    include_once('logingUser.php');
-  } else {
-    if (isset($_POST['username']) && isset($_POST['pswd'])) {
-      $pswdErrors['errorValue'] = "fill in the fields";
-      $pswdErrors['inputClass'] = "field invalid-field";
-      $pswdErrors['errorClass'] = "error active-error";
-      $usernameErrors['inputClass'] = "field invalid-field";
+  if (isset($_POST['submit'])) {
+    if (areTwoFieldsEmpty($fieldErrors, htmlentities($_POST['username']), htmlentities($_POST['pswd']))) {
+      include_once('logingUser.php');
     }
   }
+
 ?>
 
 <!DOCTYPE html>
@@ -56,14 +52,14 @@
             <p>login with your credentials</p>
           </div>
           <div id="loginDiv">
-            <input class='<?php echo "{$usernameErrors['inputClass']}"; ?>' name="username" type="text" placeholder="login" value="">
+            <input class='<?php echo "{$fieldErrors['inputClass']}"; ?>' name="username" type="text" placeholder="username" value="">
           </div>
           <div id="passwordDiv">
-            <input class='<?php echo "{$pswdErrors['inputClass']}"; ?>' name="pswd" type="password" placeholder="password" value="">
-            <span class='<?php echo "{$pswdErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$pswdErrors['errorValue']}"; ?></span>
+            <input class='<?php echo "{$fieldErrors['inputClass']}"; ?>' name="pswd" type="password" placeholder="password" value="">
+            <span class='<?php echo "{$fieldErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$fieldErrors['errorValue']}"; ?></span>
           </div>
           <div>
-            <button class="btn_1" type="submit">submit</button>
+            <button class="btn_1" type="submit" name="submit">submit</button>
           </div>
           <div>
             <span>forgot your password?</span>

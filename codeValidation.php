@@ -14,16 +14,16 @@ if ($pdo) {
 	$stmt->execute();
 
 	if ($stmt->rowCount() == 0) {
-		$codeErrors['errorValue'] = "check the validity of inserted data";
-		$codeErrors['inputClass'] = "field invalid-field";
-		$codeErrors['errorClass'] = "error active-error";
+		$fieldErrors['errorValue'] = "check the validity of inserted data";
+		$fieldErrors['inputClass'] = "field invalid-field";
+		$fieldErrors['errorClass'] = "error active-error";
 	}
 } else {
 	echo "no connection with the database<br/>";
 	die();
 }
 
-if ($codeErrors['errorValue'] == "") {
+if ($fieldErrors['errorValue'] == "") {
 	$stmt = $pdo->prepare("UPDATE `users`
 						   SET `confirmed_email` = 1, `verification_code` = 0
 						   WHERE `username` = :Username");

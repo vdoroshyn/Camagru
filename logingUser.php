@@ -14,22 +14,20 @@ if ($pdo) {
 	$stmt->execute();
 	//if the username is not in the database
 	if ($stmt->rowCount() == 0) {
-		$pswdErrors['errorValue'] = "check the validity of inserted data";
-	    $pswdErrors['inputClass'] = "field invalid-field";
-	    $pswdErrors['errorClass'] = "error active-error";
-	    $usernameErrors['inputClass'] = "field invalid-field";
+		$fieldErrors['errorValue'] = "check the validity of inserted data";
+	    $fieldErrors['inputClass'] = "field invalid-field";
+	    $fieldErrors['errorClass'] = "error active-error";
 	} else if ($stmt->rowCount() == 1) {
 
 		$user = $stmt->fetch(PDO::FETCH_ASSOC);
 		//if the user's email is not confirmed
 		if (password_verify($pswd, $user['password']) && $user['confirmed_email'] != 1) {
 			header('Location: enterCode.php');
-			die();
+			die();//might need to resend the code too
 		} else if (!password_verify($pswd, $user['password'])) {
-			$pswdErrors['errorValue'] = "check the validity of inserted data";
-		    $pswdErrors['inputClass'] = "field invalid-field";
-		    $pswdErrors['errorClass'] = "error active-error";
-		    $usernameErrors['inputClass'] = "field invalid-field";
+			$fieldErrors['errorValue'] = "check the validity of inserted data";
+		    $fieldErrors['inputClass'] = "field invalid-field";
+		    $fieldErrors['errorClass'] = "error active-error";
 		}
 	}
 } else {
@@ -37,9 +35,9 @@ if ($pdo) {
 	die();
 }
 
-if ($pswdErrors['errorValue'] == "") {
+if ($fieldErrors['errorValue'] == "") {
 	$_SESSION['id'] = $username;
-	header('Location: index.php');//to
+	header('Location: index.php');
 }
 
 ?>

@@ -3,23 +3,14 @@
   include_once('./phpFuncs/funcValidateCode.php');
   
   //creating variables for integrating php into html
-  $codeErrors = array("inputValue" => "", "inputClass" => "field", "errorValue" => "", "errorClass" => "error");
+  $fieldErrors = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
 
   if (isset($_POST['submit'])) {
-    if (validateCode($codeErrors)) {
+    if (areTwoFieldsEmpty($fieldErrors, htmlentities($_POST['code']), htmlentities($_POST['username']))) {
       include_once('codeValidation.php');
     }
   }
 
-  // if (isset($_POST['code']) && $_POST['code'] != "" && !empty($_POST['username'])) {
-  //   include_once('codeValidation.php');
-  // } else { //todo
-  //     if (isset($_POST['code']) && isset($_POST['username'])) {
-  //     $codeErrors['errorValue'] = "fill in the fields";
-  //     $codeErrors['inputClass'] = "field invalid-field";
-  //     $codeErrors['errorClass'] = "error active-error";
-  //   }
-  // }
 ?>
 
 <!DOCTYPE html>
@@ -68,11 +59,11 @@
             <span class="formFieldPadding">to complete the registration</span>
           </div>
           <div id="loginDiv">
-            <input class='<?php echo "{$codeErrors['inputClass']}"; ?>' name="username" type="text" placeholder="enter your username" value="">
+            <input class='<?php echo "{$fieldErrors['inputClass']}"; ?>' name="username" type="text" placeholder="enter your username" value="">
           </div>
           <div id="codeDiv">
-            <input class='<?php echo "{$codeErrors['inputClass']}"; ?>' name="code" type="text" placeholder="enter your code" value="">
-            <span class='<?php echo "{$codeErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$codeErrors['errorValue']}"; ?></span>
+            <input class='<?php echo "{$fieldErrors['inputClass']}"; ?>' name="code" type="text" placeholder="enter your code" value="">
+            <span class='<?php echo "{$fieldErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$fieldErrors['errorValue']}"; ?></span>
           </div>
           <div>
             <button class="btn_1" type="submit" name="submit">submit</button>
