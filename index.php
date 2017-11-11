@@ -5,9 +5,9 @@
   include_once('./phpFuncs/funcValidateEmail.php');
 
   //creating variables for integrating php into html
-  $usernameErrors = array("inputClass" => "field", "inputValue" => "", "errorValue" => "", "errorClass" => "error");
-  $emailErrors = array("inputClass" => "field", "inputValue" => "", "errorValue" => "", "errorClass" => "error");
-  $pswdErrors = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
+  $usernameErrors   = array("inputClass" => "field", "inputValue" => "", "errorValue" => "", "errorClass" => "error");
+  $emailErrors      = array("inputClass" => "field", "inputValue" => "", "errorValue" => "", "errorClass" => "error");
+  $pswdErrors       = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
   $repeatPswdErrors = array("inputClass" => "field", "errorValue" => "", "errorClass" => "error");
 
   if (isset($_POST['submit'])) {
@@ -107,6 +107,6 @@
   	<footer>
   	  <p>Copyright &copy; 2017 vdoroshy</p>
   	</footer>
-    <!-- <script src="js/registrationValidation.js"></script> -->
+    <script src="js/registrationValidation.js"></script>
   </body>
 </html>

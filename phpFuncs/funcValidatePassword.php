@@ -30,12 +30,13 @@ function validateRepeatPassword(&$errorArray, $pswd, $repeatPswd) {
         $errorArray['inputClass'] = "field invalid-field";
         $errorArray['errorClass'] = "error active-error";
         return 0;
+    } elseif (preg_match($pattern, $repeatPswd) !== 1) {
+        $errorArray['errorValue'] = "no special characters\nat least one uppercase letter\nat least one lowercase letter\nat least one digit\nfrom 8 to 32 characters";
+        $errorArray['inputClass'] = "field invalid-field";
+        $errorArray['errorClass'] = "error active-error";
+        return 0;
     } elseif ($pswd != $repeatPswd) {
-        if (preg_match($pattern, $repeatPswd) !== 1) {
-          $errorArray['errorValue'] = "no special characters\nat least one uppercase letter\nat least one lowercase letter\nat least one digit\nfrom 8 to 32 characters";
-        } else {
-          $errorArray['errorValue'] = "passwords do not match";
-        }
+        $errorArray['errorValue'] = "passwords do not match";
         $errorArray['inputClass'] = "field invalid-field";
         $errorArray['errorClass'] = "error active-error";
         return 0;

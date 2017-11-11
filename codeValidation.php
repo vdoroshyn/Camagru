@@ -3,12 +3,14 @@
 require_once('connectToDatabase.php');
 require('config/database.php');
 
+//sanitizing variables the code will work with
+$code     = htmlentities($_POST['code']);
+$username = htmlentities($_POST['username']);
+
 $pdo = returnPDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 if ($pdo) {
 
 	$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `verification_code` = :Code AND `username` = :Username");
-	$code = htmlentities($_POST['code']);
-	$username = htmlentities($_POST['username']);
 	$stmt->bindParam(':Code', $code);
 	$stmt->bindParam(':Username', $username);
 	$stmt->execute();
@@ -27,7 +29,6 @@ if ($fieldErrors['errorValue'] == "") {
 	$stmt = $pdo->prepare("UPDATE `users`
 						   SET `confirmed_email` = 1, `verification_code` = 0
 						   WHERE `username` = :Username");
-	$username = htmlentities($_POST['username']);
 	$stmt->bindParam(':Username', $username);
 	$stmt->execute();
 	header('Location: thankYou.php');
