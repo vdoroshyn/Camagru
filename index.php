@@ -57,7 +57,7 @@
 	  	<nav>
 	  	  <ul>
 	  	    <li class="current"><a href="index.php">Home</a></li>
-	  	    <li><a href="#">Photobooth</a></li>
+	  	    <li><a href="./photobooth.php">Photobooth</a></li>
 	  	    <li><a href="#">Gallery</a></li>
           <?php if (!isset($_SESSION['id'])): ?>
             <li><a class="login-logout" href="login.php">login</a></li>
@@ -106,6 +106,6 @@
   	<footer>
   	  <p>Copyright &copy; 2017 vdoroshy</p>
   	</footer>
-    <script src="js/registrationValidation.js"></script>
+   <!--  <script src="js/registrationValidation.js"></script> -->
   </body>
 </html>

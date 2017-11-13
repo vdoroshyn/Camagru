@@ -73,6 +73,32 @@ section {
     justify-content: center;
 }
 
+/*photobooth page*/
+
+main {
+	display: flex;
+	flex-direction: row;
+/*	align-items: center;*/
+	justify-content: center;
+
+}
+
+.photo-button {
+	width: 60%;
+	margin: 0 auto;
+}
+
+.video-attr {
+	display: flex;
+	flex-direction: column;
+}
+
+.super-img {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
 /*Form in the center*/
 
 form {
@@ -113,15 +139,6 @@ form div .btn_1 {
 	margin-bottom: 10px;
 	font-family: 'Cinzel', sans-serif;
 }
-/*
-form input:valid {
-	border: none;
-}
-
-form input:invalid {
-	border: 1px solid red;
-}*/
-
 
 #signIn {
 	padding-bottom: 5px;
