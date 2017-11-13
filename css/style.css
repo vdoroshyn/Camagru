@@ -99,9 +99,9 @@ main {
 	justify-content: space-around;
 }
 
-/*Form in the center*/
+/*Form in the center of registration*/
 
-form {
+form.registr {
 	background-color: #CDE4E5;
 	color: #0B2429;
 	min-width: 20vw;
@@ -114,23 +114,23 @@ form {
 	border-radius: 15px;
 }
 
-form div {
+form.registr div {
 	width: 100%;
 	display: flex;
 	justify-content: center;
 }
 
-form div input {
+form.registr div input {
 	margin: 8px 0;
 	font-family: 'Cinzel', sans-serif;
 }
 
-form div .field {
+form.registr div .field {
 	width: 75%;
 	height: 25px;
 }
 
-form div .btn_1 {
+form.registr div .btn_1 {
 	width: 70%;
 	font-size: 15px;
 	height: 30px;

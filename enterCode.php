@@ -48,7 +48,7 @@
 
   	<section>
       <?php if (!isset($_SESSION['id'])): ?>
-  	    <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="POST">
+  	    <form class="registr" action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="POST">
           <div class="boldText">
             <span class="formFieldPadding">enter your username</span> <!-- wtf -->
           </div>
@@ -70,7 +70,7 @@
           </div>
         </form>
       <?php else: ?>
-        <form>
+        <form class="registr">
           <p>you are already registered</p>
         </form>
       <?php endif; ?>

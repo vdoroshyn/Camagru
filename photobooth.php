@@ -40,7 +40,10 @@
   	  <main>
         <div class="video-attr" style="border:solid white 3px">
           <video id="video" width="640" height="480" autoplay></video>
-          <p>upload your photo</p>
+          <form action="" method="post">
+            <input type="file" name="file"/>
+            <button type="submit" name="upload">upload</button>
+          </form>
           <button class="btn_1 photo-button" type="submit" name="submit">caption</button>
           <div class="super-img">
             <div style="border:solid white 3px">

@@ -69,7 +69,7 @@
   	</header>
 
   	<section>
-	    <form action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="POST" novalidate>
+	    <form class="registr" action='<?php echo htmlentities($_SERVER["PHP_SELF"]); ?>' method="POST" novalidate>
         <div>
           <span id="signUp">sign up</span>
         </div>
