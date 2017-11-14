@@ -40,25 +40,25 @@
   	  <main>
         <div class="video-attr" style="border:solid white 3px">
           <video id="video" width="640" height="480" autoplay></video>
-          <form action="" method="post">
+          <form style="border:solid white 3px" action="" method="post">
             <input type="file" name="file"/>
             <button type="submit" name="upload">upload</button>
           </form>
-          <button class="btn_1 photo-button" type="submit" name="submit">caption</button>
-          <div class="super-img">
-            <div style="border:solid white 3px">
-              <p>test</p>
+          <button class="photo-button" type="submit" name="submit">caption</button>
+          <div class="img-boxes">
+            <div class="box">
+              <img id="poro1" src="img/poro1.png" alt="poro1">
             </div>
-            <div style="border:solid white 3px">
-              <p>test</p>
+            <div class="box">
+              <img id="poro2" src="img/poro2.png" alt="poro2">
             </div>
-            <div style="border:solid white 3px">
-              <p>test</p>
+            <div class="box">
+              <img id="poro3" src="img/poro3.png" alt="poro3">
             </div>
           </div>
         </div>
         <aside style="border:solid white 3px">
-          <p>a nice column of text</p>
+          <p>placeholder for gallery</p>
         </aside>
       </main>
       <?php else: ?>
@@ -86,5 +86,6 @@
           });
       }
     </script>
+    <script src="js/photobooth.js"></script>
   </body>
 </html>

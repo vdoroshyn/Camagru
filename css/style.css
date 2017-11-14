@@ -80,12 +80,19 @@ main {
 	flex-direction: row;
 /*	align-items: center;*/
 	justify-content: center;
+	background-color: #CDE4E5;
 
 }
 
 .photo-button {
-	width: 60%;
 	margin: 0 auto;
+	width: 70%;
+	font-size: 15px;
+	height: 30px;
+	cursor: pointer;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	font-family: 'Cinzel', sans-serif;
 }
 
 .video-attr {
@@ -93,10 +100,19 @@ main {
 	flex-direction: column;
 }
 
-.super-img {
+.img-boxes {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
+}
+
+.img-boxes .box {
+	width: 30%;
+}
+
+.img-boxes .box img {
+	width:150px;
+	height:150px;
 }
 
 /*Form in the center of registration*/
