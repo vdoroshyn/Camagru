@@ -44,7 +44,7 @@
             <input type="file" name="file"/>
             <button type="submit" name="upload">upload</button>
           </form>
-          <button class="photo-button" type="submit" name="submit">caption</button>
+          <button class="photo-button" type="submit" name="submit">caption this</button>
           <div class="img-boxes">
             <div class="box">
               <img id="poro1" src="img/poro1.png" alt="poro1">

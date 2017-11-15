@@ -110,7 +110,9 @@ main {
 	width: 30%;
 }
 
-.img-boxes .box img {
+#poro1,
+#poro2,
+#poro3 {
 	width:150px;
 	height:150px;
 }
