@@ -47,22 +47,22 @@
           <button class="photo-button" type="submit" name="submit">caption this</button>
           <div class="img-boxes">
             <div class="box">
-              <img id="poro1" src="img/poro1.png" alt="poro1">
+              <img id="poro1" src="img/poro1.png" alt="poro1" onmousedown="poroMove(event)">
             </div>
             <div class="box">
-              <img id="poro2" src="img/poro2.png" alt="poro2">
+              <img id="poro2" src="img/poro2.png" alt="poro2" onmousedown="poroMove(event)">
             </div>
             <div class="box">
-              <img id="poro3" src="img/poro3.png" alt="poro3">
+              <img id="poro3" src="img/poro3.png" alt="poro3" onmousedown="poroMove(event)">
             </div>
           </div>
         </div>
         <aside style="border:solid white 3px">
-          <p>placeholder for gallery</p>
+          <canvas id="canvas" width="640" height="480"></canvas>
         </aside>
       </main>
       <?php else: ?>
-        <form>
+        <form class="registr">
           <img class="padding-bottom" src="./img/stop.png" alt="stop sign">
           <p>you should be logged in</p>
           <p>to access camera features</p>
@@ -85,6 +85,29 @@
               video.play();
           });
       }
+    </script>
+    <script>
+      // Elements for taking the snapshot
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+      var video = document.getElementById('video');
+
+
+
+
+      // Trigger photo take
+      document.querySelector('.photo-button').addEventListener("click", function() {
+        var img = document.getElementById('poro3');
+        var left = parseInt(img.style.left);
+        var top = parseInt(img.style.top);
+
+
+        console.log(top);
+        console.log(left);       
+        ctx.drawImage(video, 0, 0, 640, 480);
+        ctx.drawImage(img, left - 379, top - 211, 150, 150);
+      });
+
     </script>
     <script src="js/photobooth.js"></script>
   </body>

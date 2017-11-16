@@ -115,6 +115,7 @@ main {
 #poro3 {
 	width:150px;
 	height:150px;
+	z-index: 1000;
 }
 
 /*Form in the center of registration*/

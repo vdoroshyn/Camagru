@@ -91,6 +91,7 @@
 	      </div>
 	      <div>
 	      	<button class="btn_1" type="submit" name="submit">submit</button>
+          <!-- todo user cannot click the button when loged in -->
 	      </div>
         <?php if (!isset($_SESSION['id'])): ?>
           <div>
