@@ -52,10 +52,15 @@ var poro2 = document.getElementById('poro2');
 poro2.onmousedown = function(event) {
 
 	for (var i = 0; i < elem.children.length; ++i) {
-		if (elem.children[i] == "poro1") {
-			var imgBoxes = document.querySelector('.img-boxes');
-			imgBoxes.children[0].appendChild(elem.children[i]);
-			elem.removeChild(elem.children[i]);
+		var child = elem.children[i];
+		if (child.id == "poro1") {
+			child.style.position = 'static';
+			var imgBox = document.querySelector('.img-boxes').children[0];
+			imgBox.appendChild(child);
+		} else if (child.id == "poro3") {
+			child.style.position = 'static';
+			var imgBox = document.querySelector('.img-boxes').children[2];
+			imgBox.appendChild(child);
 		}
 	}
 
@@ -100,8 +105,7 @@ poro2.onmousedown = function(event) {
 		poro2.onmouseup = null;
 	}
 }
-/*
-** I do not need it for now
+
 var poro3 = document.getElementById('poro3');
 
 poro3.onmousedown = function(event) {
@@ -146,6 +150,8 @@ poro3.onmousedown = function(event) {
 		poro3.onmouseup = null;
 	}
 }
+/*
+** I do not need it for now
 */
 // poro3.onmousedown = function(event) {
 // 	//removing doubling of the img
