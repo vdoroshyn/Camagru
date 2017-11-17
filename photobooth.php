@@ -40,7 +40,7 @@
   	  <main>
         <div class="video-attr" style="border:solid white 3px">
           <video id="video" width="640" height="480" autoplay></video>
-          <form style="border:solid white 3px" action="" method="post">
+          <form style="border:solid white 3px" action="fileUpload.php" method="post" enctype="multipart/form-data">
             <input type="file" name="file"/>
             <button type="submit" name="upload">upload</button>
           </form>
@@ -96,16 +96,28 @@
 
 
       // Trigger photo take
-      document.querySelector('.photo-button').addEventListener("click", function() {
-        var img = document.getElementById('poro3');
-        var left = parseInt(img.style.left);
-        var top = parseInt(img.style.top);
+      document.querySelector('.photo-button').addEventListener("click", function(event) {
+        var poro = "nothing";
 
+        var elem = document.querySelector('.video-attr');
+        for (var i = 0; i < elem.children.length; ++i) {
+          var id = elem.children[i].id;
+          if (id == "poro1" || id == "poro2" || id == "poro3") {
+            poro = id;
+            break;
+          }
+        }
+        if (poro === "nothing") {
+          event.preventDefault();
+          return;
+        }
 
-        console.log(top);
-        console.log(left);       
+        var poroImg = document.getElementById(poro);
+        var left = parseInt(poroImg.style.left);
+        var top = parseInt(poroImg.style.top);
+
         ctx.drawImage(video, 0, 0, 640, 480);
-        ctx.drawImage(img, left - 379, top - 211, 150, 150);
+        ctx.drawImage(poroImg, (left - 379), (top - 211), 150, 150);
       });
 
     </script>

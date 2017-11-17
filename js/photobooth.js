@@ -46,7 +46,7 @@ function poroMove(event) {
 		if (elemCoords.right < right) {
 			poro.style.left = (elemCoords.right - 150) + 'px'; 
 		}
-		//bottom coords are calculated thru top
+		//bottom limit is calculated thru top
 		if (elemCoords.top + 480 < bottom) {
 			poro.style.top = (elemCoords.top + 480 - 150) + 'px'; 
 		}
