@@ -89,11 +89,10 @@
 	        <input class='<?php echo "{$repeatPswdErrors['inputClass']}"; ?>' name="repeatPswd" type="password" placeholder="repeat password">
           <span class='<?php echo "{$repeatPswdErrors['errorClass']}"; ?>' aria-live="polite"><?php echo "{$repeatPswdErrors['errorValue']}"; ?></span>
 	      </div>
-	      <div>
-	      	<button class="btn_1" type="submit" name="submit">submit</button>
-          <!-- todo user cannot click the button when loged in -->
-	      </div>
         <?php if (!isset($_SESSION['id'])): ?>
+          <div>
+            <button class="btn_1" type="submit" name="submit">submit</button>
+          </div>
           <div>
             <span class="formFieldPadding">Already have an account?</span>
           </div>
