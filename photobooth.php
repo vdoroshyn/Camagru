@@ -44,7 +44,12 @@
             <input type="file" name="file"/>
             <button type="submit" name="upload">upload</button>
           </form>
-          <button class="photo-button" type="submit" name="submit">caption this</button>
+          <button class="photo-button" disabled onclick="saveImg()" type="submit" name="submit">caption this</button>
+
+<!--           <form method="post" name="imgForm">
+            <input name="hidden_data" id="hidden_data" type="hidden"/>
+          </form> -->
+
           <div class="img-boxes">
             <div class="box">
               <img id="poro1" src="img/poro1.png" alt="poro1" onmousedown="poroMove(event)">
@@ -91,8 +96,8 @@
       var canvas = document.getElementById('canvas');
       var ctx = canvas.getContext('2d');
       var video = document.getElementById('video');
-      var dataURL = canvas.toDataURL();
-      console.log(dataURL);
+      // var dataURL = canvas.toDataURL();
+      // console.log(dataURL);
 
 
 
@@ -120,6 +125,33 @@
         ctx.drawImage(video, 0, 0, 640, 480);
         ctx.drawImage(poroImg, (left - 379), (top - 211), 150, 150);
       });
+
+    </script>
+    <script>
+      // function test() {
+      //   var xhr = new XMLHttpRequest();
+      //   xhr.onreadystatechange = function() {
+      //     if (this.readyState == 4 && this.status == 200) {
+      //       document.getElementById("demo").innerHTML = this.responseText;
+      //     }
+      //   };
+      //   xhr.open("POST", "captionImg.php", true);
+      //   xhr.send();
+      // }
+      function saveImg() {
+        var imgData = document.getElementById('canvas');
+        var dataUrl = canvas.toDataURL();
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {        
+            console.log(this.responseText);
+          }
+        }
+        xhr.open("POST", "captionImg.php", true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.send("dataUrl=" + dataUrl);
+      }
 
     </script>
     <script src="js/photobooth.js"></script>

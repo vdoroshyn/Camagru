@@ -1,4 +1,6 @@
 function poroMove(event) {
+	//making the button clickable
+	document.querySelector('.photo-button').disabled = false;
 	//getting the variable
 	var poro = document.getElementById(event.target.id);
 	var elem = document.querySelector('.video-attr');
