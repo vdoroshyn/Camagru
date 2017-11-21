@@ -6,7 +6,7 @@
 
 	if (!empty($_POST['dataUrl'])) {
 
-		$upload_dir = "uploadedFiles/";
+		$upload_dir = "userImages/";
 		//checking whether the directory exists and creatin one if not
 		if(!is_dir($upload_dir)) {
 			mkdir($upload_dir);
