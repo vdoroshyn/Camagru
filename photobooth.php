@@ -44,7 +44,7 @@
             <input type="file" name="file"/>
             <button type="submit" name="upload">upload</button>
           </form>
-          <button class="photo-button" disabled onclick="saveImg()" type="submit" name="submit">caption this</button>
+          <button class="photo-button" disabled type="submit" name="submit">caption this</button>
 
 <!--           <form method="post" name="imgForm">
             <input name="hidden_data" id="hidden_data" type="hidden"/>
@@ -124,20 +124,10 @@
 
         ctx.drawImage(video, 0, 0, 640, 480);
         ctx.drawImage(poroImg, (left - 379), (top - 211), 150, 150);
+        //calling the saveImg function right after the canvas drawImage
+        saveImg();
       });
 
-    </script>
-    <script>
-      // function test() {
-      //   var xhr = new XMLHttpRequest();
-      //   xhr.onreadystatechange = function() {
-      //     if (this.readyState == 4 && this.status == 200) {
-      //       document.getElementById("demo").innerHTML = this.responseText;
-      //     }
-      //   };
-      //   xhr.open("POST", "captionImg.php", true);
-      //   xhr.send();
-      // }
       function saveImg() {
         var imgData = document.getElementById('canvas');
         var dataUrl = canvas.toDataURL();
@@ -152,7 +142,6 @@
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.send("dataUrl=" + dataUrl);
       }
-
     </script>
     <script src="js/photobooth.js"></script>
   </body>
