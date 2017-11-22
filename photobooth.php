@@ -40,6 +40,7 @@
   	  <main>
         <div class="video-attr" style="border:solid white 3px">
           <video id="video" width="640" height="480" autoplay></video>
+          <canvas id="canvas" width="640" height="480" hidden></canvas>
           <form style="border:solid white 3px" action="fileUpload.php" method="post" enctype="multipart/form-data">
             <input type="file" name="file"/>
             <button type="submit" name="upload">upload</button>
@@ -62,8 +63,8 @@
             </div>
           </div>
         </div>
-        <aside style="border:solid white 3px">
-          <canvas id="canvas" width="640" height="480"></canvas>
+        <aside class="booth-aside" style="border:solid white 3px">
+          <!-- <canvas id="canvas" width="640" height="480"></canvas> -->
         </aside>
       </main>
       <?php else: ?>
@@ -79,6 +80,7 @@
   	  <p>Copyright &copy; 2017 vdoroshy</p>
   	</footer>
     <script>
+      // TODO camera should not give errors when the user is logged out!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       // Grab elements, create settings, etc.
       var video = document.getElementById('video');
 
@@ -142,6 +144,28 @@
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.send("dataUrl=" + dataUrl);
       }
+    </script>
+    <script>
+      //showing thumbnails of previous taken photos
+      var aside = document.getElementsByTagName('aside')[0];
+
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var arr = JSON.parse(this.responseText);
+
+          for(var i = 0; i < arr.length; ++i) {
+            var img = document.createElement('img');
+            img.src = arr[i];
+            img.style.height = "240px";
+            img.style.width = "320px";
+            aside.appendChild(img);
+          }
+        }
+      }
+      xhr.open("GET", "getThumbnails.php", true);
+      xhr.send();
+
     </script>
     <script src="js/photobooth.js"></script>
   </body>

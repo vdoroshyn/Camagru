@@ -17,6 +17,7 @@ try {
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	//drop tables;
 	$pdo->exec("DROP TABLE IF EXISTS `users`");
+	$pdo->exec("DROP TABLE IF EXISTS `photos`");
 	$pdo->exec("CREATE TABLE IF NOT EXISTS `users`(
 		id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		username CHAR(8) NOT NULL,
@@ -26,7 +27,12 @@ try {
 		verification_code BIGINT NOT NULL DEFAULT 0,
 		reset_email_code BIGINT NOT NULL DEFAULT 0)
 		");
-
+	$pdo->exec("CREATE TABLE IF NOT EXISTS `photos`(
+		id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		username CHAR(8) NOT NULL,
+		photo_name CHAR(46) NOT NULL,
+		time_stamp TIMESTAMP)
+		");
 } catch (PDOException $ex) {
 	echo "Connection failed: " . $ex->getMessage();
 }

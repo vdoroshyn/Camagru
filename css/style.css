@@ -81,7 +81,18 @@ main {
 /*	align-items: center;*/
 	justify-content: center;
 	background-color: #CDE4E5;
+	max-height: 62vh;
+	/*todo max-height*/
+}
 
+.booth-aside {
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+}
+
+.booth-aside img {
+	padding: 2px;
 }
 
 .photo-button {
