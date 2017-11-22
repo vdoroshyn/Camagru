@@ -37,7 +37,7 @@ if ($pdo) {
 
 if ($fieldErrors['errorValue'] == "") {
 	$_SESSION['id'] = $username;
-	header('Location: index.php');
+	header('Location: photobooth.php');
 }
 
 ?>
