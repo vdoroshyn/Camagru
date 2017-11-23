@@ -81,9 +81,30 @@ main {
 /*	align-items: center;*/
 	justify-content: center;
 	background-color: #CDE4E5;
-	max-height: 720px;
+	max-height: 680px;
 	/*todo max-height*/
 }
+
+.camera-place {
+	width: 640px;
+	height: 480px;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px white solid;
+    /*TODO border bottom or border box!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+}
+
+#cameraImg {
+	padding-bottom: 35px;
+}
+
+#canvas {
+	width: 640px;
+	height: 480px;
+	/*visibility: hidden;
+*/}
 
 .booth-aside {
 	display: flex;

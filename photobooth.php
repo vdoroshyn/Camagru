@@ -39,17 +39,17 @@
       <?php if (isset($_SESSION['id'])): ?>
   	  <main>
         <div class="video-attr" style="border:solid white 3px">
-          <video id="video" width="640" height="480" autoplay></video>
-          <canvas id="canvas" width="640" height="480" hidden></canvas>
-          <form style="border:solid white 3px" action="fileUpload.php" method="post" enctype="multipart/form-data">
-            <input type="file" name="file"/>
-            <button type="submit" name="upload">upload</button>
-          </form>
+          <div class="camera-place">
+            <img id="cameraImg" src="img/camera.png" alt="camera-img">
+            <form style="border:solid white 3px" action="fileUpload.php" method="post" enctype="multipart/form-data">
+              <input type="file" name="file"/>
+              <button type="submit" name="upload">upload</button>
+            </form>
+          </div>
+          <!-- <video id="video" width="640" height="480" autoplay></video> -->
+          <canvas id="canvas" hidden></canvas>
+          
           <button class="photo-button" disabled type="submit" name="submit">caption this</button>
-
-<!--           <form method="post" name="imgForm">
-            <input name="hidden_data" id="hidden_data" type="hidden"/>
-          </form> -->
 
           <div class="img-boxes">
             <div class="box">
@@ -64,7 +64,7 @@
           </div>
         </div>
         <aside class="booth-aside" style="border:solid white 3px">
-          <!-- <canvas id="canvas" width="640" height="480"></canvas> -->
+
         </aside>
       </main>
       <?php else: ?>
@@ -81,18 +81,6 @@
   	</footer>
     <script src="js/photobooth.js"></script>
     <script>
-      // TODO camera should not give errors when the user is logged out!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      // Grab elements, create settings, etc.
-      var video = document.getElementById('video');
-
-      // Get access to the camera!
-      if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-          // Not adding `{ audio: true }` since we only want video now
-          navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
-              video.src = window.URL.createObjectURL(stream);
-              video.play();
-          });
-      }
       //showing thumbnails of previous taken photos when the page is loaded
       getThumbnails();
     </script>
@@ -132,6 +120,33 @@
         //showing thumbnails of previous taken photos after the button click
         getThumbnails();
       });
+    </script>
+    <script>
+      document.getElementById('cameraImg').addEventListener("click", function(event) {
+        var div = document.querySelector('.camera-place');
+
+        while (div.firstChild) {
+          div.removeChild(div.firstChild);
+        }
+        // TODO camera should not give errors when the user is logged out!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // TODO error message if no camera!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        
+        // if camera can be accessed, create a video node in html and start video stream
+        if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          // Not adding `{ audio: true }` since we only want video now
+          navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+              var video = document.createElement('video');
+
+              video.style.width = "640px";
+              video.style.height = "480px";
+              video.autoplay = true;
+              video.src = window.URL.createObjectURL(stream);
+              video.play();
+              div.appendChild(video);
+          });
+        }
+      });
+
     </script>
   </body>
 </html>
