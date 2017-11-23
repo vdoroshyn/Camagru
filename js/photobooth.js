@@ -63,3 +63,43 @@ function poroMove(event) {
 		poro.onmouseup = null;
 	}
 }
+
+function getThumbnails() {
+	//showing thumbnails of previous taken photos
+	var aside = document.getElementsByTagName('aside')[0];
+	while (aside.firstChild) {
+    	aside.removeChild(aside.firstChild);
+	}
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+	  if (this.readyState == 4 && this.status == 200) {
+	    var arr = JSON.parse(this.responseText);
+
+	    for(var i = 0; i < arr.length; ++i) {
+	      var img = document.createElement('img');
+	      img.src = arr[i];
+	      img.style.height = "240px";
+	      img.style.width = "320px";
+	      aside.appendChild(img);
+	    }
+	  }
+	}
+	xhr.open("GET", "getThumbnails.php", true);
+	xhr.send();
+}
+
+function saveImg() {
+	var imgData = document.getElementById('canvas');
+	var dataUrl = canvas.toDataURL();
+
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+	  if (this.readyState == 4 && this.status == 200) {        
+	    console.log(this.responseText);
+	    window.location.reload(true);
+	  }
+	}
+	xhr.open("POST", "captionImg.php", true);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.send("dataUrl=" + dataUrl);
+}
