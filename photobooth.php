@@ -41,9 +41,9 @@
         <div class="video-attr" style="border:solid white 3px">
           <div class="camera-place">
             <img id="cameraImg" src="img/camera.png" alt="camera-img">
-            <form style="border:solid white 3px" action="fileUpload.php" method="post" enctype="multipart/form-data">
+            <form style="border:solid white 3px" enctype="multipart/form-data">
               <input type="file" name="file"/>
-              <button type="submit" name="upload">upload</button>
+              <button id="fileUpload" type="submit" name="upload">upload</button>
             </form>
           </div>
           <!-- <video id="video" width="640" height="480" autoplay></video> -->
@@ -149,6 +149,19 @@
         }
       });
 
+      // document.getElementById('fileUpload').addEventListener("click", function(event) {
+      //     var xhr = new XMLHttpRequest();
+
+      //     xhr.onreadystatechange = function() {
+      //       if (this.readyState == 4 && this.status == 200) {        
+      //         console.log(this.responseText);
+      //       }
+      //     }
+      //     xhr.open("POST", "fileUpload.php", true);
+      //     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      //     // xhr.send("dataUrl=" + dataUrl);
+      //     xhr.send();
+      // });
     </script>
   </body>
 </html>
