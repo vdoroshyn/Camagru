@@ -81,7 +81,7 @@ main {
 /*	align-items: center;*/
 	justify-content: center;
 	background-color: #CDE4E5;
-	max-height: 680px;
+	/*max-height: 680px;*/
 	/*todo max-height*/
 }
 
@@ -99,12 +99,6 @@ main {
 #cameraImg {
 	padding-bottom: 35px;
 }
-
-#canvas {
-	width: 640px;
-	height: 480px;
-	/*visibility: hidden;
-*/}
 
 .booth-aside {
 	display: flex;

@@ -4,7 +4,8 @@ function poroMove(event) {
 	//getting the variable
 	var poro = document.getElementById(event.target.id);
 	var elem = document.querySelector('.video-attr');
-	var elemCoords = elem.getBoundingClientRect();
+	var streamDiv = document.querySelector('.camera-place');
+	var streamDivCoords = streamDiv.getBoundingClientRect();
 	//checking whether other poros are not in position
 	for (var i = 0; i < elem.children.length; ++i) {
 		var child = elem.children[i];
@@ -39,18 +40,17 @@ function poroMove(event) {
 		var right = left + 150;
 		var bottom = top + 150;
 
-		if (left < elemCoords.left) {
-			poro.style.left = elemCoords.left + 'px';
+		if (left < streamDivCoords.left) {
+			poro.style.left = streamDivCoords.left + 'px';
 		}
-		if (elemCoords.top > top) {
-			poro.style.top = elemCoords.top + 'px';
+		if (streamDivCoords.top > top) {
+			poro.style.top = streamDivCoords.top + 'px';
 		}
-		if (elemCoords.right < right) {
-			poro.style.left = (elemCoords.right - 150) + 'px'; 
+		if (streamDivCoords.right < right) {
+			poro.style.left = (streamDivCoords.right - 150) + 'px'; 
 		}
-		//bottom limit is calculated thru top
-		if (elemCoords.top + 480 < bottom) {
-			poro.style.top = (elemCoords.top + 480 - 150) + 'px'; 
+		if (streamDivCoords.bottom < bottom) {
+			poro.style.top = (streamDivCoords.bottom - 150) + 'px'; 
 		}
 	}
 

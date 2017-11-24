@@ -47,7 +47,7 @@
             </form>
           </div>
           <!-- <video id="video" width="640" height="480" autoplay></video> -->
-          <canvas id="canvas" hidden></canvas>
+          <canvas id="canvas" width="640" height="480"></canvas>
           
           <button class="photo-button" disabled type="submit" name="submit">caption this</button>
 
@@ -63,7 +63,7 @@
             </div>
           </div>
         </div>
-        <aside class="booth-aside" style="border:solid white 3px">
+        <aside class="booth-aside" style="border:solid white 3px height:680px">
 
         </aside>
       </main>
@@ -86,13 +86,12 @@
     </script>
     <script>
 
-      // Elements for taking the snapshot
-      var canvas = document.getElementById('canvas');
-      var ctx = canvas.getContext('2d');
-      var video = document.getElementById('video');
-
       // Trigger photo take
       document.querySelector('.photo-button').addEventListener("click", function(event) {
+        // Elements for taking the snapshot
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var vid = document.getElementById('stream');
         var poro = "nothing";
 
         var elem = document.querySelector('.video-attr');
@@ -113,12 +112,12 @@
         var left = parseInt(poroImg.style.left);
         var top = parseInt(poroImg.style.top);
 
-        ctx.drawImage(video, 0, 0, 640, 480);
+        ctx.drawImage(vid, 0, 0, 640, 480);
         ctx.drawImage(poroImg, (left - 379), (top - 211), 150, 150);
         //calling the saveImg function right after the canvas drawImage
-        saveImg();
+        //saveImg();
         //showing thumbnails of previous taken photos after the button click
-        getThumbnails();
+        //getThumbnails();
       });
     </script>
     <script>
@@ -139,6 +138,7 @@
 
               video.style.width = "640px";
               video.style.height = "480px";
+              video.id = "stream";
               video.autoplay = true;
               video.src = window.URL.createObjectURL(stream);
               video.play();
