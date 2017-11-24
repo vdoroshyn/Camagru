@@ -64,23 +64,32 @@ function poroMove(event) {
 	}
 }
 
+
+
 function getThumbnails() {
 	//showing thumbnails of previous taken photos
 	var aside = document.getElementsByTagName('aside')[0];
 	while (aside.firstChild) {
     	aside.removeChild(aside.firstChild);
 	}
+	// document.querySelector('.booth-aside').style.overflow = "auto";
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 	  if (this.readyState == 4 && this.status == 200) {
 	    var arr = JSON.parse(this.responseText);
 
 	    for(var i = 0; i < arr.length; ++i) {
-	      var img = document.createElement('img');
-	      img.src = arr[i];
-	      img.style.height = "240px";
-	      img.style.width = "320px";
-	      aside.appendChild(img);
+	  	  var divchick = document.createElement('div');
+	      // var img = document.createElement('img');
+
+	      // img.src = arr[i];
+	      divchick.style.background="url(" + arr[i] + ")";
+	      divchick.classList.add('divchick');
+	      // img.style.height = "240px";
+	      // img.style.width = "320px";
+	      // aside.appendChild(img);
+	      aside.appendChild(divchick);
+
 	    }
 	  }
 	}

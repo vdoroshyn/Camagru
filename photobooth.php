@@ -47,7 +47,7 @@
             </form>
           </div>
           <!-- <video id="video" width="640" height="480" autoplay></video> -->
-          <canvas id="canvas" width="640" height="480"></canvas>
+          <canvas id="canvas" width="640" height="480" hidden></canvas>
           
           <button class="photo-button" disabled type="submit" name="submit">caption this</button>
 
@@ -81,8 +81,11 @@
   	</footer>
     <script src="js/photobooth.js"></script>
     <script>
+
+      document.addEventListener('DOMContentLoaded', getThumbnails());
+
       //showing thumbnails of previous taken photos when the page is loaded
-      getThumbnails();
+      
     </script>
     <script>
 
@@ -108,16 +111,18 @@
           return;
         }
 
+        var camDiv = document.querySelector('.camera-place');
+        var camDivCoords = camDiv.getBoundingClientRect();
         var poroImg = document.getElementById(poro);
-        var left = parseInt(poroImg.style.left);
-        var top = parseInt(poroImg.style.top);
-
+        var poroImgCoords = poroImg.getBoundingClientRect();
+        var dx = poroImgCoords.left - camDivCoords.left;
+        var dy = poroImgCoords.top - camDivCoords.top;
         ctx.drawImage(vid, 0, 0, 640, 480);
-        ctx.drawImage(poroImg, (left - 379), (top - 211), 150, 150);
+        ctx.drawImage(poroImg, dx, dy, 150, 150);
         //calling the saveImg function right after the canvas drawImage
-        //saveImg();
+        saveImg();
         //showing thumbnails of previous taken photos after the button click
-        //getThumbnails();
+        getThumbnails();
       });
     </script>
     <script>

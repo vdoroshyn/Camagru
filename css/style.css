@@ -2,6 +2,14 @@
 	border: 2px solid purple;
 }*/
 
+.divchick {
+	background-position: center !important;
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
+	height: 240px;
+	width: 320px;
+}
+
 body {
 	font: 18px/1.5 Arial, Helvetica, sans-serif;
 	background: url("../img/background.jpg") no-repeat;
@@ -81,8 +89,7 @@ main {
 /*	align-items: center;*/
 	justify-content: center;
 	background-color: #CDE4E5;
-	/*max-height: 680px;*/
-	/*todo max-height*/
+	max-height: 680px;
 }
 
 .camera-place {
@@ -101,9 +108,11 @@ main {
 }
 
 .booth-aside {
-	display: flex;
-	flex-direction: column;
+	/*display: flex;*/
+	/*flex-direction: column;*/
 	overflow-y: auto;
+	/*overflow: auto;*/
+	height: 680px;
 }
 
 .booth-aside img {
