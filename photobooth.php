@@ -81,11 +81,8 @@
   	</footer>
     <script src="js/photobooth.js"></script>
     <script>
-
-      document.addEventListener('DOMContentLoaded', getThumbnails());
-
       //showing thumbnails of previous taken photos when the page is loaded
-      
+      getThumbnails();
     </script>
     <script>
 

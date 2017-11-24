@@ -2,14 +2,6 @@
 	border: 2px solid purple;
 }*/
 
-.divchick {
-	background-position: center !important;
-	background-repeat: no-repeat !important;
-	background-size: cover !important;
-	height: 240px;
-	width: 320px;
-}
-
 body {
 	font: 18px/1.5 Arial, Helvetica, sans-serif;
 	background: url("../img/background.jpg") no-repeat;
@@ -115,7 +107,15 @@ main {
 	height: 680px;
 }
 
-.booth-aside img {
+.thumbnail {
+	background-position: center !important;
+	background-repeat: no-repeat !important;
+	background-size: contain !important;
+	height: 240px;
+	width: 320px;
+}
+
+.booth-aside .thumbnail {
 	padding: 2px;
 }
 
