@@ -99,6 +99,14 @@ main {
 	padding-bottom: 35px;
 }
 
+.user-uploaded-img {
+	background-position: center !important;
+	background-repeat: no-repeat !important;
+   	background-size: contain !important;
+   	height: 480px;
+   	width: 640px;
+}
+
 .booth-aside {
 	/*display: flex;*/
 	/*flex-direction: column;*/

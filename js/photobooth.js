@@ -1,4 +1,9 @@
 function poroMove(event) {
+	//checking whether poro are allowed to move
+	var isAllowedToMove = document.querySelector('.camera-place');
+	if (isAllowedToMove.children[0].id != "stream" && isAllowedToMove.children[0].id != "uploadedImg") {
+		return;
+	}
 	//making the button clickable
 	document.querySelector('.photo-button').disabled = false;
 	//getting the variable
@@ -103,7 +108,7 @@ function getThumbnails() {
 
 	    for(var i = 0; i < images.length; ++i) {
 	  	  var thumbnail = document.createElement('div');
-	      thumbnail.style.background = "url(" + images[i] + ")";
+	      thumbnail.style.backgroundImage = "url(" + images[i] + ")";
 	      thumbnail.classList.add('thumbnail');
 	      aside.appendChild(thumbnail);
 	    }

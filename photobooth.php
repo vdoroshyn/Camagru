@@ -41,10 +41,7 @@
         <div class="video-attr" style="border:solid white 3px">
           <div class="camera-place">
             <img id="cameraImg" src="img/camera.png" alt="camera-img">
-            <form style="border:solid white 3px" enctype="multipart/form-data">
-              <input type="file" name="file"/>
-              <button id="fileUpload" type="submit" name="upload">upload</button>
-            </form>
+            <input type="file" id="getFile" name="userFile"/>
           </div>
           <!-- <video id="video" width="640" height="480" autoplay></video> -->
           <canvas id="canvas" width="640" height="480" hidden></canvas>
@@ -91,7 +88,7 @@
         // Elements for taking the snapshot
         var canvas = document.getElementById('canvas');
         var ctx = canvas.getContext('2d');
-        var vid = document.getElementById('stream');
+        // var vid = document.getElementById('stream');
         var poro = "nothing";
 
         var elem = document.querySelector('.video-attr');
@@ -114,12 +111,33 @@
         var poroImgCoords = poroImg.getBoundingClientRect();
         var dx = poroImgCoords.left - camDivCoords.left;
         var dy = poroImgCoords.top - camDivCoords.top;
-        ctx.drawImage(vid, 0, 0, 640, 480);
-        ctx.drawImage(poroImg, dx, dy, 150, 150);
-        //calling the saveImg function right after the canvas drawImage
-        saveImg();
-        //showing thumbnails of previous taken photos after the button click
-        getThumbnails();
+        //checking whether I have a video or an uploaded photo
+        var checkVars = document.querySelector('.camera-place');
+        //video segment
+        if (checkVars.children[0].id == "stream") {
+          var vid = document.getElementById('stream');
+          ctx.drawImage(vid, 0, 0, 640, 480);
+          ctx.drawImage(poroImg, dx, dy, 150, 150);
+          //calling the saveImg function right after the canvas drawImage
+          saveImg();
+          //showing thumbnails of previous taken photos after the button click
+          getThumbnails();
+        } 
+        //image segment
+        else if (checkVars.children[0].id == "uploadedImg") {
+          var background = document.querySelector('.user-uploaded-img').style.backgroundImage;
+          background = background.substring(5, background.length - 2);
+          var img = new Image();
+          img.onload = function() {
+            ctx.drawImage(img, 0, 0, 640, 480);
+            ctx.drawImage(poroImg, dx, dy, 150, 150);
+            //calling the saveImg function right after the canvas drawImage
+            saveImg();
+            //showing thumbnails of previous taken photos after the button click
+            getThumbnails();
+          }
+          img.src = background;
+        }
       });
     </script>
     <script>
@@ -149,19 +167,30 @@
         }
       });
 
-      // document.getElementById('fileUpload').addEventListener("click", function(event) {
-      //     var xhr = new XMLHttpRequest();
+      document.getElementById('getFile').addEventListener('change', readFile, true);
 
-      //     xhr.onreadystatechange = function() {
-      //       if (this.readyState == 4 && this.status == 200) {        
-      //         console.log(this.responseText);
-      //       }
-      //     }
-      //     xhr.open("POST", "fileUpload.php", true);
-      //     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      //     // xhr.send("dataUrl=" + dataUrl);
-      //     xhr.send();
-      // });
+      function readFile() {
+        //getting the user uploaded file and creating a fileReader
+        var file = document.getElementById('getFile').files[0];
+        var reader = new FileReader();
+        //deleting all elements of the camera-place div
+        var div = document.querySelector('.camera-place');
+        while (div.firstChild) {
+          div.removeChild(div.firstChild);
+        }
+        
+        reader.onloadend = function() {
+          var elem = document.createElement('div');
+          elem.id = "uploadedImg";
+          elem.classList.add('user-uploaded-img');
+          elem.style.backgroundImage = "url(" + reader.result + ")";
+          console.log(reader.result);
+          div.appendChild(elem);
+        }
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+      }
     </script>
   </body>
 </html>
