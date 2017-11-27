@@ -40,8 +40,10 @@
   	  <main>
         <div class="video-attr" style="border:solid white 3px">
           <div class="camera-place">
+            <p>enable the camera</p>
             <img id="cameraImg" src="img/camera.png" alt="camera-img">
-            <input type="file" id="getFile" name="userFile"/>
+            <p>or upload your own image</p>
+            <input class="input-border" type="file" id="getFile" name="userFile"/>
           </div>
           <!-- <video id="video" width="640" height="480" autoplay></video> -->
           <canvas id="canvas" width="640" height="480" hidden></canvas>
@@ -178,7 +180,19 @@
         while (div.firstChild) {
           div.removeChild(div.firstChild);
         }
-        
+        if (file.type !== "image/png" && file.type !== "image/jpeg" && file.type !== "image/gif") {
+          var p = document.createElement('p');
+          p.textContent = "you should upload an image";
+          div.appendChild(p);
+          var input = document.createElement('input');
+          input.classList.add('input-border');
+          input.type = "file";
+          input.id = "getFile";
+          input.name = "userFile";
+          input.onchange = readFile;
+          div.appendChild(input);
+          return;
+        } 
         reader.onloadend = function() {
           var elem = document.createElement('div');
           elem.id = "uploadedImg";
