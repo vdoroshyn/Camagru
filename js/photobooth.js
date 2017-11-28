@@ -14,19 +14,44 @@ function poroMove(event) {
 	//checking whether other poros are not in position
 	for (var i = 0; i < elem.children.length; ++i) {
 		var child = elem.children[i];
-		if (child.id == "poro1") {
-			child.style.position = 'static';
-			var imgBox = document.querySelector('.img-boxes').children[0];
-			imgBox.appendChild(child);
-		} else if (child.id == "poro2") {
-			child.style.position = 'static';
-			var imgBox = document.querySelector('.img-boxes').children[1];
-			imgBox.appendChild(child);
-		} else if (child.id == "poro3") {
-			child.style.position = 'static';
-			var imgBox = document.querySelector('.img-boxes').children[2];
-			imgBox.appendChild(child);
+
+		switch(child.id) {
+			case 'poro1':
+			{
+				child.style.position = 'static';
+				var imgBox = document.querySelector('.img-boxes').children[0];
+				imgBox.appendChild(child);
+				break;
+			}
+			case 'poro2':
+			{
+				child.style.position = 'static';
+				var imgBox = document.querySelector('.img-boxes').children[1];
+				imgBox.appendChild(child);
+				break;
+			}
+			case 'poro3':
+			{
+				child.style.position = 'static';
+				var imgBox = document.querySelector('.img-boxes').children[2];
+				imgBox.appendChild(child);
+				break;
+			}
 		}
+
+		// if (child.id == "poro1") {
+		// 	child.style.position = 'static';
+		// 	var imgBox = document.querySelector('.img-boxes').children[0];
+		// 	imgBox.appendChild(child);
+		// } else if (child.id == "poro2") {
+		// 	child.style.position = 'static';
+		// 	var imgBox = document.querySelector('.img-boxes').children[1];
+		// 	imgBox.appendChild(child);
+		// } else if (child.id == "poro3") {
+		// 	child.style.position = 'static';
+		// 	var imgBox = document.querySelector('.img-boxes').children[2];
+		// 	imgBox.appendChild(child);
+		// }
 	}
 	//removing html drag
 	poro.ondragstart = function() {
