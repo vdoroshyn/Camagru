@@ -75,7 +75,7 @@ section {
 
 /*photobooth page*/
 
-main {
+main.camera-main {
 	display: flex;
 	flex-direction: row;
 /*	align-items: center;*/
@@ -167,6 +167,41 @@ main {
 	width:150px;
 	height:150px;
 	z-index: 1000;
+}
+
+/*gallery*/
+
+main.gallery-main {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+    align-items: center;
+	background-color: #CDE4E5;
+	max-height: 740px;
+	max-width: 1350px;
+	overflow-y: auto;
+}
+
+.gallery-photos {
+/*	background-position: center !important;
+	background-repeat: no-repeat !important;
+	background-size: contain !important;
+	height: 480px;
+	width: 640px;*/
+	width: 45%;
+	margin-top: 15px;
+	margin-bottom: 5px;
+
+}
+
+.btn-gallery {
+	width: 80%;
+	font-size: 15px;
+	height: 30px;
+	cursor: pointer;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	font-family: 'Cinzel', sans-serif;
 }
 
 /*Form in the center of registration*/

@@ -1,3 +1,9 @@
+function addPoro(child, num) {
+	child.style.position = 'static';
+	var imgBox = document.querySelector('.img-boxes').children[num];
+	imgBox.appendChild(child);
+}
+
 function poroMove(event) {
 	//checking whether poro are allowed to move
 	var isAllowedToMove = document.querySelector('.camera-place');
@@ -18,23 +24,17 @@ function poroMove(event) {
 		switch(child.id) {
 			case 'poro1':
 			{
-				child.style.position = 'static';
-				var imgBox = document.querySelector('.img-boxes').children[0];
-				imgBox.appendChild(child);
+				addPoro(child, 0);
 				break;
 			}
 			case 'poro2':
 			{
-				child.style.position = 'static';
-				var imgBox = document.querySelector('.img-boxes').children[1];
-				imgBox.appendChild(child);
+				addPoro(child, 1);
 				break;
 			}
 			case 'poro3':
 			{
-				child.style.position = 'static';
-				var imgBox = document.querySelector('.img-boxes').children[2];
-				imgBox.appendChild(child);
+				addPoro(child, 2);
 				break;
 			}
 		}

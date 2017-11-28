@@ -36,13 +36,61 @@
   	</header>
 
   	<section>
-  	  <main>
+      <main class="gallery-main">
+        <!-- <button class="btn-gallery" type="submit" name="loadMore">load more photos</button> -->
       </main>
   	</section>
 
   	<footer>
   	  <p>Copyright &copy; 2017 vdoroshy</p>
   	</footer>
+    <script>
+      var limit = 4;
 
+      function getGalleryPhotos() {
+      var main = document.getElementsByTagName('main')[0];
+
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var photos = JSON.parse(this.responseText);
+
+          for(var i = 0; i < photos.length; ++i) {
+            var photo = document.createElement('img');
+            photo.src = photos[i];
+            photo.classList.add('gallery-photos');
+            main.appendChild(photo);
+          }
+          addButton();
+        }
+      }
+      xhr.open("GET", "getGalleryPhotos.php?limit=" + limit, true);
+      xhr.send();
+    }
+
+    function addButton() {
+      var btn = document.createElement('button');
+      let main = document.getElementsByTagName('main')[0];
+
+      btn.type = "submit";
+      btn.classList.add('btn-gallery');
+      btn.name = "loadMore";
+      btn.textContent = "load more photos";
+      btn.addEventListener('click', loadMorePhotos, true);
+      main.appendChild(btn);
+    }
+
+    function loadMorePhotos() {
+      limit += 4;
+
+      var main = document.getElementsByTagName('main')[0];
+      while (main.firstChild) {
+        main.removeChild(main.firstChild);
+      }
+      getGalleryPhotos();
+    }
+
+    getGalleryPhotos();
+    </script>
   </body>
 </html>

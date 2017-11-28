@@ -37,7 +37,7 @@
 
   	<section>
       <?php if (isset($_SESSION['id'])): ?>
-  	  <main>
+  	  <main class="camera-main">
         <div class="video-attr" style="border:solid white 3px">
           <div class="camera-place">
             <p>enable the camera</p>
