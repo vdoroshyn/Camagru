@@ -38,14 +38,13 @@
   	<section>
       <?php if (isset($_SESSION['id'])): ?>
   	  <main class="camera-main">
-        <div class="video-attr" style="border:solid white 3px">
+        <div class="video-attr">
           <div class="camera-place">
             <p>enable the camera</p>
             <img id="cameraImg" src="img/camera.png" alt="camera-img">
             <p>or upload your own image</p>
             <input class="input-border" type="file" id="getFile" name="userFile"/>
           </div>
-          <!-- <video id="video" width="640" height="480" autoplay></video> -->
           <canvas id="canvas" width="640" height="480" hidden></canvas>
           
           <button class="photo-button" disabled type="submit" name="submit">caption this</button>
@@ -62,7 +61,7 @@
             </div>
           </div>
         </div>
-        <aside class="booth-aside" style="border:solid white 3px height:680px">
+        <aside class="booth-aside">
 
         </aside>
       </main>

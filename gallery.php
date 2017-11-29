@@ -46,6 +46,7 @@
   	</footer>
     <script>
       document.getElementsByTagName('button')[0].addEventListener('click', loadMorePhotos, true);
+      getGalleryPhotos();
 
       var offset = 0;
 
@@ -64,36 +65,18 @@
             photo.classList.add('gallery-photos');
             main.insertBefore(photo, btn);
           }
-          //addButton();
         }
       }
       xhr.open("GET", "getGalleryPhotos.php?offset=" + offset, true);
       xhr.send();
     }
 
-    // function addButton() {
-    //   var btn = document.createElement('button');
-    //   let main = document.getElementsByTagName('main')[0];
-
-    //   btn.type = "submit";
-    //   btn.classList.add('btn-gallery');
-    //   btn.name = "loadMore";
-    //   btn.textContent = "load more photos";
-    //   btn.addEventListener('click', loadMorePhotos, true);
-    //   main.appendChild(btn);
-    // }
-
     function loadMorePhotos() {
       offset += 4;
 
-      // var main = document.getElementsByTagName('main')[0];
-      // while (main.firstChild) {
-      //   main.removeChild(main.firstChild);
-      // }
       getGalleryPhotos();
     }
 
-    getGalleryPhotos();
     </script>
   </body>
 </html>

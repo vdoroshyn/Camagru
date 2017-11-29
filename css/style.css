@@ -82,6 +82,8 @@ main.camera-main {
 	justify-content: center;
 	background-color: #CDE4E5;
 	max-height: 680px;
+	border: 3px solid white;
+    border-radius: 10px;
 }
 
 .camera-place {
@@ -116,10 +118,7 @@ main.camera-main {
 }
 
 .booth-aside {
-	/*display: flex;*/
-	/*flex-direction: column;*/
 	overflow-y: auto;
-	/*overflow: auto;*/
 	height: 680px;
 }
 
@@ -149,6 +148,7 @@ main.camera-main {
 .video-attr {
 	display: flex;
 	flex-direction: column;
+	border-right: 3px solid white;
 }
 
 .img-boxes {
@@ -180,6 +180,8 @@ main.gallery-main {
 	max-height: 740px;
 	max-width: 1350px;
 	overflow-y: auto;
+	border: 3px solid white;
+    border-radius: 10px;
 }
 
 .gallery-photos {
@@ -191,6 +193,8 @@ main.gallery-main {
 	width: 45%;
 	margin-top: 15px;
 	margin-bottom: 5px;
+	border: 3px solid white;
+    border-radius: 15px;
 
 }
 
