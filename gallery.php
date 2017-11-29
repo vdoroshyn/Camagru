@@ -37,7 +37,7 @@
 
   	<section>
       <main class="gallery-main">
-        <!-- <button class="btn-gallery" type="submit" name="loadMore">load more photos</button> -->
+        <button class="btn-gallery" type="submit" name="loadMore">load more photos</button>
       </main>
   	</section>
 
@@ -45,7 +45,9 @@
   	  <p>Copyright &copy; 2017 vdoroshy</p>
   	</footer>
     <script>
-      var limit = 4;
+      document.getElementsByTagName('button')[0].addEventListener('click', loadMorePhotos, true);
+
+      var offset = 0;
 
       function getGalleryPhotos() {
       var main = document.getElementsByTagName('main')[0];
@@ -54,39 +56,40 @@
       xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           var photos = JSON.parse(this.responseText);
+          var btn = document.getElementsByTagName('button')[0];
 
           for(var i = 0; i < photos.length; ++i) {
             var photo = document.createElement('img');
             photo.src = photos[i];
             photo.classList.add('gallery-photos');
-            main.appendChild(photo);
+            main.insertBefore(photo, btn);
           }
-          addButton();
+          //addButton();
         }
       }
-      xhr.open("GET", "getGalleryPhotos.php?limit=" + limit, true);
+      xhr.open("GET", "getGalleryPhotos.php?offset=" + offset, true);
       xhr.send();
     }
 
-    function addButton() {
-      var btn = document.createElement('button');
-      let main = document.getElementsByTagName('main')[0];
+    // function addButton() {
+    //   var btn = document.createElement('button');
+    //   let main = document.getElementsByTagName('main')[0];
 
-      btn.type = "submit";
-      btn.classList.add('btn-gallery');
-      btn.name = "loadMore";
-      btn.textContent = "load more photos";
-      btn.addEventListener('click', loadMorePhotos, true);
-      main.appendChild(btn);
-    }
+    //   btn.type = "submit";
+    //   btn.classList.add('btn-gallery');
+    //   btn.name = "loadMore";
+    //   btn.textContent = "load more photos";
+    //   btn.addEventListener('click', loadMorePhotos, true);
+    //   main.appendChild(btn);
+    // }
 
     function loadMorePhotos() {
-      limit += 4;
+      offset += 4;
 
-      var main = document.getElementsByTagName('main')[0];
-      while (main.firstChild) {
-        main.removeChild(main.firstChild);
-      }
+      // var main = document.getElementsByTagName('main')[0];
+      // while (main.firstChild) {
+      //   main.removeChild(main.firstChild);
+      // }
       getGalleryPhotos();
     }
 
