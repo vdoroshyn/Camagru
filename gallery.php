@@ -78,7 +78,7 @@
       getGalleryPhotos();
     }
 
-
+// rename this function and split it into several!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     function showPhoto() {
       let body = document.getElementsByTagName('body')[0];
 
@@ -91,10 +91,34 @@
       div.classList.add('photo-place');
       blurBackground.appendChild(div);
 
+      var photo = document.createElement('img');
+      photo.src = "userImages/vdoroshy5a1d76399c53c7.52486228.png";
+      div.appendChild(photo);
+      
+
+      var comment = document.createElement('textarea')
+      var btn = document.createElement('button');
+      comment.name = "comment";
+      comment.maxLength = "1000";
+      comment.cols = "40";
+      comment.rows = "30";
+      div.appendChild(comment);
+      div.appendChild(btn);
+
+
+      var likes = document.createElement('button');
+      var delPhoto = document.createElement('button');
+      likes.textContent = "0 Likes";
+      delPhoto.textContent = "delete this photo";
+
+      div.appendChild(likes);
+      div.appendChild(delPhoto);
       body.appendChild(blurBackground);
     }
 
-    function removeBlur() {
+    function removeBlur(event) {
+      event.stopPropagation();
+      console.log(event.target);
       let body = document.getElementsByTagName('body')[0];
 
       for (let i = 0; i < body.children.length; ++i) {
