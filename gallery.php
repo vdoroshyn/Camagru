@@ -63,6 +63,7 @@
             var photo = document.createElement('img');
             photo.src = photos[i];
             photo.classList.add('gallery-photos');
+            photo.addEventListener('click', showPhoto, true);
             main.insertBefore(photo, btn);
           }
         }
@@ -77,6 +78,32 @@
       getGalleryPhotos();
     }
 
+
+    function showPhoto() {
+      let body = document.getElementsByTagName('body')[0];
+
+      var blurBackground = document.createElement('div');
+
+      blurBackground.classList.add('blurred-background');
+      blurBackground.addEventListener('click', removeBlur, true);
+
+      var div = document.createElement('div');
+      div.classList.add('photo-place');
+      blurBackground.appendChild(div);
+
+      body.appendChild(blurBackground);
+    }
+
+    function removeBlur() {
+      let body = document.getElementsByTagName('body')[0];
+
+      for (let i = 0; i < body.children.length; ++i) {
+        let child = body.children[i];
+        if (child.tagName === "DIV") {
+          body.removeChild(child);
+        }
+      }
+    }
     </script>
   </body>
 </html>

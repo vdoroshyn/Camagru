@@ -2,6 +2,30 @@
 	border: 2px solid purple;
 }*/
 
+.blurred-background {
+	position: fixed;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: rgba(0,0,0,.8);
+    z-index: 500;
+}
+
+.photo-place {
+	position: absolute;
+    width: 1000px;
+    height: 800px;
+    background: #CDE4E5;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    margin: auto;
+    border-radius: 35px;
+}
+
+
 body {
 	font: 18px/1.5 Arial, Helvetica, sans-serif;
 	background: url("../img/background.jpg") no-repeat;
