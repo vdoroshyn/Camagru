@@ -176,7 +176,7 @@ main.gallery-main {
 	justify-content: space-evenly;
     align-items: center;
 	background-color: #CDE4E5;
-	max-height: 740px;
+	max-height: 940px;
 	max-width: 1350px;
 	overflow-y: auto;
 	border: 3px solid white;

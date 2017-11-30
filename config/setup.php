@@ -18,6 +18,9 @@ try {
 	//drop tables;
 	$pdo->exec("DROP TABLE IF EXISTS `users`");
 	$pdo->exec("DROP TABLE IF EXISTS `photos`");
+	$pdo->exec("DROP TABLE IF EXISTS `comments`");
+	$pdo->exec("DROP TABLE IF EXISTS `likes`");
+	//create tables to be used
 	$pdo->exec("CREATE TABLE IF NOT EXISTS `users`(
 		id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		username CHAR(8) NOT NULL,
@@ -31,6 +34,14 @@ try {
 		id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		username CHAR(8) NOT NULL,
 		photo_name CHAR(46) NOT NULL,
+		time_stamp TIMESTAMP)
+		");
+	$pdo->exec("CREATE TABLE IF NOT EXISTS `comments`(
+		id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		photo_id INT UNSIGNED NOT NULL,
+		comment_text VARCHAR(1000) NOT NULL,
+		commenter CHAR(8) NOT NULL,
+		owner_id INT UNSIGNED NOT NULL,
 		time_stamp TIMESTAMP)
 		");
 } catch (PDOException $ex) {

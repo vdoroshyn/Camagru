@@ -79,7 +79,8 @@
     }
 
 // rename this function and split it into several!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    function createPopup() {
+    function createPopup(event) {
+      console.log(event.target);
       let body = document.getElementsByTagName('body')[0];
 
       var blurBackground = document.createElement('div');
@@ -101,7 +102,7 @@
 
 
       var photo = document.createElement('img');
-      photo.src = "userImages/vdoroshy5a1d76399c53c7.52486228.png";
+      photo.src = event.target.src;
       photo.classList.add('gallery-popup-img');
       var btnDiv = document.createElement('div');
       btnDiv.classList.add('gallery-popup-btn-div');
