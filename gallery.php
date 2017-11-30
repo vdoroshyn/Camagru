@@ -63,7 +63,7 @@
             var photo = document.createElement('img');
             photo.src = photos[i];
             photo.classList.add('gallery-photos');
-            photo.addEventListener('click', showPhoto, true);
+            photo.addEventListener('click', createPopup, true);
             main.insertBefore(photo, btn);
           }
         }
@@ -79,46 +79,76 @@
     }
 
 // rename this function and split it into several!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    function showPhoto() {
+    function createPopup() {
       let body = document.getElementsByTagName('body')[0];
 
       var blurBackground = document.createElement('div');
 
       blurBackground.classList.add('blurred-background');
-      blurBackground.addEventListener('click', removeBlur, true);
+      blurBackground.addEventListener('click', removeBlur, false);
 
-      var div = document.createElement('div');
-      div.classList.add('photo-place');
-      blurBackground.appendChild(div);
+      var container = document.createElement('div');
+      container.classList.add('photo-place');
+      blurBackground.appendChild(container);
+      //creating the page structure
+      var aside = document.createElement('aside');
+      var main = document.createElement('main');
+      main.classList.add('gallery-popup-main');
+      aside.classList.add('gallery-popup-aside');
+
+      container.appendChild(main);
+      container.appendChild(aside);
+
 
       var photo = document.createElement('img');
       photo.src = "userImages/vdoroshy5a1d76399c53c7.52486228.png";
-      div.appendChild(photo);
-      
+      photo.classList.add('gallery-popup-img');
+      var btnDiv = document.createElement('div');
+      btnDiv.classList.add('gallery-popup-btn-div');
 
-      var comment = document.createElement('textarea')
-      var btn = document.createElement('button');
-      comment.name = "comment";
-      comment.maxLength = "1000";
-      comment.cols = "40";
-      comment.rows = "30";
-      div.appendChild(comment);
-      div.appendChild(btn);
 
 
       var likes = document.createElement('button');
-      var delPhoto = document.createElement('button');
-      likes.textContent = "0 Likes";
+      likes.classList.add('gallery-popup-buttons');
+      likes.textContent = "0 likes";
+
+      var delPhoto = document.createElement('button');  
+      delPhoto.classList.add('gallery-popup-buttons');
       delPhoto.textContent = "delete this photo";
 
-      div.appendChild(likes);
-      div.appendChild(delPhoto);
+      btnDiv.appendChild(likes);
+      btnDiv.appendChild(delPhoto);
+      main.appendChild(photo);
+      main.appendChild(btnDiv);
+
+
+      var comment = document.createElement('div');
+      var newComment = document.createElement('textarea')
+      var btn = document.createElement('button');
+
+      comment.classList.add('gallery-popup-comments');
+      newComment.classList.add('gallery-popup-new-comment');
+      btn.classList.add('gallery-popup-submit-comment');
+      btn.textContent = "submit";
+
+      newComment.name = "newComment";
+      newComment.maxLength = "1000";
+      newComment.cols = "40";
+      newComment.rows = "30";
+      aside.appendChild(comment);
+      aside.appendChild(newComment);
+      aside.appendChild(btn);
+
+
       body.appendChild(blurBackground);
     }
 
     function removeBlur(event) {
-      event.stopPropagation();
+
       console.log(event.target);
+      if (!event.target.classList.contains('blurred-background')) {
+        return;
+      }
       let body = document.getElementsByTagName('body')[0];
 
       for (let i = 0; i < body.children.length; ++i) {
@@ -128,6 +158,7 @@
         }
       }
     }
+
     </script>
   </body>
 </html>

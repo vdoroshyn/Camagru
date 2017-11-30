@@ -2,30 +2,6 @@
 	border: 2px solid purple;
 }*/
 
-.blurred-background {
-	position: fixed;
-    left: 0px;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    background: rgba(0,0,0,.8);
-    z-index: 500;
-}
-
-.photo-place {
-	position: absolute;
-    width: 1000px;
-    height: 800px;
-    background: #CDE4E5;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    bottom: 0px;
-    margin: auto;
-    border-radius: 35px;
-}
-
-
 body {
 	font: 18px/1.5 Arial, Helvetica, sans-serif;
 	background: url("../img/background.jpg") no-repeat;
@@ -35,7 +11,6 @@ body {
     display: flex;
     flex-direction: column;
     height:100vh;
-
 }
 
 .boldText {
@@ -230,6 +205,97 @@ main.gallery-main {
 	margin-top: 10px;
 	margin-bottom: 20px;
 	font-family: 'Cinzel', sans-serif;
+}
+
+/*gallery popup*/
+
+.blurred-background {
+	position: fixed;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: rgba(0,0,0,.8);
+    z-index: 500;
+}
+
+.photo-place {
+	position: absolute;
+    width: 1000px;
+    height: 700px;
+    background: #CDE4E5;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    margin: auto;
+    border-radius: 35px;
+    display: flex;
+    flex-direction: row;
+}
+
+.gallery-popup-main {
+	display: flex;
+    flex-direction: column;
+}
+
+.gallery-popup-img {
+	border: 3px solid white;
+	border-radius: 5px;
+	margin: 20px;
+	margin-top: 50px;
+	width: 640px;
+	height: 480px;
+}
+
+.gallery-popup-btn-div {
+	display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.gallery-popup-buttons {
+	width: 30%;
+	font-size: 15px;
+	height: 30px;
+	cursor: pointer;
+	font-family: 'Cinzel', sans-serif;
+	margin-top: 10px;
+}
+
+.gallery-popup-aside {
+	display: flex;
+    flex-direction: column;
+    min-width: 280px;
+    margin-top: 50px;
+}
+
+.gallery-popup-comments {
+	display: flex;
+    flex-direction: column;
+/*    height: 400px;
+    overflow-y: auto;*/
+}
+
+.gallery-popup-old-comment {
+	height: 50px;
+	background-color: gray;
+}
+
+.gallery-popup-new-comment {
+	height: 100px;
+	max-width: 280px;
+	max-height: 200px;
+}
+
+.gallery-popup-submit-comment {
+	width: 80%;
+	font-size: 15px;
+	height: 30px;
+	cursor: pointer;
+	font-family: 'Cinzel', sans-serif;
+	margin: 0 auto;
+	margin-top: 15px;
 }
 
 /*Form in the center of registration*/
