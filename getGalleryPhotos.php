@@ -10,7 +10,6 @@ if ($pdo) {
 	//after that cast to an int is necessary
 	$offset = htmlentities($_GET['offset']);
 	$offset = intval($offset);
-	$username = $_SESSION['id'];
 	$photos = [];
 	//no bindParam because offset and limit are not parts of standard MySQL
 	$stmt = $pdo->prepare("SELECT * FROM `photos` ORDER BY `time_stamp` DESC LIMIT 4 OFFSET {$offset}");

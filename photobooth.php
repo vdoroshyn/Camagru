@@ -197,7 +197,6 @@
           elem.id = "uploadedImg";
           elem.classList.add('user-uploaded-img');
           elem.style.backgroundImage = "url(" + reader.result + ")";
-          console.log(reader.result);
           div.appendChild(elem);
         }
         if (file) {

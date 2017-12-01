@@ -144,7 +144,7 @@ function getThumbnails() {
 }
 
 function saveImg() {
-	var imgData = document.getElementById('canvas');
+	var canvas = document.getElementById('canvas');
 	var dataUrl = canvas.toDataURL();
 
 	var xhr = new XMLHttpRequest();
