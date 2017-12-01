@@ -40,9 +40,13 @@ try {
 		id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		photo_id INT UNSIGNED NOT NULL,
 		comment_text VARCHAR(1000) NOT NULL,
-		commenter CHAR(8) NOT NULL,
+		commenter_id INT UNSIGNED NOT NULL,
 		owner_id INT UNSIGNED NOT NULL,
 		time_stamp TIMESTAMP)
+		");
+	$pdo->exec("CREATE TABLE IF NOT EXISTS `likes`(
+		user_id INT UNSIGNED NOT NULL,
+		photo_id INT UNSIGNED NOT NULL)
 		");
 } catch (PDOException $ex) {
 	echo "Connection failed: " . $ex->getMessage();

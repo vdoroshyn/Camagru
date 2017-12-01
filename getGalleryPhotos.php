@@ -18,6 +18,7 @@ if ($pdo) {
 
 	while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 		$photos[] = $row['photo_name'];
+		$photos[] = $row['id'];
 	}
 	$success = json_encode($photos);
 	echo $success ? $success : '';

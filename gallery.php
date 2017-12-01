@@ -59,9 +59,11 @@
           var photos = JSON.parse(this.responseText);
           var btn = document.getElementsByTagName('button')[0];
 
-          for(var i = 0; i < photos.length; ++i) {
+          console.log(photos);
+          for(var i = 0; i < photos.length; i += 2) {
             var photo = document.createElement('img');
             photo.src = photos[i];
+            photo.photo_id = photos[i + 1];
             photo.classList.add('gallery-photos');
             photo.addEventListener('click', createPopup, true);
             main.insertBefore(photo, btn);
@@ -103,6 +105,7 @@
 
       var photo = document.createElement('img');
       photo.src = event.target.src;
+      photo.photo_id = event.target.photo_id;
       photo.classList.add('gallery-popup-img');
       var btnDiv = document.createElement('div');
       btnDiv.classList.add('gallery-popup-btn-div');
@@ -134,8 +137,6 @@
 
       newComment.name = "newComment";
       newComment.maxLength = "1000";
-      newComment.cols = "40";
-      newComment.rows = "30";
       aside.appendChild(comment);
       aside.appendChild(newComment);
       aside.appendChild(btn);
