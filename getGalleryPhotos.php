@@ -10,11 +10,11 @@ if ($pdo) {
 	//after that cast to an int is necessary
 	$offset = htmlentities($_GET['offset']);
 	$offset = intval($offset);
-	$photos = [];
 	//no bindParam because offset and limit are not parts of standard MySQL
 	$stmt = $pdo->prepare("SELECT * FROM `photos` ORDER BY `time_stamp` DESC LIMIT 4 OFFSET {$offset}");
 	$stmt->execute();
-
+	//creating an empty array to store every result from the database search
+	$photos = [];
 	while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 		$photos[] = $row['photo_name'];
 		$photos[] = $row['id'];

@@ -56,11 +56,30 @@ function createPopup(event) {
   newComment.name = "newComment";
   newComment.maxLength = "1000";
   aside.appendChild(comments);
+  showComments(comments, photo.dataset.id);
   aside.appendChild(newComment);
   aside.appendChild(btn);
 
-
   body.appendChild(blurBackground);
+}
+
+function showComments(parent, id) {
+
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var comments = JSON.parse(this.responseText);
+
+      for(var i = 0; i < comments.length; ++i) {
+        var div = document.createElement('div');
+        div.classList.add('gallery-popup-old-comment');
+        div.textContent = comments[i];
+        parent.appendChild(div);
+      }
+    }
+  }
+  xhr.open("GET", "showComments.php?id=" + id, true);
+  xhr.send();
 }
 
 function removeBlur(event) {
@@ -97,7 +116,7 @@ function addComment() {
       elem.textContent = this.responseText;
       //making the textarea blank
       input.value = "";
-      comments.appendChild(elem);
+      comments.insertBefore(elem, comments.firstChild);
     }
   }
   xhr.open("POST", "addComment.php", true);

@@ -273,8 +273,9 @@ main.gallery-main {
 .gallery-popup-comments {
 	display: flex;
     flex-direction: column;
-/*    height: 400px;
-    overflow-y: auto;*/
+    overflow-y: auto;
+    max-height: 350px;
+    margin-bottom: 20px;
 }
 
 .gallery-popup-old-comment {
@@ -284,6 +285,7 @@ main.gallery-main {
     font-family: 'Orbitron', sans-serif;
     padding: 5px;
     margin: 5px 0;
+    word-wrap: break-word;
 }
 
 .gallery-popup-new-comment {

@@ -6,9 +6,6 @@ require('config/database.php');
 $pdo = returnPDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 if ($pdo) {
 
-	//sanitizing the comment
-	$comment = htmlentities($_POST['input']);
-
 	//getting the commeter id
 	$loggedUser = $_SESSION['id'];
 	$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `username` = :LoggedUser");
@@ -34,6 +31,11 @@ if ($pdo) {
 		$ownerId = $row['id'];
 	}
 
+	//sanitizing the comment
+	$comment = htmlentities($_POST['input']);
+	//appending the user to the comment
+	$comment = $loggedUser . ": " . $comment;
+
 	$stmt = $pdo->prepare("INSERT INTO `comments` (`photo_id`, `comment_text`, `commenter_id`, `owner_id`)
 							VALUES (:PhotoId, :CommentText, :CommenterId, :OwnerId)");
 	$stmt->bindParam(':PhotoId', $photoId);
@@ -42,7 +44,7 @@ if ($pdo) {
 	$stmt->bindParam(':OwnerId', $ownerId);
 	$stmt->execute();
 
-	echo "$loggedUser: $comment.";
+	echo $comment;
 } else {
 	echo "no connection with the database<br/>";
 	die();
