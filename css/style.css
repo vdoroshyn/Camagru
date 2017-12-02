@@ -278,14 +278,20 @@ main.gallery-main {
 }
 
 .gallery-popup-old-comment {
-	height: 50px;
-	background-color: gray;
+	max-width: 280px;
+    background-color: white;
+    border-radius: 25px;
+    font-family: 'Orbitron', sans-serif;
+    padding: 5px;
+    margin: 5px 0;
 }
 
 .gallery-popup-new-comment {
 	height: 100px;
 	max-width: 280px;
 	max-height: 200px;
+	font-size: 20px;
+	font-family: 'Orbitron', sans-serif;
 }
 
 .gallery-popup-submit-comment {
