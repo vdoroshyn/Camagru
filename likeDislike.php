@@ -3,10 +3,16 @@ session_start();
 require_once('connectToDatabase.php');
 require('config/database.php');
 
+//in case the user is not logged in
+if (!isset($_SESSION['id'])) {
+	echo "you are not logged in";
+	return;
+}
+
 $pdo = returnPDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 if ($pdo) {
 
-	//getting the commeter id
+	//getting the user who liked id
 	$loggedUser = $_SESSION['id'];
 	$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `username` = :LoggedUser");
 	$stmt->bindParam(':LoggedUser', $loggedUser);

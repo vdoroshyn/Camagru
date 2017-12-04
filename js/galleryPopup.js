@@ -33,11 +33,13 @@ function createPopup(event) {
   var likes = document.createElement('button');
   likes.classList.add('gallery-popup-buttons');
   likes.addEventListener('click', likeDislike, true);
-  likes.textContent = "0 likes";
+  showLikes(likes, photo.dataset.id);
 
   var delPhoto = document.createElement('button');  
   delPhoto.classList.add('gallery-popup-buttons');
   delPhoto.textContent = "delete this photo";
+  //passing the photo id as param
+  delPhoto.addEventListener('click', function() { deletePhoto(photo.dataset.id); }, true);
 
   btnDiv.appendChild(likes);
   btnDiv.appendChild(delPhoto);
@@ -84,23 +86,19 @@ function showComments(parent, id) {
   xhr.send();
 }
 
-function showLikes() {
+function showLikes(parent, id) {
+
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      num = this.responseText + " likes";
-      return num;
+      parent.textContent = this.responseText + " likes";
     }
   }
-  xhr.open("GET", "showLikes.php", true);
+  xhr.open("GET", "showLikes.php?id=" + id, true);
   xhr.send();
 }
 
-function removeBlur(event) {
-
-  if (!event.target.classList.contains('blurred-background')) {
-    return;
-  }
+function removePopup(event) {
   let body = document.getElementsByTagName('body')[0];
 
   for (let i = 0; i < body.children.length; ++i) {
@@ -109,6 +107,14 @@ function removeBlur(event) {
       body.removeChild(child);
     }
   }
+}
+
+function removeBlur(event) {
+
+  if (!event.target.classList.contains('blurred-background')) {
+    return;
+  }
+  removePopup();
 }
 
 function addComment() {
@@ -152,7 +158,7 @@ function likeDislike() {
       var num = parseInt(likeBtn.textContent);
       if (this.responseText === "like") {
         num += 1;
-      } else {
+      } else if (this.responseText === "dislike") {
         num -= 1;
       }
       likeBtn.textContent = num + " likes";
@@ -161,4 +167,31 @@ function likeDislike() {
   xhr.open("POST", "likeDislike.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.send("path=" + path);
+}
+
+function removePhotoFromGallery(id) {
+  var images = document.querySelectorAll('.gallery-photos');
+  for (var i = 0; i < images.length; i++) {
+    if (images[i].dataset.id === id) {
+      images[i].remove();
+      break ;
+    }
+  }
+}
+
+function deletePhoto(id) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      if (this.responseText !== "success") {
+        alert(this.responseText);
+        return;
+      }
+      removePopup();
+      removePhotoFromGallery(id);
+    }
+  }
+  xhr.open("POST", "deletePhoto.php", true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send("id=" + id);
 }
