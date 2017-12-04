@@ -45,6 +45,7 @@ try {
 		time_stamp TIMESTAMP)
 		");
 	$pdo->exec("CREATE TABLE IF NOT EXISTS `likes`(
+		id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		user_id INT UNSIGNED NOT NULL,
 		photo_id INT UNSIGNED NOT NULL)
 		");

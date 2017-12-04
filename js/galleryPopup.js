@@ -24,6 +24,7 @@ function createPopup(event) {
   photo.src = event.target.src;
   photo.dataset.id = event.target.dataset.id;
   photo.classList.add('gallery-popup-img');
+  photo.addEventListener('dblclick', likeDislike, true);
   var btnDiv = document.createElement('div');
   btnDiv.classList.add('gallery-popup-btn-div');
 
@@ -31,6 +32,7 @@ function createPopup(event) {
 
   var likes = document.createElement('button');
   likes.classList.add('gallery-popup-buttons');
+  likes.addEventListener('click', likeDislike, true);
   likes.textContent = "0 likes";
 
   var delPhoto = document.createElement('button');  
@@ -82,6 +84,18 @@ function showComments(parent, id) {
   xhr.send();
 }
 
+function showLikes() {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      num = this.responseText + " likes";
+      return num;
+    }
+  }
+  xhr.open("GET", "showLikes.php", true);
+  xhr.send();
+}
+
 function removeBlur(event) {
 
   if (!event.target.classList.contains('blurred-background')) {
@@ -125,3 +139,26 @@ function addComment() {
   xhr.send("input=" + input.value + "&path=" + path);
 }
 
+function likeDislike() {
+  var popup = document.querySelector('.blurred-background');
+  //getting the url and cutting it to get the img name
+  var path = popup.getElementsByTagName('img')[0].src;
+  var path = "userImages/" + path.split('/').pop();
+
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var likeBtn = popup.getElementsByTagName('button')[0];
+      var num = parseInt(likeBtn.textContent);
+      if (this.responseText === "like") {
+        num += 1;
+      } else {
+        num -= 1;
+      }
+      likeBtn.textContent = num + " likes";
+    }
+  }
+  xhr.open("POST", "likeDislike.php", true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send("path=" + path);
+}
