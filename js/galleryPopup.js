@@ -98,9 +98,10 @@ function removeBlur(event) {
 }
 
 function addComment() {
-  var input = document.querySelector('.gallery-popup-new-comment');
+  var popup = document.querySelector('.blurred-background');
+  var input = popup.querySelector('.gallery-popup-new-comment');
   //getting the url and cutting it to get the img name
-  var path = document.getElementsByTagName('img')[0].src;
+  var path = popup.getElementsByTagName('img')[0].src;
   var path = "userImages/" + path.split('/').pop();
 
   if (input.value == "") {
