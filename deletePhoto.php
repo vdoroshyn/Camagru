@@ -40,3 +40,5 @@ if ($pdo) {
 }
 
 ?>
+
+<!-- DELETE EVERYTHING CONNETCTED WITH THE PHOTO (likes, comments, the image from the folder) -->
