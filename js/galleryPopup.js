@@ -180,6 +180,9 @@ function removePhotoFromGallery(id) {
 }
 
 function deletePhoto(id) {
+  if (!confirm('Are you sure you want to delete this photo?')) {
+    return;
+  }
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -189,6 +192,16 @@ function deletePhoto(id) {
       }
       removePopup();
       removePhotoFromGallery(id);
+      //if there are no more photos to show, show a message
+      var main = document.getElementsByTagName('main')[0];
+
+      if (main.children.length == 1) {
+        var p = document.createElement('p');
+        p.classList.add('no-photos-error');
+        p.textContent = "there are no photos";
+        main.appendChild(p);
+        return;
+      }
     }
   }
   xhr.open("POST", "deletePhoto.php", true);

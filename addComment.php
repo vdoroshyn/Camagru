@@ -29,6 +29,7 @@ if ($pdo) {
 	$stmt->execute();
 	if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 		$ownerId = $row['id'];
+		$ownerEmail = $row['email'];
 	}
 
 	//sanitizing the comment
@@ -43,6 +44,11 @@ if ($pdo) {
 	$stmt->bindParam(':CommenterId', $commenterId);
 	$stmt->bindParam(':OwnerId', $ownerId);
 	$stmt->execute();
+
+	//message via the email when there is a new comment
+	$subject = "you have a new comment";
+	$msg = "there is a new comment on one of your photos";
+	mail($ownerEmail, $subject, $msg);
 
 	echo $comment;
 } else {

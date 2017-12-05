@@ -57,6 +57,12 @@
       xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           var photos = JSON.parse(this.responseText);
+          // if (photos.length == 0) {
+          //   main.style.visibility = 'hidden';
+          //   return;
+          // } else {
+          //   main.style.visibility = "";
+          // }
           var btn = document.getElementsByTagName('button')[0];
 
           for(var i = 0; i < photos.length; i += 2) {
@@ -67,6 +73,15 @@
             photo.classList.add('gallery-photos');
             photo.addEventListener('click', createPopup, true);
             main.insertBefore(photo, btn);
+          }
+          //if there are no photos in the gallery, show a message
+          if (main.children.length == 1) {
+            var p = document.createElement('p');
+            p.textContent = "there are no photos";
+            p.classList.add('no-photos-error');
+            main.appendChild(p);
+            //main.style.visibility = 'hidden';
+            return;
           }
         }
       }

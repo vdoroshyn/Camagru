@@ -183,6 +183,13 @@ main.gallery-main {
     border-radius: 10px;
 }
 
+.no-photos-error {
+	margin-bottom: 10px;
+    font-family: 'Cinzel', sans-serif;
+    font-weight: bold;
+    color: red;
+}
+
 .gallery-photos {
 /*	background-position: center !important;
 	background-repeat: no-repeat !important;
