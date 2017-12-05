@@ -34,7 +34,10 @@ if ($pdo) {
     $headers = "MIME-Version: 1.0\r\n"; 
     $headers .= "Content-type: text/html; charset=utf-8\r\n"; 
 
-    $msg = "To reset your password http://localhost:8080/camagru.git/checkingEmailLink.php?code={$verif_code}&email={$email}";
+    //getting the path to the file on the server
+    $fullPath = explode('/', $_SERVER['PHP_SELF']);
+    $i = count($fullPath) - 2;
+    $msg = "To reset your password follow this link: http://localhost:8080/" . "{$fullPath[$i]}" . "/checkingEmailLink.php?code={$verif_code}&email={$email}";
 
     mail($email, $subject, $msg, $headers);
     header('Location: checkYourEmail.php');

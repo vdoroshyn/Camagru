@@ -30,10 +30,11 @@ if ($pdo) {
 	if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 		$ownerId = $row['id'];
 		$ownerEmail = $row['email'];
+		$notifications = $row['notifications'];
 	}
 
 	//sanitizing the comment
-	$comment = htmlentities($_POST['input']);
+	$comment = $_POST['input'];
 	//appending the user to the comment
 	$comment = $loggedUser . ": " . $comment;
 
@@ -45,15 +46,20 @@ if ($pdo) {
 	$stmt->bindParam(':OwnerId', $ownerId);
 	$stmt->execute();
 
-	//message via the email when there is a new comment
-	$subject = "you have a new comment";
-	$msg = "there is a new comment on one of your photos";
-	mail($ownerEmail, $subject, $msg);
-
+	if ($notifications == 1) {
+		//message via the email when there is a new comment only when the notifications property allows it
+		$subject = "you have a new comment";
+		//getting the path to the file on the server
+		$fullPath = explode('/', $_SERVER['PHP_SELF']);
+		$i = count($fullPath) - 2;
+		$msg = "There is a new comment on one of your photos. Check it http://localhost:8080/" . "{$fullPath[$i]}" . "/gallery.php"
+		. " If you do not want to receive notifications - follow this link: http://localhost:8080/" . "{$fullPath[$i]}"
+		. "/turnOffNotifications.php?id={$ownerId}";
+		mail($ownerEmail, $subject, $msg);
+	}
 	echo $comment;
 } else {
 	echo "no connection with the database<br/>";
 	die();
 }
-// JOINs could have solved it better, but my mysql structure has to be remodelled
 ?>
