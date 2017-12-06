@@ -1,13 +1,14 @@
 <?php
 session_start();
-require_once('connectToDatabase.php');
-require('config/database.php');
 
 //in case the user is not logged in
 if (!isset($_SESSION['id'])) {
 	echo "you are not logged in";
 	return;
 }
+
+require_once('connectToDatabase.php');
+require('config/database.php');
 
 $pdo = returnPDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 if ($pdo) {

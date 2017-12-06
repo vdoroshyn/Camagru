@@ -78,6 +78,7 @@
   	  <p>Copyright &copy; 2017 vdoroshy</p>
   	</footer>
     <script src="js/photobooth.js"></script>
+    <?php if (isset($_SESSION['id'])): ?>
     <script>
       //showing thumbnails of previous taken photos when the page is loaded
       getThumbnails();
@@ -148,22 +149,20 @@
         while (div.firstChild) {
           div.removeChild(div.firstChild);
         }
-        // TODO camera should not give errors when the user is logged out!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        // TODO error message if no camera!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        
         // if camera can be accessed, create a video node in html and start video stream
         if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
           // Not adding `{ audio: true }` since we only want video now
           navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
               var video = document.createElement('video');
 
-              video.style.width = "640px";
-              video.style.height = "480px";
               video.id = "stream";
               video.autoplay = true;
               video.src = window.URL.createObjectURL(stream);
               video.play();
               div.appendChild(video);
+          })
+          .catch(function(err) {
+            alert("You either do not have a camera or blocked the access to it. Please check your settings and restart the page afterwards.")
           });
         }
       });
@@ -204,5 +203,6 @@
         }
       }
     </script>
+    <?php endif; ?>
   </body>
 </html>

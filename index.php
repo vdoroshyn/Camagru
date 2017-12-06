@@ -40,7 +40,7 @@
   <head>
   	<title>Camagru</title>
   	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <!--  	<meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="description" content="the photo gallery project">
     <meta name="keywords" content="photo, photobooth, selfie, likes">
     <meta name="author" content="vdoroshy">
@@ -106,6 +106,7 @@
   	<footer>
   	  <p>Copyright &copy; 2017 vdoroshy</p>
   	</footer>
+    <!-- php validation was betterm so I turbed off the js one -->
    <!--  <script src="js/registrationValidation.js"></script> -->
   </body>
 </html>

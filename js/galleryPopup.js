@@ -1,4 +1,7 @@
-// rename this function and split it into several!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/*
+**the function was not refactored due to the fact that in a real project,
+**everything would have been done by the framework
+*/
 function createPopup(event) {
   let body = document.getElementsByTagName('body')[0];
 
@@ -19,7 +22,6 @@ function createPopup(event) {
   container.appendChild(main);
   container.appendChild(aside);
 
-
   var photo = document.createElement('img');
   photo.src = event.target.src;
   photo.dataset.id = event.target.dataset.id;
@@ -27,8 +29,6 @@ function createPopup(event) {
   photo.addEventListener('dblclick', likeDislike, true);
   var btnDiv = document.createElement('div');
   btnDiv.classList.add('gallery-popup-btn-div');
-
-
 
   var likes = document.createElement('button');
   likes.classList.add('gallery-popup-buttons');
@@ -124,7 +124,8 @@ function addComment() {
   var path = popup.getElementsByTagName('img')[0].src;
   var path = "userImages/" + path.split('/').pop();
 
-  if (input.value == "") {
+  //if the comment is empty or consists only of white spaces, return
+  if (input.value == "" || !/\S/.test(input.value)) {
     return;
   }
   var xhr = new XMLHttpRequest();
@@ -132,11 +133,16 @@ function addComment() {
     if (this.readyState == 4 && this.status == 200) {
       var comments = document.querySelector('.gallery-popup-comments');
 
+      //making the textarea blank
+      input.value = "";
+      if (this.responseText == "you are not logged in") {
+        alert(this.responseText);
+        return;
+      }
+
       var elem = document.createElement('div');
       elem.classList.add('gallery-popup-old-comment');
       elem.textContent = this.responseText;
-      //making the textarea blank
-      input.value = "";
       comments.insertBefore(elem, comments.firstChild);
     }
   }
@@ -170,6 +176,12 @@ function likeDislike() {
 }
 
 function removePhotoFromGallery(id) {
+  /*
+  **correcting the offset to avoid the bug with my mysql query
+  **when the photos were deleted, the query returned nothing
+  */
+  offset -= 1;
+
   var images = document.querySelectorAll('.gallery-photos');
   for (var i = 0; i < images.length; i++) {
     if (images[i].dataset.id === id) {

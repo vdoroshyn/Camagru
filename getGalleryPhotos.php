@@ -25,5 +25,4 @@ if ($pdo) {
 	echo "no connection with the database<br/>";
 	die();
 }
-//select might need to be reworked!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ?>

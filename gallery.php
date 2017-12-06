@@ -7,7 +7,7 @@
   <head>
   	<title>Camagru</title>
   	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <!--  	<meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="description" content="the photo gallery project">
     <meta name="keywords" content="photo, photobooth, selfie, likes">
     <meta name="author" content="vdoroshy">
@@ -45,10 +45,10 @@
   	  <p>Copyright &copy; 2017 vdoroshy</p>
   	</footer>
     <script>
+      var offset = 0;
       document.getElementsByTagName('button')[0].addEventListener('click', loadMorePhotos, true);
       getGalleryPhotos();
 
-      var offset = 0;
       function getGalleryPhotos() {
       var main = document.getElementsByTagName('main')[0];
 
@@ -84,6 +84,16 @@
     function loadMorePhotos() {
       offset += 4;
 
+      //remove the error message if the user removed all photos on the page and asks to load more
+      var main = document.getElementsByTagName('main')[0];
+
+      for (var i = 0; i < main.children.length; ++i) {
+        var child = main.children[i];
+        if (child.classList.contains('no-photos-error')) {
+          main.removeChild(child);
+          break;
+        }
+      }
       getGalleryPhotos();
     }
 

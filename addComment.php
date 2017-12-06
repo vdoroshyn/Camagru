@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+//in case the user is not logged in
+if (!isset($_SESSION['id'])) {
+	echo "you are not logged in";
+	return;
+}
+
 require_once('connectToDatabase.php');
 require('config/database.php');
 
@@ -33,7 +40,7 @@ if ($pdo) {
 		$notifications = $row['notifications'];
 	}
 
-	//sanitizing the comment
+	//sanitizing the comment//removed htmlspecialchars because I want user to use all symbols
 	$comment = $_POST['input'];
 	//appending the user to the comment
 	$comment = $loggedUser . ": " . $comment;
