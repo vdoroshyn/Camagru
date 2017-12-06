@@ -2,6 +2,7 @@
 
 require_once('connectToDatabase.php');
 require('config/database.php');
+
 //getting and sanitizing variables to work with them throughout the whole file
 $username = htmlentities($_POST['username']);
 $pswd = htmlentities($_POST['pswd']);
