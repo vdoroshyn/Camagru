@@ -421,11 +421,26 @@ footer {
 }
 
 @media only screen and (max-height: 1130px) {
-	body {
+	body.responsive-height {
 		height: auto;
 	}
-	.gallery-main {
+	.gallery-main, .camera-main {
 		margin: 15px 0;
+	}
+}
+
+@media only screen and (max-height: 1130px) {
+	body.responsive-height {
+		height: auto;
+	}
+	.gallery-main, .camera-main {
+		margin: 15px 0;
+	}
+}
+
+@media only screen and (max-height: 768px) {
+	body.responsive-height-booth {
+		height: auto;
 	}
 }
 

@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
   </head>
-  <body>
+  <body class="responsive-height">
   	<header>
 	  	<div id="logo">
 	  	  <h1>Camagru</h1>

@@ -7,7 +7,7 @@
   <head>
   	<title>Camagru</title>
   	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="description" content="the photo gallery project">
     <meta name="keywords" content="photo, photobooth, selfie, likes">
     <meta name="author" content="vdoroshy">
@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
   </head>
-  <body>
+  <body class="responsive-height-booth">
   	<header>
 	  	<div id="logo">
 	  	  <h1>Camagru</h1>
