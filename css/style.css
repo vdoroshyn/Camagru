@@ -420,6 +420,15 @@ footer {
 	}
 }
 
+@media only screen and (max-height: 1130px) {
+	body {
+		height: auto;
+	}
+	.gallery-main {
+		margin: 15px 0;
+	}
+}
+
 @media only screen and (max-width: 768px) {
     .registr {
 		width: 50vw;
