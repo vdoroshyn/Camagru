@@ -18,6 +18,9 @@ if (!empty($_GET['code']) && !empty($_GET['email'])) {
 		$stmt->execute();
 
 		if ($stmt->rowCount() != 0) {
+			$stmt = $pdo->prepare("UPDATE `users` SET `reset_email_code`=-1 WHERE `email` = :Email");
+			$stmt->bindParam(':Email', $email);
+			$stmt->execute();
 			header('Location: resetPassword.php');
 			die();
 		}

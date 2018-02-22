@@ -28,7 +28,7 @@ try {
 		password VARCHAR(255) NOT NULL,
 		confirmed_email INT NOT NULL DEFAULT 0,
 		verification_code BIGINT NOT NULL DEFAULT 0,
-		reset_email_code BIGINT NOT NULL DEFAULT 0,
+		reset_email_code BIGINT NOT NULL DEFAULT -1,
 		notifications INT UNSIGNED NOT NULL DEFAULT 1)
 		");
 	$pdo->exec("CREATE TABLE IF NOT EXISTS `photos`(

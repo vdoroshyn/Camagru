@@ -1,6 +1,6 @@
 <?php
 
-$host = "localhost";
+$host = "127.0.0.1";
 $dbname = "camagru";
 
 $DB_DSN_CREATE = "mysql:host={$host}";

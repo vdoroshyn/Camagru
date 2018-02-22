@@ -10,7 +10,7 @@ $repeatPswd = htmlentities($_POST['repeatPswd']);
 $pdo = returnPDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 if ($pdo) {
 
-  $stmt = $pdo->prepare("SELECT * FROM `users` WHERE `username` = :Username");
+  $stmt = $pdo->prepare("SELECT * FROM `users` WHERE `username` = :Username AND `reset_email_code` != -1");
   $stmt->bindParam(':Username', $username);
   $stmt->execute();
   /*
