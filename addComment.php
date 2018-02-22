@@ -13,7 +13,7 @@ require('config/database.php');
 $pdo = returnPDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 if ($pdo) {
 
-	//getting the commeter id
+	//getting the commenter id
 	$loggedUser = $_SESSION['id'];
 	$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `username` = :LoggedUser");
 	$stmt->bindParam(':LoggedUser', $loggedUser);
@@ -41,7 +41,8 @@ if ($pdo) {
 	}
 
 	//sanitizing the comment//removed htmlspecialchars because I want user to use all symbols
-	$comment = $_POST['input'];
+	//preg_replace here is to avoid errors with emojis
+	$comment = preg_replace('/[\x{10000}-\x{10FFFF}]/u', '(:smiley face:)', $_POST['input']);
 	//appending the user to the comment
 	$comment = $loggedUser . ": " . $comment;
 
